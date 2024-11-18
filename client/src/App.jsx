@@ -9,6 +9,7 @@ import Footer from "./components/Footer";
 function App() {
   return (
     <BrowserRouter>
+      <Header />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/card" element={<Card />} />
@@ -16,6 +17,7 @@ function App() {
         <Route path="/header" element={<Header />} />
         <Route path="/footer" element={<Footer />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }

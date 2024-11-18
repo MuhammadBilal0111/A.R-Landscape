@@ -6,7 +6,7 @@ import CssBaseline from "@mui/material/CssBaseline"; // For consistent styling
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#008000", // Hex color code for green
+      main: "#14532D", // Hex color code for green
     },
   },
 });

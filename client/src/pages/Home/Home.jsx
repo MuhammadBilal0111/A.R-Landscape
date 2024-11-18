@@ -7,7 +7,7 @@ import Main from "./components/Main";
 function Home() {
   return (
     <>
-      <div className="flex flex-col gap-8">
+      <div className="flex flex-col gap-8 mt-12 lg:mt-0">
         <Main />
         <HomeSection1 />
         <HomeSection2 />

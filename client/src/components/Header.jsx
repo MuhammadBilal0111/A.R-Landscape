@@ -12,9 +12,8 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
+import { Typography, Link } from "@mui/material";
 import Button from "@mui/material/Button";
-import { Link } from "react-router-dom";
 const drawerWidth = 240;
 const navItems = ["Home", "About", "Contact"];
 
@@ -69,19 +68,31 @@ function DrawerAppBar(props) {
           >
             <MenuIcon />
           </IconButton>
-          <img
-            src="/plant_logo.png"
-            alt=""
-            srcset="A. R Landscape"
-            className="h-8 w-8 mr-2"
-          />
-          <Typography
-            variant="h6"
-            component="div"
-            sx={{ flexGrow: 1, display: { sm: "block" } }}
+
+          <Link
+            href="/"
+            underline="none"
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              color: "#fff",
+              marginRight: "6rem",
+            }}
           >
-            A. R Landscape
-          </Typography>
+            <img
+              src="/plant_logo.png"
+              alt=""
+              srcset="A. R Landscape"
+              className="h-8 w-8 mr-2"
+            />
+            <Typography
+              variant="h6"
+              component="div"
+              sx={{ flexGrow: 1, display: { sm: "block" } }}
+            >
+              A. R Landscape
+            </Typography>
+          </Link>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
             {navItems.map((item) => (
               <Link to="/">
