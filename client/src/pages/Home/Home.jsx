@@ -3,6 +3,7 @@ import HomeSection1 from "./components/HomeSection1";
 import HomeSection2 from "./components/HomeSection2";
 import HomeSection3 from "./components/HomeSection3";
 import Main from "./components/Main";
+
 function Home() {
   return (
     <>

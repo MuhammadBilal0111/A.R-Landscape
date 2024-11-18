@@ -70,10 +70,10 @@ function DrawerAppBar(props) {
             <MenuIcon />
           </IconButton>
           <img
-            src="/logo.jpg"
+            src="/plant_logo.png"
             alt=""
             srcset="A. R Landscape"
-            className="h-8 w-8"
+            className="h-8 w-8 mr-2"
           />
           <Typography
             variant="h6"

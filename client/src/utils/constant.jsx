@@ -21,27 +21,27 @@ export const NAVIGATION = [
   {
     kind: "divider",
   },
-  {
-    kind: "header",
-    title: "Analytics",
-  },
-  {
-    segment: "reports",
-    title: "Reports",
-    icon: <IoBarChart />,
-    children: [
-      {
-        segment: "sales",
-        title: "Sales",
-        icon: <MdOutlineDescription />,
-      },
-      {
-        segment: "traffic",
-        title: "Traffic",
-        icon: <MdOutlineDescription />,
-      },
-    ],
-  },
+  // {
+  //   kind: "header",
+  //   title: "Analytics",
+  // },
+  // {
+  //   segment: "reports",
+  //   title: "Reports",
+  //   icon: <IoBarChart />,
+  //   children: [
+  //     {
+  //       segment: "sales",
+  //       title: "Sales",
+  //       icon: <MdOutlineDescription />,
+  //     },
+  //     {
+  //       segment: "traffic",
+  //       title: "Traffic",
+  //       icon: <MdOutlineDescription />,
+  //     },
+  //   ],
+  // },
   {
     segment: "integrations",
     title: "Integrations",
