@@ -5,9 +5,9 @@ import { Link } from "react-router-dom";
 
 function Card({ title, image, slug, price }) {
   return (
-    <div className="w-56 h-64 rounded-3xl shadow-2xl p-6 ">
-      <Link to={`/plants/${slug}`}>
-        <div className="w-full h-40 object-cover mb-3">
+    <div className="w-56 h-72 rounded-3xl shadow-2xl p-6 ">
+      <Link to={`/plant/${slug}`}>
+        <div className="w-full h-48 object-cover mb-3">
           <img
             src={image}
             loading="lazy"

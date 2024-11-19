@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import Card from "../../../components/Card";
 import { getPlantsDetails } from "../../../services/GlobalApi";
 
 function PlantRecommendationSection() {
   const [plantsItem, setPlantsItem] = useState([]);
-
   useEffect(() => {
     // Fetch plant details when the component mounts
     const fetchPlants = async () => {
@@ -16,11 +15,11 @@ function PlantRecommendationSection() {
       }
     };
     fetchPlants();
-  }, [plantsItem]);
+  }, []);
   return (
     <div className="px-8">
       <h1 className="text-center text-3xl lg:text-5xl font-bold text-green-800">
-        Recommendation for You
+        Recommendations for You
       </h1>
       <div className="flex flex-wrap gap-6 my-7 justify-center items-center">
         {plantsItem.length > 0 &&

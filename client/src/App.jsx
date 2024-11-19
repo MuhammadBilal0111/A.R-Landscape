@@ -6,15 +6,16 @@ import DashboardLayoutBasic from "./pages/Dashboard/Dashboard";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import AddToCart from "./pages/AddToCart";
-
+import ScrollToTop from "./components/ScrollToTop";
 function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/card" element={<Card />} />
         <Route path="/dashboard" element={<DashboardLayoutBasic />} />
+        <Route path="/plant/:plant-slug" element={<AddToCart />} />
         <Route path="/add" element={<AddToCart />} />
       </Routes>
       <Footer />
