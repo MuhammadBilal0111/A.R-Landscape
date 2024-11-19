@@ -1,6 +1,6 @@
 import React from "react";
 
-function Main() {
+function HeroSection() {
   return (
     <>
       <div className="bg-[url('/mainHomeImage.avif')] h-auto">
@@ -33,4 +33,4 @@ function Main() {
   );
 }
 
-export default Main;
+export default HeroSection;

@@ -54,7 +54,7 @@ function AddToCart() {
             <p className="text-sm mb-3 text-gray-700 font-semibold">
               Choose quantity:
             </p>
-            <div className="flex gap-4 items-center ">
+            <div className="flex gap-4 items-center">
               <button
                 className="text-white bg-[#A1DD70] p-2 rounded-full focus:ring-[#A1DD70] focus:ring-4 hover:scale-105 duration-75 hover:bg-green-800 transition-all"
                 onClick={incrementCounter}
@@ -73,7 +73,7 @@ function AddToCart() {
           <Link to="/">
             <button
               type="button"
-              class="w-full focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+              class="w-full focus:outline-none  bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300  rounded-lg  px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 text-yellow-300 text-md"
             >
               Add to Cart
             </button>
