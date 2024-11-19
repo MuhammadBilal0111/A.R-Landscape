@@ -5,6 +5,7 @@ import Card from "./components/Card";
 import DashboardLayoutBasic from "./pages/Dashboard/Dashboard";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import AddToCart from "./pages/AddToCart";
 
 function App() {
   return (
@@ -14,8 +15,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/card" element={<Card />} />
         <Route path="/dashboard" element={<DashboardLayoutBasic />} />
-        <Route path="/header" element={<Header />} />
-        <Route path="/footer" element={<Footer />} />
+        <Route path="/add" element={<AddToCart />} />
       </Routes>
       <Footer />
     </BrowserRouter>
