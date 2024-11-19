@@ -4,6 +4,7 @@ import { FaPlus, FaMinus } from "react-icons/fa6";
 
 function AddToCart() {
   const [quantity, setQuantity] = useState(1);
+  const [image, setImage] = useState("");
   const incrementCounter = (e) => {
     setQuantity(quantity + 1);
   };
@@ -16,20 +17,61 @@ function AddToCart() {
   };
   return (
     <div className="mt-28">
-      <div className="min-h-screen h-auto flex flex-col lg:flex-row items-center justify-center max-w-6xl mx-auto px-5 mb-7 gap-8 ">
-        <div className="h-[500px] w-full lg:w-1/2 overflow-hidden  bg-red-900">
-          <img
-            src="./plant_4.jpg"
-            alt=""
-            className="h-full w-full object-cover object-center"
-          />
+      <div className="min-h-screen h-auto flex flex-col lg:flex-row justify-center max-w-7xl mx-auto px-5 mb-7 gap-8 ">
+        <div className="flex flex-col gap-8 lg:w-1/2">
+          <div className="h-[400px] w-full overflow-hidden  bg-red-900">
+            <img
+              src={image}
+              alt=""
+              className="h-full w-full object-cover object-center"
+            />
+          </div>
+          <div
+            className="gap-5 flex flex-wrap lg:flex-row items-center justify-center"
+            onClick={(e) => {
+              setImage(e.target.getAttribute("src"));
+            }}
+          >
+            <div className="w-full md:h-40 md:w-48 cursor-pointer">
+              <img
+                src="/plant_5.jpg"
+                alt=""
+                className="h-full w-full object-cover object-center"
+              />
+            </div>
+            <div
+              className="w-full md:h-40 md:w-48 cursor-pointer"
+              onClick={(e) => {
+                setImage(e.target.getAttribute("src"));
+              }}
+            >
+              <img
+                src="/plant_4.jpg"
+                alt=""
+                className="h-full w-full object-cover object-center"
+              />
+            </div>
+            <div
+              className="w-full md:h-40 md:w-48 cursor-pointer"
+              onClick={(e) => {
+                setImage(e.target.getAttribute("src"));
+              }}
+            >
+              <img
+                src="/plant_3.jpg"
+                alt=""
+                className="h-full w-full object-cover object-center"
+              />
+            </div>
+          </div>
         </div>
+
         <div className="flex-1 w-full">
-          <h1 className="font-bold text-4xl md:text-7xl mb-5">Snake Plant</h1>
-          <h2 className="font-semibold text-2xl md:text-4xl text-gray-700 mb-3">
+          <h1 className="font-bold text-3xl md:text-6xl mb-5">Snake Plant</h1>
+          <h2 className="font-semibold text-xl md:text-3xl text-gray-700 mb-3">
             Deal of the day: <span className="text-yellow-500">15.99 $</span>
           </h2>
-          <p className="text-gray-700 text-xl">
+          <p className="text-gray-700 text-md">
             A hardy indoor plant that requires minimal care.
           </p>
 
@@ -43,7 +85,7 @@ function AddToCart() {
             />
             <label htmlFor="method">
               <div className="flex items-center ">
-                <img src="cod.png" alt="" className="w-32 h-20" />
+                <img src="/cod.png" alt="" className="w-32 h-20" />
                 <h1 className="text-red-500 font-medium">
                   Get your greens delivered with ease—order now!!
                 </h1>
@@ -57,16 +99,16 @@ function AddToCart() {
             <div className="flex gap-4 items-center">
               <button
                 className="text-white bg-[#A1DD70] p-2 rounded-full focus:ring-[#A1DD70] focus:ring-4 hover:scale-105 duration-75 hover:bg-green-800 transition-all"
-                onClick={incrementCounter}
+                onClick={decrementCounter}
               >
-                <FaPlus />
+                <FaMinus />
               </button>
               <span className="text-lg font-semibold">{quantity}</span>
               <button
                 className="text-white bg-[#A1DD70] p-2 rounded-full focus:ring-[#A1DD70] focus:ring-4 hover:scale-105 duration-75 hover:bg-green-800 transition-all"
-                onClick={decrementCounter}
+                onClick={incrementCounter}
               >
-                <FaMinus />
+                <FaPlus />
               </button>
             </div>
           </div>
