@@ -9,6 +9,20 @@ const theme = createTheme({
       main: "#14532D", // Hex color code for green
     },
   },
+  components: {
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+          "&:hover .MuiOutlinedInput-notchedOutline": {
+            borderColor: "#064E3B", // Outline color on hover
+          },
+          "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+            borderColor: "#14532D", // Outline color when focused
+          },
+        },
+      },
+    },
+  },
 });
 
 function ProvideTheme({ children }) {

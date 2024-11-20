@@ -33,11 +33,13 @@ const Header = () => {
           <div className="flex gap-x-3 ml-5 items-center ">
             <Link to={"/"}>
               <h1 className="text-2xl font-bold max-md:text-xl  text-yellow-300 transition-all duration-150 ease-linear flex gap-2 items-center">
-                <img
-                  src="plant_logo.png"
-                  alt="A. R Landscape Logo"
-                  className="h-14"
-                />
+                <div className="h-14 w-14">
+                  <img
+                    src="./plant_logo.png"
+                    alt="A. R Landscape Logo"
+                    className="h-full w-full"
+                  />
+                </div>
                 <span>A. R Landscape</span>
               </h1>
             </Link>

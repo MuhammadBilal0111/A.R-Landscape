@@ -16,7 +16,7 @@ function HomeSection2() {
         <img
           src="/plant_4.jpg"
           alt=""
-          srcset=""
+          srcSet=""
           className="w-full h-full rounded-full object-cover shadow-2xl"
         />
       </div>

@@ -16,14 +16,15 @@ function PlantRecommendationSection() {
     };
     fetchPlants();
   }, []);
+  const memoizedPlantItems = useMemo(() => plantsItem, [plantsItem]);
   return (
     <div className="px-8">
       <h1 className="text-center text-3xl lg:text-5xl font-bold text-green-800">
         Recommendations for You
       </h1>
       <div className="flex flex-wrap gap-6 my-7 justify-center items-center">
-        {plantsItem.length > 0 &&
-          plantsItem.map((plant) => (
+        {memoizedPlantItems.length > 0 &&
+          memoizedPlantItems.map((plant) => (
             <Card
               key={plant?._id} // Unique key for React
               title={plant.title} // title of the plant object

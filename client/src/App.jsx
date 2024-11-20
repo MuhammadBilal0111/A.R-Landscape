@@ -7,6 +7,8 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import AddToCart from "./pages/AddToCart";
 import ScrollToTop from "./components/ScrollToTop";
+import Checkout from "./pages/Home/Checkout/Checkout";
+
 function App() {
   return (
     <BrowserRouter>
@@ -16,7 +18,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/dashboard" element={<DashboardLayoutBasic />} />
         <Route path="/plant/:plantSlug" element={<AddToCart />} />
-        <Route path="/add" element={<AddToCart />} />
+        <Route path="/add" element={<Checkout />} />
       </Routes>
       <Footer />
     </BrowserRouter>
