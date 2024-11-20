@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { IoCartOutline } from "react-icons/io5";
 import Tooltip from "@mui/material/Tooltip";
-import { Link } from "react-router-dom";
-
+import { Link, useParams } from "react-router-dom";
+import { getPlantsDetails } from "../services/GlobalApi";
 function Card({ title, image, slug, price }) {
+  
   return (
     <div className="w-56 h-72 rounded-3xl shadow-2xl p-6 ">
       <Link to={`/plant/${slug}`}>

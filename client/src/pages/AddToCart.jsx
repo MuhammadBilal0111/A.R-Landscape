@@ -1,10 +1,28 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 import { FaPlus, FaMinus } from "react-icons/fa6";
+import { Link, useParams } from "react-router-dom";
+import { getPlantsDetails } from "../services/GlobalApi";
 
 function AddToCart() {
   const [quantity, setQuantity] = useState(1);
+  const [plantData, setPlantData] = useState([]);
   const [image, setImage] = useState("");
+  const { plantSlug } = useParams();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await getPlantsDetails(`?slug=${plantSlug}`);
+        setPlantData(response?.data?.data);
+        console.log(plantData[0].imageUrl);
+        setImage(plantData[0].imageUrl);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, [plantSlug]);
+
   const incrementCounter = (e) => {
     setQuantity(quantity + 1);
   };
@@ -67,25 +85,25 @@ function AddToCart() {
         </div>
 
         <div className="flex-1 w-full">
-          <h1 className="font-bold text-3xl md:text-6xl mb-5">Snake Plant</h1>
+          <h1 className="font-bold text-3xl md:text-6xl mb-5">
+            {plantData[0]?.title}
+          </h1>
           <h2 className="font-semibold text-xl md:text-3xl text-gray-700 mb-3">
-            Deal of the day: <span className="text-yellow-500">15.99 $</span>
+            Deal of the day:{" "}
+            <span className="text-yellow-500">{plantData[0]?.price} $</span>
           </h2>
-          <p className="text-gray-700 text-md">
-            A hardy indoor plant that requires minimal care.
-          </p>
-
+          <p className="text-gray-700 text-md">{plantData[0]?.description}</p>
           <div className="flex items-center me-4 border-b-2 mb-4 border-green-600">
             <input
               type="radio"
               name="method"
               id="method"
-              className="cursor-pointer w-4 h-4"
+              className="cursor-pointer w-4 h-4 accent-green-900"
               checked
             />
             <label htmlFor="method">
               <div className="flex items-center ">
-                <img src="/cod.png" alt="" className="w-32 h-20" />
+                <img src="/cod.png" alt="" className="w-32 h-20 " />
                 <h1 className="text-red-500 font-medium">
                   Get your greens delivered with ease—order now!!
                 </h1>
@@ -115,7 +133,7 @@ function AddToCart() {
           <Link to="/">
             <button
               type="button"
-              class="w-full focus:outline-none  bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300  rounded-lg  px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 text-yellow-300 text-md"
+              className="w-full focus:outline-none  bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300  rounded-lg  px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 text-yellow-300 text-md"
             >
               Add to Cart
             </button>

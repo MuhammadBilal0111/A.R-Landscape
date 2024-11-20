@@ -15,7 +15,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/dashboard" element={<DashboardLayoutBasic />} />
-        <Route path="/plant/:plant-slug" element={<AddToCart />} />
+        <Route path="/plant/:plantSlug" element={<AddToCart />} />
         <Route path="/add" element={<AddToCart />} />
       </Routes>
       <Footer />

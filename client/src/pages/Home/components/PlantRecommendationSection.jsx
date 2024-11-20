@@ -8,7 +8,7 @@ function PlantRecommendationSection() {
     // Fetch plant details when the component mounts
     const fetchPlants = async () => {
       try {
-        const response = await getPlantsDetails();
+        const response = await getPlantsDetails("?limit=5&order=desc");
         setPlantsItem(response?.data?.data); // Assuming response.data.data holds the plant array
       } catch (error) {
         console.error("Error fetching plant details:", error);
