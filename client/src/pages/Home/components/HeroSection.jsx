@@ -3,7 +3,7 @@ import React from "react";
 function HeroSection() {
   return (
     <>
-      <div className="bg-[url('/mainHomeImage.avif')] h-auto">
+      <div className="bg-[url('/mainHomeImage.avif')] h-auto overflow-hidden">
         <div className="flex flex-col lg:flex-row gap-4 justify-between items-center h-auto lg:h-screen max-w-6xl mx-auto px-8 py-6 my-12 lg:my-0">
           <div className="w-full lg:w-1/2">
             <h1 className="text-green-500 text-5xl md:text-7xl lg:text-9xl font-extrabold line-clamp-2">

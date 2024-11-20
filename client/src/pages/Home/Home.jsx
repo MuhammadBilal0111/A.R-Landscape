@@ -7,7 +7,7 @@ import PlantRecommendationSection from "./components/PlantRecommendationSection"
 function Home() {
   return (
     <>
-      <div className="flex flex-col gap-8 mt-12 lg:mt-0">
+      <div className="flex flex-col gap-8 lg:mt-0">
         <HeroSection />
         <HomeSection1 />
         <HomeSection2 />

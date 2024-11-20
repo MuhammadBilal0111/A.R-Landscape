@@ -1,131 +1,117 @@
-import * as React from "react";
-import PropTypes from "prop-types";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import CssBaseline from "@mui/material/CssBaseline";
-import Divider from "@mui/material/Divider";
-import Drawer from "@mui/material/Drawer";
-import IconButton from "@mui/material/IconButton";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemText from "@mui/material/ListItemText";
-import MenuIcon from "@mui/icons-material/Menu";
-import Toolbar from "@mui/material/Toolbar";
-import { Typography, Link } from "@mui/material";
-import Button from "@mui/material/Button";
-const drawerWidth = 240;
-const navItems = ["Home", "About", "Contact"];
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import React, { useRef, useState } from "react";
+import { IoMenu } from "react-icons/io5";
+import { RxCross2 } from "react-icons/rx";
+import { MdOutlineShoppingBag } from "react-icons/md";
+import { Link, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
-function DrawerAppBar(props) {
-  const { window } = props;
-  const [mobileOpen, setMobileOpen] = React.useState(false);
+const Header = () => {
+  const [toggle, setToggle] = useState(false);
+  const headerLinks = useRef(null);
+  const items = useSelector((state) => state.cart.items);
 
-  const handleDrawerToggle = () => {
-    setMobileOpen((prevState) => !prevState);
+  useGSAP(() => {
+    if (!toggle) return;
+    gsap.from(headerLinks.current.children, {
+      x: -150,
+      duration: 2,
+      ease: "power4.out",
+      stagger: 0.1,
+    });
+  }, [toggle]);
+
+  const toggleMenu = () => {
+    setToggle(!toggle);
   };
 
-  const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
-      <div className="flex items-center justify-center">
-        <img
-          src="/logo.jpg"
-          alt=""
-          srcset="A. R Landscape"
-          className="h-8 w-8"
-        />
-        <Typography variant="h6" sx={{ my: 2 }}>
-          A. R Landscape
-        </Typography>
-      </div>
-      <Divider />
-      <List>
-        {navItems.map((item) => (
-          <ListItem key={item} disablePadding>
-            <ListItemButton sx={{ textAlign: "center" }}>
-              <ListItemText primary={item} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-    </Box>
-  );
-
-  const container =
-    window !== undefined ? () => window().document.body : undefined;
-
   return (
-    <Box sx={{ display: "flex" }}>
-      <CssBaseline />
-      <AppBar component="nav">
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: "none" } }}
-          >
-            <MenuIcon />
-          </IconButton>
+    <>
+      <header className="w-full h-16 mx-auto flex flex-col justify-between items-center  px-1 border-b bg-green-900 border-slate-600">
+        <div className="w-full h-full flex justify-between items-center ">
+          <div className="flex gap-x-3 ml-5 items-center ">
+            <Link to={"/"}>
+              <h1 className="text-2xl font-bold max-md:text-xl  text-yellow-300 transition-all duration-150 ease-linear flex gap-2 items-center">
+                <img
+                  src="plant_logo.png"
+                  alt="A. R Landscape Logo"
+                  className="h-14"
+                />
+                <span>A. R Landscape</span>
+              </h1>
+            </Link>
+          </div>
+          <nav className="mr-5 max-sm:hidden">
+            <ul className="flex gap-x-12 font-semibold pt-2 max-lg:gap-x-10 text-[1rem] mr-2  ">
+              <li className="hover:text-slate-300 text-yellow-300 transition-all duration-200 ease-linear">
+                <Link to="/">Home</Link>
+              </li>
+              <li className="hover:text-slate-300  text-yellow-300 transition-all duration-200 ease-linear">
+                <Link to="/menu">Menu</Link>
+              </li>
+              <li className="hover:text-slate-300 text-yellow-300 transition-all duration-200 ease-linear">
+                <Link to="/profile">Profile</Link>
+              </li>
+              <li className="relative hover:text-slate-300 text-yellow-300 transition-all duration-200 ease-linear">
+                <Link to="/cart">
+                  <MdOutlineShoppingBag className="sm:text-3xl lg:text-3xl pb-1" />
+                  <div className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
+                    {items.length}
+                  </div>
+                </Link>
+              </li>
+            </ul>
+          </nav>
+          <div className="sm:hidden">
+            {!toggle ? (
+              <IoMenu
+                className="text-[35px] mr-5 text-white"
+                onClick={toggleMenu}
+              />
+            ) : (
+              <RxCross2
+                className="text-[35px] mr-5 rotate-360 text-white"
+                onClick={toggleMenu}
+              />
+            )}
+          </div>
+        </div>
+      </header>
 
-          <Link
-            href="/"
-            underline="none"
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              color: "#fff",
-              marginRight: "6rem",
-            }}
-          >
-            <img
-              src="/plant_logo.png"
-              alt=""
-              srcset="A. R Landscape"
-              className="h-8 w-8 mr-2"
-            />
-            <Typography
-              variant="h6"
-              component="div"
-              sx={{ flexGrow: 1, display: { sm: "block" } }}
+      {toggle && (
+        <div className="w-full bg-slate-700 flex flex-col transition-all duration-1000 ease-in-out sm:hidden">
+          <nav>
+            <ul
+              className="flex flex-col gap-y-2 font-bold py-3 text-white "
+              ref={headerLinks}
             >
-              A. R Landscape
-            </Typography>
-          </Link>
-          <Box sx={{ display: { xs: "none", sm: "block" } }}>
-            {navItems.map((item) => (
-              <Link to="/">
-                <Button key={item} sx={{ color: "#fff" }}>
-                  {item}
-                </Button>
-              </Link>
-            ))}
-          </Box>
-        </Toolbar>
-      </AppBar>
-      <nav>
-        <Drawer
-          container={container}
-          variant="temporary"
-          open={mobileOpen}
-          onClose={handleDrawerToggle}
-          ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
-          }}
-          sx={{
-            display: { xs: "block", sm: "none" },
-            "& .MuiDrawer-paper": {
-              boxSizing: "border-box",
-              width: drawerWidth,
-            },
-          }}
-        >
-          {drawer}
-        </Drawer>
-      </nav>
-    </Box>
+              <li className="hover:text-slate-500 border-b-2 px-7 py-3">
+                <Link to="/" onClick={toggleMenu}>
+                  Home
+                </Link>
+              </li>
+              <li className="hover:text-slate-500 border-b-2 px-7 py-3">
+                <Link to="/menu" onClick={toggleMenu}>
+                  Menu
+                </Link>
+              </li>
+              <li className="hover:text-slate-500 border-b-2  px-7 py-3">
+                <Link to="/profile" onClick={toggleMenu}>
+                  Profile
+                </Link>
+              </li>
+              <li className="hover:text-slate-500  px-7 py-3">
+                <Link to="/cart" onClick={toggleMenu}>
+                  Cart
+                </Link>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      )}
+    </>
   );
-}
+};
 
-export default DrawerAppBar;
+export default Header;
