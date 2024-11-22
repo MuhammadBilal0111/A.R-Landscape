@@ -17,15 +17,17 @@ function ItemRender({ item }) {
   };
 
   const handleIncrementItemQuantity = (item) => {
-    dispatch(incrementQuantity(item));
-    setItemsQuantity((prevQuantity) => Math.min(prevQuantity + 1, 100)); // Ensuring max limit
+    if (item.quantity >= 1 && item.quantity < 50) {
+      dispatch(incrementQuantity(item));
+      setItemsQuantity((prevQuantity) => Math.min(prevQuantity + 1, 100));
+    }
   };
-
   const handleDecrementItemQuantity = (item) => {
-    dispatch(decrementQuantity(item));
-    setItemsQuantity((prevQuantity) => Math.max(prevQuantity - 1, 1)); // Ensuring min limit
+    if (item.quantity > 1) {
+      dispatch(decrementQuantity(item));
+      setItemsQuantity((prevQuantity) => Math.max(prevQuantity - 1, 1));
+    }
   };
-
   return (
     <div className="flex justify-between items-center py-1 border-b border-b-green-800">
       <div className="h-16 w-18">
