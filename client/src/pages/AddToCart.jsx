@@ -5,6 +5,7 @@ import { getPlantsDetails } from "../services/GlobalApi";
 import { useDispatch, useSelector } from "react-redux";
 import { addItems } from "../store/cartSlice";
 import { CircularProgress } from "@mui/material";
+
 function AddToCart() {
   const [quantity, setQuantity] = useState(1);
   const dispatch = useDispatch();

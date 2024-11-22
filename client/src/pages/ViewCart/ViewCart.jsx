@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import ItemRender from "./components/ItemRender.jsx";
 import { Link } from "react-router-dom";
 function ViewCart() {
-  const { items } = useSelector((state) => state.cart);
+  const { items, totalPrice } = useSelector((state) => state.cart);
 
   return (
     <div className="h-auto min-h-screen">
@@ -26,9 +26,9 @@ function ViewCart() {
             <span className="text-gray-800">$799</span>
           </div>
           <div className="mt-4 border-t border-t-green-800 "></div>
-          <div class="flex justify-between mt-2">
-            <span class="text-lg font-bold text-gray-800">Total</span>
-            <span class="text-lg  text-yellow-500 font-bold">$11,888.00</span>
+          <div className="flex justify-between mt-2">
+            <span className="text-lg font-bold text-gray-800">Total</span>
+            <span className="text-lg  text-yellow-500 font-bold">{}</span>
           </div>
         </div>
         <div className="flex justify-between items-center gap-4 flex-col sm:flex-row w-full mt-4">

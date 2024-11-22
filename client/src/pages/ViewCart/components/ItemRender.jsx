@@ -2,7 +2,11 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { MdDelete } from "react-icons/md";
 import { useDispatch } from "react-redux";
-import { deleteItem } from "../../../store/cartSlice";
+import {
+  deleteItem,
+  incrementQuantity,
+  decrementQuantity,
+} from "../../../store/cartSlice";
 
 function ItemRender({ item }) {
   const dispatch = useDispatch();
@@ -12,11 +16,13 @@ function ItemRender({ item }) {
     dispatch(deleteItem(item));
   };
 
-  const handleIncrementItemQuantity = () => {
+  const handleIncrementItemQuantity = (item) => {
+    dispatch(incrementQuantity(item));
     setItemsQuantity((prevQuantity) => Math.min(prevQuantity + 1, 100)); // Ensuring max limit
   };
 
-  const handleDecrementItemQuantity = () => {
+  const handleDecrementItemQuantity = (item) => {
+    dispatch(decrementQuantity(item));
     setItemsQuantity((prevQuantity) => Math.max(prevQuantity - 1, 1)); // Ensuring min limit
   };
 
@@ -39,7 +45,7 @@ function ItemRender({ item }) {
         <button
           type="button"
           className="inline-flex h-5 w-5 items-center justify-center rounded-md bg-green-900 hover:bg-green-950 focus:outline-none"
-          onClick={handleDecrementItemQuantity}
+          onClick={() => handleDecrementItemQuantity(item)}
         >
           <svg
             className="h-2.5 w-2.5 text-white"
@@ -66,7 +72,7 @@ function ItemRender({ item }) {
         <button
           type="button"
           className="inline-flex h-5 w-5 items-center justify-center rounded-md bg-green-900 hover:bg-green-950 focus:outline-none"
-          onClick={handleIncrementItemQuantity}
+          onClick={() => handleIncrementItemQuantity(item)}
         >
           <svg
             className="h-2.5 w-2.5 text-white"
@@ -83,7 +89,7 @@ function ItemRender({ item }) {
           </svg>
         </button>
       </div>
-      <h2 className="text-xl font-semibold">{item.price}$</h2>
+      <h2 className="text-xl font-semibold">{item.price * item.quantity}$</h2>
       <MdDelete
         className="text-red-800 cursor-pointer hover:text-red-900 hover:shadow-xl text-2xl"
         onClick={handleDeleteItem}
