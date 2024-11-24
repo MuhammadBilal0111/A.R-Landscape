@@ -3,19 +3,22 @@ import { FaPlus, FaMinus } from "react-icons/fa6";
 import { Link, useParams } from "react-router-dom";
 import { getPlantsDetails } from "../services/GlobalApi";
 import { useDispatch, useSelector } from "react-redux";
-import { addItems } from "../store/cartSlice";
+import {
+  addItems,
+  incrementQuantity,
+  decrementQuantity,
+} from "../store/cartSlice";
 import { CircularProgress } from "@mui/material";
 
 function AddToCart() {
-  const [quantity, setQuantity] = useState(1);
   const dispatch = useDispatch();
   const { items } = useSelector((state) => state.cart);
-
-  const [plantData, setPlantData] = useState({});
+  const [itemData, setItemData] = useState({});
+  const [itemsQuantity, setItemsQuantity] = useState(itemData?.quantity || 1);
   const [loading, setLoading] = useState(false);
   const [image, setImage] = useState("");
   const { plantSlug } = useParams();
-
+  console.log(itemData);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -23,7 +26,10 @@ function AddToCart() {
         const response = await getPlantsDetails(`?slug=${plantSlug}`);
         setLoading(false);
         const imageUrl = response?.data?.data[0]?.imageUrl;
-        setPlantData(response?.data?.data[0]);
+        setItemData({
+          ...response?.data?.data[0],
+          ["quantity"]: itemsQuantity,
+        });
         setImage(imageUrl);
       } catch (error) {
         console.log(error);
@@ -33,16 +39,19 @@ function AddToCart() {
   }, [plantSlug]);
 
   const handleAddToCart = (e) => {
-    dispatch(addItems(plantData));
+    dispatch(addItems(itemData));
   };
-  const incrementCounter = (e) => {
-    setQuantity(quantity + 1);
+  const handleIncrementItemQuantity = () => {
+    if (itemData.quantity >= 1 && itemData.quantity < 50) {
+      //dispatch(incrementQuantity(itemData));
+      setItemsQuantity((prevQuantity) => Math.min(prevQuantity + 1, 100));
+    }
   };
-  const decrementCounter = (e) => {
-    if (quantity === 0) {
-      setQuantity(0);
-    } else {
-      setQuantity(quantity - 1);
+  const handleDecrementItemQuantity = () => {
+    if (itemData.quantity > 1) {
+      // dispatch(decrementQuantity(itemData));
+
+      setItemsQuantity((prevQuantity) => Math.max(prevQuantity - 1, 1));
     }
   };
   return (
@@ -105,11 +114,11 @@ function AddToCart() {
 
             <div className="flex-1 w-full">
               <h1 className="font-bold text-3xl md:text-6xl mb-5">
-                {plantData?.title}
+                {itemData?.title}
               </h1>
               <h2 className="font-semibold text-xl md:text-3xl text-gray-700 mb-3">
                 Deal of the day:{" "}
-                <span className="text-yellow-500">{plantData?.price} $</span>
+                <span className="text-yellow-500">{itemData?.price} $</span>
               </h2>
 
               <div className="flex items-center me-4 border-b-2 mb-4 border-green-600">
@@ -119,6 +128,7 @@ function AddToCart() {
                   id="method"
                   className="cursor-pointer w-4 h-4 accent-green-900"
                   checked
+                  readOnly
                 />
                 <label htmlFor="method">
                   <div className="flex items-center ">
@@ -135,15 +145,15 @@ function AddToCart() {
                 </p>
                 <div className="flex gap-4 items-center">
                   <button
-                    className="text-white bg-[#A1DD70] p-2 rounded-full focus:ring-[#A1DD70] focus:ring-4 hover:scale-105 duration-75 hover:bg-green-800 transition-all"
-                    onClick={decrementCounter}
+                    className="text-white bg-green-900 p-2 rounded-md focus:ring-[#A1DD70] focus:ring-4 hover:scale-105 duration-75 hover:bg-green-950 transition-all"
+                    onClick={handleDecrementItemQuantity}
                   >
                     <FaMinus />
                   </button>
-                  <span className="text-lg font-semibold">{quantity}</span>
+                  <span className="text-lg font-semibold">{itemsQuantity}</span>
                   <button
-                    className="text-white bg-[#A1DD70] p-2 rounded-full focus:ring-[#A1DD70] focus:ring-4 hover:scale-105 duration-75 hover:bg-green-800 transition-all"
-                    onClick={incrementCounter}
+                    className="text-white bg-green-900 p-2 rounded-md focus:ring-[#A1DD70] focus:ring-4 hover:scale-105 duration-75 hover:bg-green-950 transition-all"
+                    onClick={handleIncrementItemQuantity}
                   >
                     <FaPlus />
                   </button>
@@ -152,7 +162,7 @@ function AddToCart() {
               <Link to="/">
                 <button
                   type="button"
-                  className="w-full focus:outline-none  bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300  rounded-lg  px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 text-yellow-300 text-md"
+                  className="w-full focus:outline-none  bg-green-900 hover:bg-green-950 focus:ring-4 focus:ring-green-300  rounded-lg  px-5 py-2.5 me-2 mb-2 text-yellow-300 text-md"
                   onClick={handleAddToCart}
                 >
                   Add to Cart
@@ -165,7 +175,7 @@ function AddToCart() {
               Description
             </h1>
             <p>
-              {plantData?.description}Lorem ipsum dolor sit amet consectetur
+              {itemData?.description}Lorem ipsum dolor sit amet consectetur
               adipisicing elit. Voluptatem numquam perferendis, sapiente quidem
               nemo ipsam sed saepe! Harum tempora reprehenderit recusandae.
               Placeat repellendus amet totam commodi ad quam ratione dolorum.

@@ -9,7 +9,7 @@ import AddToCart from "./pages/AddToCart";
 import ScrollToTop from "./components/ScrollToTop";
 import Checkout from "./pages/Home/Checkout/Checkout";
 import ViewCart from "./pages/ViewCart/ViewCart";
-
+import CardAnimation from "./pages/CardAnimation";
 function App() {
   return (
     <BrowserRouter>
@@ -21,6 +21,7 @@ function App() {
         <Route path="/plant/:plantSlug" element={<AddToCart />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/cart" element={<ViewCart />} />
+        <Route path="/faltu" element={<CardAnimation />} />
       </Routes>
       <Footer />
     </BrowserRouter>
