@@ -21,11 +21,10 @@ function PersonalContactInfo() {
           variant="outlined"
         />
       </div>
-      <Link to="/">
+      <Link to="/shop">
         <button
           type="button"
           className="text-center flex items-center justify-center w-full py-2 px-1 text-md text-white font-md bg-green-900 rounded-md hover:bg-green-950 duration-105 transition-all"
-          // onClick={handleAddToCart}
         >
           Continue Shopping
         </button>

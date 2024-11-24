@@ -33,7 +33,7 @@ function ViewCart() {
             </div>
             <div className="flex justify-between items-center gap-4 flex-col sm:flex-row w-full mt-4">
               <div className="w-full">
-                <Link>
+                <Link to={"/shop"}>
                   <button
                     type="button"
                     className="text-black hover:text-green-900 font-medium py-2 px-3 rounded-md transition-all duration-150 w-full border hover:bg-gray-100"

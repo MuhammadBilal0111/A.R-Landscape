@@ -38,7 +38,7 @@ function ItemRender({ item }) {
           loading="lazy"
         />
       </div>
-      <div className="hover:underline text-xl font-semibold w-80 max-w-3xl ">
+      <div className="hover:underline text-xl font-semibold w-80 max-w-4xl">
         <Link to={`/plant/${item?.slug}`}>
           <h1>{item.title}</h1>
         </Link>
@@ -91,7 +91,9 @@ function ItemRender({ item }) {
           </svg>
         </button>
       </div>
-      <h2 className="text-xl font-semibold">{item.price * item.quantity}$</h2>
+      <h2 className="text-xl flex justify-center font-semibold w-40">
+        {item.price * item.quantity}$
+      </h2>
       <MdDelete
         className="text-red-800 cursor-pointer hover:text-red-900 hover:shadow-xl text-2xl"
         onClick={handleDeleteItem}
