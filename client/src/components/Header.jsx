@@ -50,7 +50,7 @@ const Header = () => {
                 <Link to="/">Home</Link>
               </li>
               <li className="hover:text-slate-300  text-white transition-all duration-200 ease-linear">
-                <Link to="/menu">Menu</Link>
+                <Link to="/shop">Shop</Link>
               </li>
               <li className="hover:text-slate-300 text-white transition-all duration-200 ease-linear">
                 <Link to="/profile">Profile</Link>
