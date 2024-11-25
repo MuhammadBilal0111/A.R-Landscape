@@ -20,7 +20,7 @@ const plantSchema = mongoose.Schema({
     default: 1,
   },
   imageUrl: {
-    type: String,
+    type: [String],
   },
   dateAdded: {
     type: Date,

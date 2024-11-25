@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FaPlus, FaMinus } from "react-icons/fa6";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { getPlantsDetails } from "../services/GlobalApi";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -13,6 +13,7 @@ import { CircularProgress } from "@mui/material";
 function AddToCart() {
   const dispatch = useDispatch();
   const { items } = useSelector((state) => state.cart);
+  const navigate = useNavigate();
   const [itemData, setItemData] = useState({});
   const [itemsQuantity, setItemsQuantity] = useState(itemData?.quantity || 1);
   const [loading, setLoading] = useState(false);
@@ -25,7 +26,7 @@ function AddToCart() {
         setLoading(true);
         const response = await getPlantsDetails(`?slug=${plantSlug}`);
         setLoading(false);
-        const imageUrl = response?.data?.data[0]?.imageUrl;
+        const imageUrl = response?.data?.data[0]?.imageUrl[0];
         setItemData({
           ...response?.data?.data[0],
           ["quantity"]: itemsQuantity,
@@ -40,6 +41,7 @@ function AddToCart() {
 
   const handleAddToCart = (e) => {
     dispatch(addItems(itemData));
+    navigate("/shop");
   };
   const handleIncrementItemQuantity = () => {
     if (itemData.quantity >= 1 && itemData.quantity < 50) {
@@ -80,7 +82,7 @@ function AddToCart() {
               >
                 <div className="w-full md:h-40 md:w-48 cursor-pointer">
                   <img
-                    src="/plant_5.jpg"
+                    src={itemData?.imageUrl?.[0]}
                     alt=""
                     className="h-full w-full object-cover object-center"
                   />
@@ -92,7 +94,7 @@ function AddToCart() {
                   }}
                 >
                   <img
-                    src="/plant_4.jpg"
+                    src={itemData?.imageUrl?.[1]}
                     alt=""
                     className="h-full w-full object-cover object-center"
                   />
@@ -104,7 +106,7 @@ function AddToCart() {
                   }}
                 >
                   <img
-                    src="/plant_3.jpg"
+                    src={itemData?.imageUrl?.[2]}
                     alt=""
                     className="h-full w-full object-cover object-center"
                   />
@@ -159,15 +161,13 @@ function AddToCart() {
                   </button>
                 </div>
               </div>
-              <Link to="/">
-                <button
-                  type="button"
-                  className="w-full focus:outline-none  bg-green-900 hover:bg-green-950 focus:ring-4 focus:ring-green-300  rounded-lg  px-5 py-2.5 me-2 mb-2 text-yellow-300 text-md"
-                  onClick={handleAddToCart}
-                >
-                  Add to Cart
-                </button>
-              </Link>
+              <button
+                type="button"
+                className="w-full focus:outline-none  bg-green-900 hover:bg-green-950 focus:ring-4 focus:ring-green-300  rounded-lg  px-5 py-2.5 me-2 mb-2 text-yellow-300 text-md"
+                onClick={handleAddToCart}
+              >
+                Add to Cart
+              </button>
             </div>
           </div>
           <div className="max-w-7xl mx-auto px-5 my-16">

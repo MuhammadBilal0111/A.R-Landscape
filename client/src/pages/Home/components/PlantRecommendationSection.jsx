@@ -16,6 +16,7 @@ function PlantRecommendationSection() {
     };
     fetchPlants();
   }, []);
+  console.log(plantsItem);
   const memoizedPlantItems = useMemo(() => plantsItem, [plantsItem]);
   return (
     <div className="px-8">
@@ -28,7 +29,7 @@ function PlantRecommendationSection() {
             <Card
               key={plant?._id} // Unique key for React
               title={plant.title} // title of the plant object
-              image={plant?.imageUrl} // Assuming there is an `image` field
+              image={plant?.imageUrl[0]} // Assuming there is an `image` field
               description={plant?.description} // Assuming there is a `description` field
               price={plant?.price} // Assuming there is a `description` field
               slug={plant?.slug} // Assuming there is a `description` field

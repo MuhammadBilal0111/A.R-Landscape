@@ -14,7 +14,7 @@ exports.getPlants = asyncErrorHandler(async (req, res, next) => {
     .sort({ dateAdded: sortDirection })
     .limit(limit)
     .skip(startIndex); // -1 for desc
-
+  console.log(plantData);
   const totalPosts = await PlantModel.countDocuments();
   res.status(200).json({
     status: "success",
