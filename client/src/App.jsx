@@ -10,6 +10,8 @@ import ScrollToTop from "./components/ScrollToTop";
 import Checkout from "./pages/Checkout/Checkout";
 import ViewCart from "./pages/ViewCart/ViewCart";
 import CardAnimation from "./pages/CardAnimation";
+import Faltu from "./pages/Faltu";
+
 function App() {
   return (
     <BrowserRouter>
@@ -22,6 +24,7 @@ function App() {
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/cart" element={<ViewCart />} />
         <Route path="/shop" element={<CardAnimation />} />
+        <Route path="/faltu" element={<Faltu />} />
       </Routes>
       <Footer />
     </BrowserRouter>
