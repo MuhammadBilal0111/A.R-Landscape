@@ -48,7 +48,7 @@ export default function BasicTabs() {
       : 0;
   });
   const [activeTab, setActiveTab] = useState("plants");
-
+  const [ItemData, setItemData] = useState([]);
   const tabs = [
     { id: "plants", label: "Plants" },
     { id: "pots", label: "Pots" },
@@ -80,9 +80,20 @@ export default function BasicTabs() {
   }, []);
 
   useEffect(() => {
-    getPlantsDetails(`?category=${categories[value]}`);
-  }, [value]);
+    const fetchData = async () => {
+      try {
+        const response = await getPlantsDetails(
+          `?category=${categories[value]}`
+        );
+        setItemData(response?.data?.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
 
+    fetchData();
+  }, [value]);
+  console.log(ItemData);
   const handleChange = (event, newValue) => {
     setValue(newValue);
     localStorage.setItem("selectedTab", newValue);
@@ -99,7 +110,7 @@ export default function BasicTabs() {
         padding: "0 2.5rem",
       }}
     >
-      <Box sx={{ borderBottom: 1, borderColor: "divider", padding: 0 }}>
+      <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
         <Tabs
           value={value}
           onChange={handleChange}
@@ -110,59 +121,65 @@ export default function BasicTabs() {
           <Tab label="Fertilizers" {...a11yProps(2)} />
         </Tabs>
       </Box>
-      <CustomTabPanel value={value} index={0} sx={{ padding: 0 }}>
-        <div className="min-h-screen bg-gray-100 flex flex-col items-center px-5 py-10 w-full">
-          {/* Tabs Container */}
+      {value === 0 ? (
+        <CustomTabPanel value={value} index={0}>
+          <div className="min-h-screen bg-gray-100 flex flex-col items-center px-5 py-10 w-full">
+            {/* Tabs Container */}
 
-          <div className="cards-container space-y-10 w-full overflow-hidden">
-            {Array.from({ length: 3 }).map((_, rowIndex) => (
-              <div
-                key={rowIndex}
-                className="card-row flex flex-wrap justify-center gap-8"
-              >
-                {Array.from({ length: 3 }).map((_, cardIndex) => (
-                  <div
-                    key={cardIndex}
-                    className="ecommerce-card bg-white shadow-lg rounded-lg p-5 flex flex-col items-center w-full sm:w-[48%] lg:w-[30%]"
-                  >
-                    <img
-                      src="plant_1.jpg"
-                      alt={`Card ${rowIndex * 3 + cardIndex + 1}`}
-                      className="w-40 h-40 object-cover mb-4 bg-black"
-                    />
-                    <h2 className="text-2xl font-semibold mb-2">
-                      Card {rowIndex * 3 + cardIndex + 1}
-                    </h2>
-                    <p className="text-gray-600 text-center">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    </p>
-                    <div className="flex w-full items-center justify-center gap-3 mt-2">
-                      <button
-                        type="button"
-                        className="text-black hover:text-green-900 text-md py-2 px-1 rounded-md transition-all duration-150 w-full border hover:bg-gray-100 shadow-md"
-                      >
-                        View
-                      </button>
-                      <button
-                        type="button"
-                        className="bg-green-900 hover:bg-green-950 text-white py-2 px-3 rounded-md transition-all duration-150 w-full font-medium focus:border-green-700 focus:outline-2"
-                      >
-                        Add to Cart
-                      </button>
+            <div className="cards-container space-y-10 w-full overflow-hidden">
+              {Array.from({ length: 3 }).map((_, rowIndex) => (
+                <div
+                  key={rowIndex}
+                  className="card-row flex flex-wrap justify-center gap-8 bg-red-700"
+                >
+                  {Array.from({ length: 3 }).map((_, cardIndex) => (
+                    <div
+                      key={cardIndex}
+                      className="ecommerce-card bg-white shadow-lg rounded-lg p-5 flex flex-col items-center w-full md:w-[48%] lg:w-[30%]"
+                    >
+                      <img
+                        src="plant_1.jpg"
+                        alt={`Card ${rowIndex * 3 + cardIndex + 1}`}
+                        className="w-40 h-40 object-cover mb-4 bg-black"
+                      />
+                      <h2 className="text-2xl font-semibold mb-2">
+                        Card {rowIndex * 3 + cardIndex + 1}
+                      </h2>
+                      <p className="text-gray-600 text-center">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                      </p>
+                      <div className="flex w-full items-center justify-center gap-3 mt-2">
+                        <button
+                          type="button"
+                          className="text-black hover:text-green-900 text-md py-2 px-1 rounded-md transition-all duration-150 w-full border hover:bg-gray-100 shadow-md"
+                        >
+                          View
+                        </button>
+                        <button
+                          type="button"
+                          className="bg-green-900 hover:bg-green-950 text-white py-2 px-3 rounded-md transition-all duration-150 w-full font-medium focus:border-green-700 focus:outline-2"
+                        >
+                          Add to Cart
+                        </button>
+                      </div>
                     </div>
-                  </div>
-                ))}
-              </div>
-            ))}
+                  ))}
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      </CustomTabPanel>
-      <CustomTabPanel value={value} index={1}>
-        Pots
-      </CustomTabPanel>
-      <CustomTabPanel value={value} index={2}>
-        Fertilizers
-      </CustomTabPanel>
+        </CustomTabPanel>
+      ) : null}
+      {value === 1 ? (
+        <CustomTabPanel value={value} index={1}>
+          Pots
+        </CustomTabPanel>
+      ) : null}
+      {value === 2 ? (
+        <CustomTabPanel value={value} index={2}>
+          Fertilizers
+        </CustomTabPanel>
+      ) : null}
     </Box>
   );
 }

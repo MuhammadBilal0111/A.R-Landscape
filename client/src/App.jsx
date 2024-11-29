@@ -1,7 +1,6 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home/Home";
-import Card from "./components/Card";
 import DashboardLayoutBasic from "./pages/Dashboard/Dashboard";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -9,9 +8,8 @@ import AddToCart from "./pages/AddToCart";
 import ScrollToTop from "./components/ScrollToTop";
 import Checkout from "./pages/Checkout/Checkout";
 import ViewCart from "./pages/ViewCart/ViewCart";
-import CardAnimation from "./pages/CardAnimation";
+import Shop from "./pages/shop/Shop";
 import Faltu from "./pages/Faltu";
-
 function App() {
   return (
     <BrowserRouter>
@@ -23,8 +21,7 @@ function App() {
         <Route path="/plant/:plantSlug" element={<AddToCart />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/cart" element={<ViewCart />} />
-        <Route path="/shop" element={<CardAnimation />} />
-        <Route path="/faltu" element={<Faltu />} />
+        <Route path="/shop" element={<Shop />} />
       </Routes>
       <Footer />
     </BrowserRouter>
