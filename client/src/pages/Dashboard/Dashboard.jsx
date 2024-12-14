@@ -7,7 +7,7 @@ import { createTheme } from "@mui/material/styles";
 import Dash from "./components/Dash";
 import Order from "./components/Order";
 import { Link } from "react-router-dom";
-
+import AddItem from "./components/AddItem";
 const demoTheme = createTheme({
   palette: {
     primary: {
@@ -73,6 +73,7 @@ export default function DashboardLayoutBasic() {
       <DashboardLayout slots={{ toolbarActions: CustomThemeSwitcher }}>
         {pathname === "/dashboard" && <Dash />}
         {pathname === "/orders" && <Order />}
+        {pathname === "/addItem" && <AddItem />}
       </DashboardLayout>
     </AppProvider>
   );

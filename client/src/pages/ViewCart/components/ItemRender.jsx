@@ -7,12 +7,14 @@ import {
   incrementQuantity,
   decrementQuantity,
 } from "../../../store/cartSlice";
+import { ToastFailure } from "../../../components/Toast";
 
 function ItemRender({ item }) {
   const dispatch = useDispatch();
   const [itemsQuantity, setItemsQuantity] = useState(item.quantity || 1);
 
   const handleDeleteItem = () => {
+    ToastFailure("Item Successfully deleted!");
     dispatch(deleteItem(item));
   };
 

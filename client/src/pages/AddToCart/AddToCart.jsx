@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { FaPlus, FaMinus } from "react-icons/fa6";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { getPlantsDetails } from "../services/GlobalApi";
+import { getPlantsDetails } from "../../services/GlobalApi";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addItems,
   incrementQuantity,
   decrementQuantity,
-} from "../store/cartSlice";
+} from "../../store/cartSlice";
 import { CircularProgress } from "@mui/material";
-import { ToastSuccess } from "../components/Toast";
+import { ToastSuccess } from "../../components/Toast";
+import MagnifiedImageComponent from "./components/MagnifiedImage";
 
 function AddToCart() {
   const dispatch = useDispatch();
@@ -67,14 +68,10 @@ function AddToCart() {
         <>
           <div className=" flex flex-col lg:flex-row justify-center max-w-7xl mx-auto px-5 mb-7 gap-8 ">
             <div className="flex flex-col gap-8 lg:w-1/2">
-              <div className="h-[400px] w-full overflow-hidden">
-                <img
-                  src={image}
-                  alt=""
-                  loading="lazy"
-                  className="h-full w-full object-cover object-center"
-                />
+              <div className="h-[400px] w-full">
+                <MagnifiedImageComponent imageSrc={image} />
               </div>
+
               <div
                 className="gap-5 flex flex-wrap lg:flex-row items-center justify-center"
                 onClick={(e) => {

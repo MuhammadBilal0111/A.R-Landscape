@@ -4,7 +4,7 @@ import Home from "./pages/Home/Home";
 import DashboardLayoutBasic from "./pages/Dashboard/Dashboard";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import AddToCart from "./pages/AddToCart";
+import AddToCart from "./pages/AddToCart/AddToCart.jsx";
 import ScrollToTop from "./components/ScrollToTop";
 import Checkout from "./pages/Checkout/Checkout";
 import ViewCart from "./pages/ViewCart/ViewCart.jsx";
