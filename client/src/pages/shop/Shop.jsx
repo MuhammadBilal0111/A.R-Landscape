@@ -22,7 +22,7 @@ function CustomTabPanel(props) {
       aria-labelledby={`simple-tab-${index}`}
       {...other}
     >
-      {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
+      {value === index && <Box>{children}</Box>}
     </div>
   );
 }
@@ -70,35 +70,43 @@ export default function BasicTabs() {
     fetchData();
   }, [value]);
 
+  // code to handle gsap animation
   useEffect(() => {
     if (!ItemData.length) return; // Only animate if there are items to display
 
-    const rows = gsap.utils.toArray(".card-row"); // Select all rows
+    const ctx = gsap.context(() => {
+      const rows = gsap.utils.toArray(".card-row");
 
-    const animations = rows.map((row) =>
-      gsap.fromTo(
-        row.children,
-        { opacity: 0, y: 200 }, // Start below the viewport
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "power3.out",
-          stagger: 0.2, // Cards animate one after another
-          scrollTrigger: {
-            trigger: row, // Trigger animation for the specific row
-            start: "top 80%", // Start animation when the row enters the viewport
-            toggleActions: "play none none reverse", // Play on scroll down, reverse on scroll up
-          },
+      rows.forEach((row) => {
+        if (!row.dataset.animated) {
+          row.dataset.animated = true; // Mark as animated
+
+          gsap.fromTo(
+            row.children,
+            { opacity: 0, y: 200 }, // Start below the viewport
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.8,
+              ease: "power3.out",
+              stagger: 0.2, // Cards animate one after another
+              scrollTrigger: {
+                trigger: row, // Trigger animation for the specific row
+                start: "top 80%", // Start animation when the row enters the viewport
+                toggleActions: "play none none reverse", // Play on scroll down, reverse on scroll up
+              },
+            }
+          );
         }
-      )
-    );
+      });
+    }, document.querySelector(".cards-container"));
 
-    // Cleanup function to remove animations on unmount or reinitialization
+    // Cleanup function
     return () => {
-      animations.forEach((animation) => animation.scrollTrigger.kill()); // Kill each ScrollTrigger instance
+      ctx.revert(); // Revert the gsap context
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill()); // Kill all active ScrollTriggers
     };
-  }, [ItemData]); // Run only when ItemData changes
+  }, [ItemData]);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);

@@ -1,8 +1,9 @@
 import { MdDashboard } from "react-icons/md";
 import { FaShoppingCart } from "react-icons/fa";
-import { IoBarChart, IoLayers } from "react-icons/io5";
+import { IoLayers } from "react-icons/io5";
+import { IoMdAddCircleOutline } from "react-icons/io";
 import { MdOutlineDescription } from "react-icons/md";
-
+import { MdModeEditOutline } from "react-icons/md";
 export const NAVIGATION = [
   {
     kind: "header",
@@ -19,29 +20,39 @@ export const NAVIGATION = [
     icon: <FaShoppingCart />,
   },
   {
+    segment: "addItem",
+    title: "Add Items",
+    icon: <IoMdAddCircleOutline />,
+  },
+  {
     kind: "divider",
   },
   // {
   //   kind: "header",
   //   title: "Analytics",
   // },
-  // {
-  //   segment: "reports",
-  //   title: "Reports",
-  //   icon: <IoBarChart />,
-  //   children: [
-  //     {
-  //       segment: "sales",
-  //       title: "Sales",
-  //       icon: <MdOutlineDescription />,
-  //     },
-  //     {
-  //       segment: "traffic",
-  //       title: "Traffic",
-  //       icon: <MdOutlineDescription />,
-  //     },
-  //   ],
-  // },
+  {
+    segment: "reports",
+    title: "Edit Item",
+    icon: <MdModeEditOutline />,
+    children: [
+      {
+        segment: "Edit Plants",
+        title: "Edit Plants",
+        icon: <MdOutlineDescription />,
+      },
+      {
+        segment: "Edit Pots",
+        title: "Edit Pots",
+        icon: <MdOutlineDescription />,
+      },
+      {
+        segment: "Edit Fertilizers",
+        title: "Edit Fertilizers",
+        icon: <MdOutlineDescription />,
+      },
+    ],
+  },
   {
     segment: "integrations",
     title: "Integrations",

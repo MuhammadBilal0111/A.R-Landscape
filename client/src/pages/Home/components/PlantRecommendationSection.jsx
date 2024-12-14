@@ -4,6 +4,7 @@ import { getPlantsDetails } from "../../../services/GlobalApi";
 
 function PlantRecommendationSection() {
   const [plantsItem, setPlantsItem] = useState([]);
+
   useEffect(() => {
     // Fetch plant details when the component mounts
     const fetchPlants = async () => {
@@ -16,7 +17,7 @@ function PlantRecommendationSection() {
     };
     fetchPlants();
   }, []);
-  console.log(plantsItem);
+
   const memoizedPlantItems = useMemo(() => plantsItem, [plantsItem]);
   return (
     <div className="px-8">
@@ -25,14 +26,10 @@ function PlantRecommendationSection() {
       </h1>
       <div className="flex flex-wrap gap-6 my-7 justify-center items-center">
         {memoizedPlantItems.length > 0 &&
-          memoizedPlantItems.map((plant) => (
+          memoizedPlantItems.map((item) => (
             <Card
-              key={plant?._id} // Unique key for React
-              title={plant.title} // title of the plant object
-              image={plant?.imageUrl[0]} // Assuming there is an `image` field
-              description={plant?.description} // Assuming there is a `description` field
-              price={plant?.price} // Assuming there is a `description` field
-              slug={plant?.slug} // Assuming there is a `description` field
+              key={item?._id} // Unique key for React
+              item={item}
             />
           ))}
       </div>

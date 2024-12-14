@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { NAVIGATION } from "../../utils/constant";
 import { AppProvider } from "@toolpad/core/AppProvider";
 import { DashboardLayout } from "@toolpad/core/DashboardLayout";
 import { createTheme } from "@mui/material/styles";
-
+import { Box } from "@mui/material";
 import Dash from "./components/Dash";
 import Order from "./components/Order";
 import { Link } from "react-router-dom";
-import AddItem from "./components/AddItem";
+import AddItem from "./components/AddItem/AddItems";
 const demoTheme = createTheme({
   palette: {
     primary: {
@@ -70,11 +70,20 @@ export default function DashboardLayoutBasic() {
       }}
       theme={demoTheme}
     >
-      <DashboardLayout slots={{ toolbarActions: CustomThemeSwitcher }}>
-        {pathname === "/dashboard" && <Dash />}
-        {pathname === "/orders" && <Order />}
-        {pathname === "/addItem" && <AddItem />}
-      </DashboardLayout>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          minHeight: "100vh", // Full viewport height
+          height: "auto", // Adjust to content
+        }}
+      >
+        <DashboardLayout slots={{ toolbarActions: CustomThemeSwitcher }}>
+          {pathname === "/dashboard" && <Dash />}
+          {pathname === "/orders" && <Order />}
+          {pathname === "/addItem" && <AddItem />}
+        </DashboardLayout>
+      </Box>
     </AppProvider>
   );
 }

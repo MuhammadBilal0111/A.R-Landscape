@@ -4,13 +4,17 @@ import React, { useRef, useState } from "react";
 import { IoMenu } from "react-icons/io5";
 import { RxCross2 } from "react-icons/rx";
 import { MdOutlineShoppingBag } from "react-icons/md";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const Header = () => {
   const [toggle, setToggle] = useState(false);
+  const location = useLocation();
   const headerLinks = useRef(null);
   const items = useSelector((state) => state.cart.items);
+  const isActive = (path) => {
+    return location.pathname === path;
+  };
 
   useGSAP(() => {
     if (!toggle) return;
@@ -46,10 +50,14 @@ const Header = () => {
           </div>
           <nav className="mr-5 max-sm:hidden">
             <ul className="flex gap-x-12 font-semibold pt-2 max-lg:gap-x-10 text-[1rem] mr-2  ">
-              <li className="hover:text-slate-300 text-white transition-all duration-200 ease-linear">
+              <li
+                className={`${isActive("/") ? "text-yellow-500" : "text-white"} transition-all duration-200 ease-linear`}
+              >
                 <Link to="/">Home</Link>
               </li>
-              <li className="hover:text-slate-300  text-white transition-all duration-200 ease-linear">
+              <li
+                className={`${isActive("/shop") ? "text-yellow-500" : "text-white"} transition-all duration-200 ease-linear`}
+              >
                 <Link to="/shop">Shop</Link>
               </li>
               <li className="hover:text-slate-300 text-white transition-all duration-200 ease-linear">
