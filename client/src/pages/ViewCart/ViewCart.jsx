@@ -56,16 +56,21 @@ function ViewCart() {
           </div>
         ) : (
           <div className="my-12 flex flex-col justify-center items-center max-w-xl mx-auto py-8 px-5">
-            <h1 className="text-3xl font-bold mb-5">
-              Your Shopping Cart is currently empty!
+            <img
+              src="/emptyCart.png"
+              alt="/emptyCart.jpg"
+              className="w-96 h-96"
+            />
+            <h1 className="w-full text-3xl font-bold mb-5 text-green-900 text-center">
+              Your Cart is currently empty!
             </h1>
-            <div className="w-full md:w-56">
-              <Link>
+            <div className="w-full">
+              <Link to={"/shop"}>
                 <button
                   type="button"
-                  className="text-white font-medium py-2 px-3 rounded-md transition-all duration-150 border hover:bg-green-950 bg-green-900 w-full"
+                  className="text-white font-medium py-2 px-3 rounded-md transition-all duration-150 border hover:bg-green-950 bg-green-900 w-full hover:text-yellow-400"
                 >
-                  Continue Shopping
+                  Add something to make me happy : &#41;
                 </button>
               </Link>
             </div>

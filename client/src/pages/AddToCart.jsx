@@ -9,6 +9,7 @@ import {
   decrementQuantity,
 } from "../store/cartSlice";
 import { CircularProgress } from "@mui/material";
+import { ToastSuccess } from "../components/Toast";
 
 function AddToCart() {
   const dispatch = useDispatch();
@@ -40,8 +41,8 @@ function AddToCart() {
   }, [plantSlug]);
 
   const handleAddToCart = (e) => {
+    ToastSuccess("Item added to Cart!");
     dispatch(addItems(itemData));
-    navigate("/shop");
   };
   const handleIncrementItemQuantity = () => {
     if (itemData.quantity >= 1 && itemData.quantity < 50) {
@@ -163,7 +164,7 @@ function AddToCart() {
               </div>
               <button
                 type="button"
-                className="w-full focus:outline-none  bg-green-900 hover:bg-green-950 focus:ring-4 focus:ring-green-300  rounded-lg  px-5 py-2.5 me-2 mb-2 text-yellow-300 text-md"
+                className="w-full focus:outline-none  bg-green-900 hover:bg-green-950  rounded-lg  px-5 py-2.5 me-2 mb-2 text-white text-md hover:text-yellow-400 duration-75"
                 onClick={handleAddToCart}
               >
                 Add to Cart
@@ -174,45 +175,7 @@ function AddToCart() {
             <h1 className="text-5xl text-md font-semibold md:font-bold mb-5 underline">
               Description
             </h1>
-            <p>
-              {itemData?.description}Lorem ipsum dolor sit amet consectetur
-              adipisicing elit. Voluptatem numquam perferendis, sapiente quidem
-              nemo ipsam sed saepe! Harum tempora reprehenderit recusandae.
-              Placeat repellendus amet totam commodi ad quam ratione dolorum.
-              Inventore mollitia repudiandae cum tempora illum accusantium,
-              porro dolorem excepturi labore aspernatur ex autem sequi
-              cupiditate repellendus deserunt est facilis. Eius, voluptas.
-              Quaerat sed at, possimus corrupti perspiciatis nulla. Optio! Ipsa,
-              assumenda delectus? Repellendus qui alias ex ipsum quod
-              necessitatibus cumque, dolor explicabo tempore impedit reiciendis
-              aliquam quia consequuntur voluptatum eum doloribus eaque inventore
-              exercitationem repellat enim! Sint, animi voluptates? Earum natus
-              reiciendis cupiditate omnis a eius quam ex optio exercitationem
-              voluptates, expedita debitis officia est porro asperiores qui
-              ducimus corrupti nulla quo cumque illo. Voluptas quidem corporis
-              blanditiis labore! Itaque adipisci eum modi, fugiat id est autem
-              eaque assumenda eligendi totam quae deserunt saepe eveniet tempore
-              dolor aliquid amet alias incidunt, ab inventore nulla! Cumque non
-              cupiditate nihil voluptatibus. Iste voluptate vitae ratione rem
-              temporibus quos quaerat ut tempore voluptatem recusandae a dolores
-              esse modi perferendis soluta, error, facilis delectus aspernatur
-              vel culpa! Similique ipsam nemo voluptatem. Quo, corporis.
-              Aliquam, qui possimus. Explicabo molestias fuga cumque iste quos
-              repellendus architecto beatae laborum quo ex. Enim esse sequi quos
-              corporis voluptatum labore eligendi velit beatae, dignissimos
-              ratione qui minima! Nobis? Porro et officia soluta nostrum hic
-              repellendus laboriosam quis deleniti maiores eius sint officiis
-              dignissimos culpa quo nihil quibusdam minus labore placeat iusto
-              necessitatibus inventore cupiditate, aliquid delectus?
-              Necessitatibus, modi. Eius accusantium adipisci quam aperiam aut
-              asperiores nobis quod facilis velit mollitia, sequi omnis aliquam
-              quidem nihil eaque natus eligendi ipsam nemo? Laboriosam, quas
-              dolorum? Nobis delectus cupiditate similique enim. Asperiores quis
-              minima laborum quibusdam pariatur amet dolorum nihil, aspernatur a
-              hic voluptas recusandae blanditiis. Doloribus nobis consequuntur
-              repellat quo alias placeat obcaecati, aliquid reprehenderit
-              aliquam, ullam suscipit error natus.
-            </p>
+            <p>{itemData?.description}</p>
           </div>
         </>
       )}

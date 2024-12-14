@@ -7,9 +7,9 @@ import Footer from "./components/Footer";
 import AddToCart from "./pages/AddToCart";
 import ScrollToTop from "./components/ScrollToTop";
 import Checkout from "./pages/Checkout/Checkout";
-import ViewCart from "./pages/ViewCart/ViewCart";
+import ViewCart from "./pages/ViewCart/ViewCart.jsx";
 import Shop from "./pages/shop/Shop";
-import Faltu from "./pages/Faltu";
+
 function App() {
   return (
     <BrowserRouter>

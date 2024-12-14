@@ -22,7 +22,7 @@ function PlaceOrder() {
           <h1>Rs. {totalPrice}</h1>
         </div>
       </div>
-      <button className="text-center flex items-center justify-center w-full py-2 px-1 text-md text-white font-md bg-green-900 rounded-md hover:bg-green-950 duration-105 transition-all mt-4">
+      <button className="text-center flex items-center justify-center w-full py-2 px-1 text-md text-white font-md bg-green-900 rounded-md hover:bg-green-950 duration-105 transition-all mt-4 hover:text-yellow-400">
         Place Your Order
       </button>
     </div>
