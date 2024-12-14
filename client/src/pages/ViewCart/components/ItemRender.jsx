@@ -45,7 +45,7 @@ function ItemRender({ item }) {
           <h1>{item.title}</h1>
         </Link>
       </div>
-      <div className="flex items-center">
+      <div className="flex items-center ">
         <button
           type="button"
           className="inline-flex h-5 w-5 items-center justify-center rounded-md bg-green-900 hover:bg-green-950 focus:outline-none"
@@ -67,7 +67,7 @@ function ItemRender({ item }) {
         </button>
         <input
           type="number"
-          className="w-10 border-0 bg-transparent text-center text-sm font-medium text-gray-900 focus:outline-none"
+          className="min-w-16 w-auto border-0 bg-transparent text-center text-sm font-medium text-gray-900 focus:outline-none"
           min="1"
           max="100"
           value={itemsQuantity}
@@ -94,7 +94,7 @@ function ItemRender({ item }) {
         </button>
       </div>
       <h2 className="text-xl flex justify-center font-semibold w-40">
-        {item.price * item.quantity}$
+        {(item.price * item.quantity).toFixed(2)} $
       </h2>
       <MdDelete
         className="text-red-800 cursor-pointer hover:text-red-900 hover:shadow-xl text-2xl"
