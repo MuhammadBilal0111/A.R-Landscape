@@ -30,3 +30,11 @@ exports.placeOrder = asyncErrorHandler(async (req, res, next) => {
     .status(201)
     .json({ message: "Order placed successfully.", order: savedOrder });
 });
+
+exports.getAllOrders = asyncErrorHandler(async (req, res, next) => {
+  const orderDetails = await Order.find().sort({ createdAt: -1 });
+  res.status(200).json({
+    status: "success",
+    data: orderDetails,
+  });
+});

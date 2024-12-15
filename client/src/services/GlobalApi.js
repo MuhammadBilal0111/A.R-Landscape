@@ -17,3 +17,6 @@ export const signIn = (data) => {
 export const order = (data) => {
   return api.post("/orders", data);
 };
+export const getAllOrders = () => {
+  return api.get("/orders");
+};
