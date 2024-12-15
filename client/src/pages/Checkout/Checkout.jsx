@@ -33,7 +33,6 @@ function Checkout() {
   const onSubmitOrder = async (e) => {
     if (validateInputs()) {
       try {
-        // const response = await order();
         const newObject = {
           ...orderDetails,
           products: items,
@@ -41,12 +40,12 @@ function Checkout() {
           total_item,
         };
         const response = await order(newObject);
-        // console.log(response.message);
+        console.log(response);
       } catch (err) {
+        console.log(err);
         ToastFailure("Order in not sent");
       }
 
-      ToastSuccess("Order Submitted Successfully:");
       // Proceed to API call or further logic
     } else {
       ToastFailure("Fill all the fields!");
