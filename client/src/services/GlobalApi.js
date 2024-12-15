@@ -5,7 +5,6 @@ const api = axios.create({
 export const getPlantsDetails = async (str) => {
   return api.get(`/plants/getPlants${str}`);
 };
-
 export const addItems = async () => {
   return api.post("/items/add-items");
 };
@@ -14,4 +13,7 @@ export const signUp = (data) => {
 };
 export const signIn = (data) => {
   return api.post("/auth/signIn", data);
+};
+export const order = (data) => {
+  return api.post("/orders", data);
 };

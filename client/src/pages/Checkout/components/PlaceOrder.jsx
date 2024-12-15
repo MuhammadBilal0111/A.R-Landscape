@@ -2,7 +2,7 @@ import React from "react";
 import OrderItems from "./OrderItems";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-function PlaceOrder() {
+function PlaceOrder({ handleSubmit }) {
   const dispatch = useDispatch();
 
   const { items, totalPrice } = useSelector((state) => state.cart);
@@ -22,7 +22,10 @@ function PlaceOrder() {
           <h1>Rs. {totalPrice}</h1>
         </div>
       </div>
-      <button className="text-center flex items-center justify-center w-full py-2 px-1 text-md text-white font-md bg-green-900 rounded-md hover:bg-green-950 duration-105 transition-all mt-4 hover:text-yellow-400">
+      <button
+        className="text-center flex items-center justify-center w-full py-2 px-1 text-md text-white font-md bg-green-900 rounded-md hover:bg-green-950 duration-105 transition-all mt-4 hover:text-yellow-400"
+        onClick={handleSubmit}
+      >
         Place Your Order
       </button>
     </div>

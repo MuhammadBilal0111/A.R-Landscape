@@ -2,25 +2,46 @@ import React from "react";
 import { TextField } from "@mui/material";
 import { Link } from "react-router-dom";
 
-function PersonalContactInfo() {
+function PersonalContactInfo({ handleContactChange }) {
   return (
     <div className="h-auto w-full ">
-      <div className="flex flex-col gap-3 bg-gray-300  my-4 p-5 rounded-md text-gray-700">
+      <form className="flex flex-col gap-3 bg-gray-300  my-4 p-5 rounded-md text-gray-700">
         <h1 className="font-semibold text-2xl">Contact Information</h1>
-        <TextField id="outlined-basic" label="Full name" variant="outlined" />
-        <TextField id="outlined-basic" label="Email" variant="outlined" />
         <TextField
-          id="outlined-basic"
+          id="fullName"
+          label="Full name"
+          variant="outlined"
+          required
+          onChange={handleContactChange}
+        />
+        <TextField
+          id="email"
+          label="Email"
+          variant="outlined"
+          required
+          onChange={handleContactChange}
+        />
+        <TextField
+          id="phoneNumber"
           label="Phone Number"
           variant="outlined"
+          required
+          onChange={handleContactChange}
         />
-        <TextField id="outlined-basic" label="Address" variant="outlined" />
         <TextField
-          id="outlined-basic"
-          label="Special Instruction"
+          id="address"
+          label="Address"
           variant="outlined"
+          required
+          onChange={handleContactChange}
         />
-      </div>
+        <TextField
+          id="instruction"
+          label="Special Instruction (Optional)"
+          variant="outlined"
+          onChange={handleContactChange}
+        />
+      </form>
       <Link to="/shop">
         <button
           type="button"

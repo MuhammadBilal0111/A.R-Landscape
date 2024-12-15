@@ -96,9 +96,9 @@ function SignIn() {
           </button>
           {error && <Alert severity="error">{error}</Alert>}
         </form>
-        <span className="text-gray-400">Don't have an account?</span>
+        <span className="text-gray-600">Don't have an account?</span>
         <Link to={"/sign-up"}>
-          <span className="text-green-800 hover:underline ml-2 font-semibold">
+          <span className="text-green-800 hover:underline font-semibold">
             Create new Account
           </span>
         </Link>

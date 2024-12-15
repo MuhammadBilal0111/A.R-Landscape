@@ -134,7 +134,7 @@ function SignUp() {
           )}
         </form>
         <div>
-          <span className="text-gray-400">Already have an account?</span>
+          <span className="text-gray-600">Already have an account?</span>
           <Link to={"/sign-in"}>
             <span className="text-green-800 hover:underline ml-2 font-semibold">
               Sign In
