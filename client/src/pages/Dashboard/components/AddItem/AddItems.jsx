@@ -5,7 +5,7 @@ import "react-quill/dist/quill.snow.css";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-// import { addItems } from "../../../../services/GlobalApi";
+import axios from "axios";
 import { CircularProgressbar } from "react-circular-progressbar";
 import { Button } from "@mui/material";
 import {
@@ -45,55 +45,28 @@ function AddItem() {
   const handleItemDataChange = (e) => {
     setForm({ ...formData, [e.target.id]: e.target.value });
   };
-  console.log(file);
+
   const handleUploadImage = async () => {
     console.log("chala");
+    if (!file) return;
+
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("upload_preset", "plant_ordering_website");
+    formData.append("cloud_name", "djhxl6tac");
     try {
-      setImageFileUploadError(null);
-      setImageFileUploading(true);
-      if (!file) {
-        setImageFileUploadError("Please select an image");
-        return;
-      }
-      const storage = getStorage(app);
-      const fileName = new Date().getTime() + file.name;
-      const storageRef = ref(storage, fileName);
-      console.log("storageRef", storageRef);
-      const uploadTask = uploadBytesResumable(storageRef, file);
-      console.log("updatedTask", uploadTask);
-      uploadTask.on(
-        "state_changed",
-        (snapshot) => {
-          const progress =
-            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          setImageFileUploadProgress(progress.toFixed(0));
-        },
-        (err) => {
-          console.log(err);
-          setImageFileUploadError(err);
-          ImageFileUploadProgress(null);
-          setImageFileUploading(false);
-          setFile(null);
-        },
-        () => {
-          getDownloadURL(uploadTask.snapshot.ref).then((downloadImageUrl) => {
-            setImageUrl(downloadImageUrl);
-            setImageFileUploadProgress(null);
-            setImageFileUploadError(null);
-            setImageFileUploading(false);
-            setForm({ ...formData, imageUrl: downloadImageUrl });
-          });
-        }
+      const response = await axios.post(
+        "https://api.cloudinary.com/v1_1/djhxl6tac/image/upload",
+        formData
       );
+      console.log(response);
     } catch (err) {
       console.log(err);
-      setImageFileUploadError("Image Upload failed");
-      setImageFileUploadProgress(null);
     }
   };
   console.log(imageFileUploadError);
   return (
-    <div className="">
+    <div className="px-4">
       <form
         onSubmit={handleSubmitForm}
         className="mx-auto max-w-4xl flex flex-col gap-4 my-10 mb-10"
@@ -145,7 +118,7 @@ function AddItem() {
                 and drop
               </p>
               <p className="text-xs text-gray-500 dark:text-gray-400">
-                SVG, PNG, JPG or GIF (MAX. 800x400px)
+                {file?.name}
               </p>
             </div>
             <input
@@ -158,7 +131,7 @@ function AddItem() {
               }}
             />
           </label>
-          <Button variant="text" onClick={handleUploadImage}>
+          <Button variant="text" onClick={handleUploadImage} className="h-full">
             {ImageFileUploadProgress ? (
               <div className="w-8 h-8">
                 <CircularProgressbar
@@ -171,7 +144,6 @@ function AddItem() {
             )}
           </Button>
         </div>
-
         <ReactQuill
           theme="snow"
           placeholder="Enter Description"
