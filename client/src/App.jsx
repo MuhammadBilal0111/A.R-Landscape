@@ -9,6 +9,8 @@ import ScrollToTop from "./components/ScrollToTop";
 import Checkout from "./pages/Checkout/Checkout";
 import ViewCart from "./pages/ViewCart/ViewCart.jsx";
 import Shop from "./pages/shop/Shop";
+import SignUp from "./pages/register/SignUp.jsx";
+import SignIn from "./pages/register/SignIn.jsx";
 
 function App() {
   return (
@@ -22,6 +24,8 @@ function App() {
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/cart" element={<ViewCart />} />
         <Route path="/shop" element={<Shop />} />
+        <Route path="/sign-up" element={<SignUp />} />
+        <Route path="/sign-in" element={<SignIn />} />
       </Routes>
       <Footer />
     </BrowserRouter>
