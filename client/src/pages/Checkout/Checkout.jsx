@@ -10,7 +10,9 @@ import { order } from "../../services/GlobalApi";
 function Checkout() {
   const { items, total_item, totalPrice } = useSelector((state) => state.cart);
   const [errors, setErrors] = useState({}); // error handling
+  const [loading, setLoading] = useState(false);
   const [orderDetails, setOrderDetails] = useState({});
+
   const handleContactInfo = (e) => {
     setOrderDetails({ ...orderDetails, [e.target.id]: e.target.value });
   };
@@ -33,6 +35,7 @@ function Checkout() {
   const onSubmitOrder = async (e) => {
     if (validateInputs()) {
       try {
+        setLoading(true);
         const newObject = {
           ...orderDetails,
           products: items,
@@ -40,8 +43,10 @@ function Checkout() {
           total_item,
         };
         const response = await order(newObject);
-        console.log(response);
+        setLoading(false);
+        ToastSuccess(response?.data?.message);
       } catch (err) {
+        setLoading(false);
         console.log(err);
         ToastFailure("Order in not sent");
       }
@@ -61,7 +66,7 @@ function Checkout() {
       </Link>
       <div className="flex flex-col lg:flex-row gap-7 px-5 mb-12">
         <PersonalContactInfo handleContactChange={handleContactInfo} />
-        <PlaceOrder handleSubmit={onSubmitOrder} />
+        <PlaceOrder handleSubmit={onSubmitOrder} loading={loading} />
       </div>
     </>
   );

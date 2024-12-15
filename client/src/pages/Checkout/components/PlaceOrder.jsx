@@ -1,10 +1,8 @@
 import React from "react";
 import OrderItems from "./OrderItems";
-import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-function PlaceOrder({ handleSubmit }) {
-  const dispatch = useDispatch();
-
+import { CircularProgress } from "@mui/material";
+function PlaceOrder({ handleSubmit, loading }) {
   const { items, totalPrice } = useSelector((state) => state.cart);
 
   return (
@@ -25,8 +23,13 @@ function PlaceOrder({ handleSubmit }) {
       <button
         className="text-center flex items-center justify-center w-full py-2 px-1 text-md text-white font-md bg-green-900 rounded-md hover:bg-green-950 duration-105 transition-all mt-4 hover:text-yellow-400"
         onClick={handleSubmit}
+        disabled={loading}
       >
-        Place Your Order
+        {loading ? (
+          <CircularProgress size={"25px"} color="inherit" />
+        ) : (
+          "Place Your Order"
+        )}
       </button>
     </div>
   );
