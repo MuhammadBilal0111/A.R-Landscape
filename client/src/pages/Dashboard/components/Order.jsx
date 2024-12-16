@@ -29,9 +29,7 @@ function Order() {
   // time the order added without loading the page
   socket.on("orderPlaced", (orderInfo) => {
     setNewOrders((prevOrders) => [orderInfo, ...prevOrders]);
-    console.log("chala");
   });
-  console.log(newOrders);
 
   return (
     <>
@@ -71,13 +69,13 @@ function Order() {
                     <strong>Special Instructions:</strong>{" "}
                     {order.specialInstructions || "None"}
                   </p> */}
-                  <ol className="list-decimal text-md font-semibold text-green-900 mt-3 ml-4">
+                  <ol className="list-decimal text-md font-semibold text-green-900 mt-3 ml-4 min-h-20">
                     {order.products.map((product) => (
                       <li key={product._id} className="mb-2">
                         <div className="flex justify-between">
                           <div className="flex">
                             {product.title}
-                            <span className="ml-4 text-yellow-400 bg-green-800 p-1 rounded-md text-sm">
+                            <span className="ml-2 text-yellow-400 bg-green-800 px-2 py-1 rounded-md text-sm">
                               x{product.quantity}
                             </span>
                           </div>
