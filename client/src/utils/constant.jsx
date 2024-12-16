@@ -11,18 +11,13 @@ export const NAVIGATION = [
   },
   {
     segment: "dashboard",
-    title: "Dashboard",
+    title: "Add Items",
     icon: <MdDashboard />,
   },
   {
     segment: "orders",
     title: "Orders",
     icon: <FaShoppingCart />,
-  },
-  {
-    segment: "addItem",
-    title: "Add Items",
-    icon: <IoMdAddCircleOutline />,
   },
   {
     kind: "divider",

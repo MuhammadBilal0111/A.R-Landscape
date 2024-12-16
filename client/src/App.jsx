@@ -11,7 +11,7 @@ import ViewCart from "./pages/ViewCart/ViewCart.jsx";
 import Shop from "./pages/shop/Shop";
 import SignUp from "./pages/register/SignUp.jsx";
 import SignIn from "./pages/register/SignIn.jsx";
-
+import Appointment from "./pages/Appointments/Appointment.jsx";
 function App() {
   return (
     <BrowserRouter>
@@ -26,6 +26,7 @@ function App() {
         <Route path="/shop" element={<Shop />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/sign-in" element={<SignIn />} />
+        <Route path="/appointments" element={<Appointment />} />
       </Routes>
       <Footer />
     </BrowserRouter>

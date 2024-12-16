@@ -60,8 +60,15 @@ const Header = () => {
               >
                 <Link to="/shop">Shop</Link>
               </li>
-              <li className="hover:text-slate-300 text-white transition-all duration-200 ease-linear">
-                <Link to="/profile">Profile</Link>
+              <li
+                className={`${isActive("/appointments") ? "text-yellow-500" : "text-white"} transition-all duration-200 ease-linear`}
+              >
+                <Link to="/appointments">Appointments</Link>
+              </li>
+              <li
+                className={`${isActive("/dashboard") ? "text-yellow-500" : "text-white"} transition-all duration-200 ease-linear`}
+              >
+                <Link to="/dashboard">Dashboard</Link>
               </li>
               <li className="relative hover:text-slate-300 text-white transition-all duration-200 ease-linear">
                 <Link to="/cart">
@@ -106,9 +113,9 @@ const Header = () => {
                   Menu
                 </Link>
               </li>
-              <li className="hover:text-slate-500 border-b-2  px-7 py-3">
-                <Link to="/profile" onClick={toggleMenu}>
-                  Profile
+              <li className="hover:text-slate-500 border-b-2 px-7 py-3">
+                <Link to="/dashboard" onClick={toggleMenu}>
+                  Dashboard
                 </Link>
               </li>
               <li className="hover:text-slate-500  px-7 py-3">

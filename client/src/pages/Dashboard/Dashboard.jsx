@@ -4,7 +4,6 @@ import { AppProvider } from "@toolpad/core/AppProvider";
 import { DashboardLayout } from "@toolpad/core/DashboardLayout";
 import { createTheme } from "@mui/material/styles";
 import { Box } from "@mui/material";
-import Dash from "./components/Dash";
 import Order from "./components/Order";
 import { Link } from "react-router-dom";
 import AddItem from "./components/AddItem/AddItems";
@@ -74,14 +73,13 @@ export default function DashboardLayoutBasic() {
         sx={{
           display: "flex",
           flexDirection: "column",
-          minHeight: "100vh", // Full viewport height
-          height: "auto", // Adjust to content
+          height: "100vh", // Full viewport height
         }}
       >
         <DashboardLayout slots={{ toolbarActions: CustomThemeSwitcher }}>
-          {pathname === "/dashboard" && <Dash />}
           {pathname === "/orders" && <Order />}
-          {pathname === "/addItem" && <AddItem />}
+          {/* dashboard link for adding the items in database */}
+          {pathname === "/dashboard" && <AddItem />}
         </DashboardLayout>
       </Box>
     </AppProvider>

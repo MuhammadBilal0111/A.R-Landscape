@@ -24,9 +24,12 @@ function ShopCard({ item }) {
         <h2 className="text-2xl font-semibold mb-2 hover:underline">
           <Link to={`/plant/${item?.slug}`}>{item?.title}</Link>
         </h2>
-        <p className="text-gray-600 text-center h-14">
-          {item?.description || "No description available."}
-        </p>
+        <div
+          className="text-gray-600 text-center h-14"
+          dangerouslySetInnerHTML={{
+            __html: item?.description || "No description available.",
+          }}
+        ></div>
         <div className="flex w-full items-center justify-center gap-3 mt-2 flex-col md:flex-row">
           <button
             type="button"

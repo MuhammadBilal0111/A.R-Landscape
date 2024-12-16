@@ -175,7 +175,12 @@ function AddToCart() {
             <h1 className="text-5xl text-md font-semibold md:font-bold mb-5 underline">
               Description
             </h1>
-            <p>{itemData?.description}</p>
+            <div
+              className="w-full"
+              dangerouslySetInnerHTML={{
+                __html: itemData && itemData?.description,
+              }}
+            ></div>
           </div>
         </>
       )}
