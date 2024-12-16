@@ -1,19 +1,13 @@
-// InsertImage Component
-import React, { useState } from "react";
+import React from "react";
 import { Button } from "@mui/material";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 
-function InsertImage({ onFileChange }) {
-  const [file, setFile] = useState(null);
-  const handleChange = (e) => {
-    const selectedFile = e.target.files[0];
-    setFile(selectedFile);
-  };
+function InsertImage({ onFileChange, onUpload, imageFile }) {
   return (
     <div className="flex flex-col items-center justify-center w-full gap-4">
       <label
-        htmlFor="dropzone-file"
+        htmlFor={`dropzone-${imageFile.id}`}
         className="flex flex-col items-center justify-center w-full h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100"
       >
         <div className="flex flex-col items-center justify-center">
@@ -37,24 +31,25 @@ function InsertImage({ onFileChange }) {
             drop
           </p>
           <p className="text-xs text-gray-500 dark:text-gray-400">
-            {file?.name || "No file selected"}
+            {imageFile.file?.name || "No file selected"}
           </p>
         </div>
         <input
-          id="dropzone-file"
+          id={`dropzone-${imageFile.id}`}
           type="file"
           accept="image/*"
           className="hidden"
-          onChange={handleChange}
+          onChange={(e) => onFileChange(e.target.files[0], imageFile.id)}
         />
       </label>
       <Button
         variant="contained"
         color="primary"
-        onClick={handleUploadImage}
-        disabled={imageFileUploading}
+        className="!text-white"
+        onClick={onUpload}
+        disabled={imageFile.loading || !imageFile.file}
       >
-        {imageFileUploading ? (
+        {imageFile.loading ? (
           <div className="w-8 h-8">
             <CircularProgressbar value={100} text={"..."} />
           </div>
@@ -62,6 +57,13 @@ function InsertImage({ onFileChange }) {
           "Upload Image"
         )}
       </Button>
+      {imageFile.url && (
+        <img
+          src={imageFile.url}
+          alt="Uploaded"
+          className="w-32 h-32 object-cover rounded-lg"
+        />
+      )}
     </div>
   );
 }

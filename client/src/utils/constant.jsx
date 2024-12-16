@@ -10,14 +10,14 @@ export const NAVIGATION = [
     title: "Main items",
   },
   {
-    segment: "orders",
-    title: "Orders",
-    icon: <FaShoppingCart />,
-  },
-  {
     segment: "dashboard",
     title: "Dashboard",
     icon: <MdDashboard />,
+  },
+  {
+    segment: "orders",
+    title: "Orders",
+    icon: <FaShoppingCart />,
   },
   {
     segment: "addItem",

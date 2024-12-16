@@ -5,8 +5,8 @@ const api = axios.create({
 export const getPlantsDetails = async (str) => {
   return api.get(`/plants/getPlants${str}`);
 };
-export const addItems = async () => {
-  return api.post("/items/add-items");
+export const addItems = async (data) => {
+  return api.post("/items/add-items", data);
 };
 export const signUp = (data) => {
   return api.post("/auth/signUp", data);

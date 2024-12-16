@@ -27,7 +27,7 @@ function ShopCard({ item }) {
         <p className="text-gray-600 text-center h-14">
           {item?.description || "No description available."}
         </p>
-        <div className="flex w-full items-center justify-center gap-3 mt-2">
+        <div className="flex w-full items-center justify-center gap-3 mt-2 flex-col md:flex-row">
           <button
             type="button"
             className="text-black hover:text-green-900 text-md py-2 px-1 rounded-md transition-all duration-150 w-full border hover:bg-gray-100 shadow-md"
