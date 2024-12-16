@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const plantSchema = mongoose.Schema({
+const itemSchema = mongoose.Schema({
   title: {
     type: String,
     required: [true, "Plant title is a required field"],
@@ -22,11 +22,17 @@ const plantSchema = mongoose.Schema({
   imageUrl: {
     type: [String],
   },
+  slug: {
+    type: String,
+  },
+  description: {
+    type: String,
+  },
   dateAdded: {
     type: Date,
     default: Date.now,
   },
 });
 
-const plantModel = mongoose.model("Plant", plantSchema);
-module.exports = plantModel;
+const itemModel = mongoose.model("Item", itemSchema);
+module.exports = itemModel;

@@ -3,7 +3,7 @@ const api = axios.create({
   baseURL: "/api",
 });
 export const getPlantsDetails = async (str) => {
-  return api.get(`/plants/getPlants${str}`);
+  return api.get(`/items/getItems${str}`);
 };
 export const addItems = async (data) => {
   return api.post("/items/add-items", data);

@@ -30,13 +30,13 @@ function AddItem() {
     if (
       !formData.title ||
       !formData.category ||
-      !formData.content ||
+      !formData.description ||
       imageFiles.some((imageFile) => imageFile.url === null)
     ) {
       console.log(
         formData.title,
         formData.category,
-        formData.content,
+        formData.description,
         imageFiles[0].url,
         imageFiles[1].url,
         imageFiles[2].url
@@ -54,11 +54,10 @@ function AddItem() {
         imageUrl: imageFiles.map((imageFile) => imageFile.url),
       };
 
-      console.log("Submitted data:", newObject);
-      await addItems(newObject); // posting the data
+      const response = await addItems(newObject); // posting the data
 
       setDataLoading(false);
-      ToastSuccess("Item added successfully!");
+      ToastSuccess(response?.data?.message);
     } catch (err) {
       setDataLoading(false);
       ToastFailure("Something Went Wrong");
@@ -134,6 +133,13 @@ function AddItem() {
             className="flex flex-1"
             onChange={handleItemDataChange}
           />
+          <TextField
+            id="price"
+            label="Price"
+            variant="outlined"
+            className="flex flex-1"
+            onChange={handleItemDataChange}
+          />
           <FormControl className="w-full md:w-64">
             <Select value={item} onChange={(e) => setItem(e.target.value)}>
               <MenuItem value="plants">Plants</MenuItem>
@@ -157,7 +163,7 @@ function AddItem() {
         <ReactQuill
           theme="snow"
           placeholder="Enter Description"
-          onChange={(value) => setForm({ ...formData, content: value })}
+          onChange={(value) => setForm({ ...formData, description: value })}
           className="h-44 mb-10"
         />
 
