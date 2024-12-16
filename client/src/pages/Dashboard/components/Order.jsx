@@ -2,17 +2,16 @@ import React, { useEffect, useState } from "react";
 import { getAllOrders } from "../../../services/GlobalApi";
 import { io } from "socket.io-client";
 import { CircularProgress } from "@mui/material";
+
 function Order() {
   const [newOrders, setNewOrders] = useState([]);
   const [loading, setLoading] = useState(false);
-  const socket = io("http://localhost:3000");
 
   useEffect(() => {
+    // Initialize Socket.IO connection
+    const socket = io("http://localhost:3000");
+
     const fetchOrder = async () => {
-      // Connect to the Socket.IO server
-      socket.on("connection", (socket) => {
-        console.log(socket);
-      });
       try {
         setLoading(true);
         const orders = await getAllOrders();
@@ -20,21 +19,27 @@ function Order() {
         setLoading(false);
       } catch (err) {
         setLoading(false);
-        console.log(err);
+        console.error(err);
       }
     };
+
     fetchOrder();
+
+    // Listen for new orders via Socket.IO
+    socket.on("orderPlaced", (orderInfo) => {
+      setNewOrders((prevOrders) => [orderInfo, ...prevOrders]);
+    });
+
+    // Cleanup: Close the socket connection
+    return () => {
+      socket.disconnect();
+    };
   }, []);
-  // when the user is on the order tab then in real
-  // time the order added without loading the page
-  socket.on("orderPlaced", (orderInfo) => {
-    setNewOrders((prevOrders) => [orderInfo, ...prevOrders]);
-  });
 
   return (
     <>
       {loading ? (
-        <div className="flex justify-center w-full h-60">
+        <div className="flex justify-center w-full h-60 my-4">
           <CircularProgress size={"70px"} />
         </div>
       ) : (
@@ -44,9 +49,9 @@ function Order() {
           </h1>
           {newOrders.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full lg:w-7xl">
-              {newOrders.map((order, index) => (
+              {newOrders.map((order) => (
                 <div
-                  key={index}
+                  key={order._id} // Use unique identifiers like `order._id` instead of `index`
                   className="bg-white rounded-lg shadow-lg p-6 border-t-4 border-green-900"
                 >
                   <h1 className="text-lg font-bold truncate line-clamp-1 text-gray-800">
@@ -65,10 +70,6 @@ function Order() {
                   <p className="text-gray-600 mt-2">
                     <strong>Address:</strong> {order.address}
                   </p>
-                  {/* <p className="text-gray-600 mt-2">
-                    <strong>Special Instructions:</strong>{" "}
-                    {order.specialInstructions || "None"}
-                  </p> */}
                   <ol className="list-decimal text-md font-semibold text-green-900 mt-3 ml-4 min-h-20">
                     {order.products.map((product) => (
                       <li key={product._id} className="mb-2">

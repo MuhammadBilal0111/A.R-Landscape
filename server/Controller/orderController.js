@@ -18,12 +18,13 @@ exports.placeOrder = asyncErrorHandler(async (req, res, next) => {
   if (!products || !email || !fullName || !address || !phoneNumber) {
     return next(new customErrorHandler("Missing required fields.", 404));
   }
-  console.log(req.body);
   // Save the order to the database
   const savedOrder = await Order.create(req.body);
 
   // Emit the orderPlaced event using the io instance
   const io = req.app.get("io");
+  console.log(savedOrder);
+
   io.emit("orderPlaced", savedOrder); // Broadcast to all connected clients
 
   res
