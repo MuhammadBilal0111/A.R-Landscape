@@ -15,7 +15,7 @@ function ShopCard({ item }) {
     <div className="ecommerce-card bg-white outline-2 shadow-xl  rounded-lg flex flex-col items-center w-full md:w-[45%] lg:w-[27%] h-auto overflow-hidden">
       <div className="w-full">
         <img
-          src={item?.imageUrl || "default-image.jpg"} // Use item.imageUrl or fallback
+          src={item?.imageUrl[0] || "default-image.jpg"} // Use item.imageUrl or fallback
           alt={item?.title}
           className="w-full h-44 object-cover mb-4"
         />

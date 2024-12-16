@@ -10,7 +10,6 @@ import {
 } from "../../store/cartSlice";
 import { CircularProgress } from "@mui/material";
 import { ToastSuccess } from "../../components/Toast";
-import MagnifiedImageComponent from "./components/MagnifiedImage";
 
 function AddToCart() {
   const dispatch = useDispatch();
@@ -69,7 +68,11 @@ function AddToCart() {
           <div className=" flex flex-col lg:flex-row justify-center max-w-7xl mx-auto px-5 mb-7 gap-8 ">
             <div className="flex flex-col gap-8 lg:w-1/2">
               <div className="h-[400px] w-full">
-                <MagnifiedImageComponent imageSrc={image} />
+                <img
+                  src={image}
+                  alt=""
+                  className="w-full h-full object-cover"
+                />
               </div>
 
               <div

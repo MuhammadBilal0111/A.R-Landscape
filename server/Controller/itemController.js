@@ -24,7 +24,6 @@ exports.getItems = asyncErrorHandler(async (req, res, next) => {
   });
 });
 exports.addItem = asyncErrorHandler(async (req, res, next) => {
-  console.log(req.body);
   const { category, description, title, price } = req.body;
   if (!category || !description || !title || !price) {
     return next(new CustomError("Fill all the fields", 404));
