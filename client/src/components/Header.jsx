@@ -12,6 +12,7 @@ const Header = () => {
   const location = useLocation();
   const headerLinks = useRef(null);
   const items = useSelector((state) => state.cart.items);
+  const { role } = useSelector((state) => state.user.currentUser.userInfo);
   const isActive = (path) => {
     return location.pathname === path;
   };
@@ -65,11 +66,13 @@ const Header = () => {
               >
                 <Link to="/appointments">Appointments</Link>
               </li>
-              <li
-                className={`${isActive("/dashboard") ? "text-yellow-500" : "text-white"} transition-all duration-200 ease-linear`}
-              >
-                <Link to="/dashboard">Dashboard</Link>
-              </li>
+              {role === "admin" ? (
+                <li
+                  className={`${isActive("/dashboard") ? "text-yellow-500" : "text-white"} transition-all duration-200 ease-linear`}
+                >
+                  <Link to="/dashboard">Dashboard</Link>
+                </li>
+              ) : null}
               <li className="relative hover:text-slate-300 text-white transition-all duration-200 ease-linear">
                 <Link to="/cart">
                   <MdOutlineShoppingBag className="sm:text-3xl lg:text-3xl pb-1 cursor-pointer" />
