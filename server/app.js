@@ -1,12 +1,16 @@
 const express = require("express");
 const plantRoutes = require("./Router/itemRoutes");
 const orderRoutes = require("./Router/orderRoutes");
+const authRouter = require("./Router/authRoutes");
 const morgan = require("morgan");
 const app = express();
+const cookieParser = require("cookie-parser");
 
 app.use(express.json());
 app.use(morgan("dev"));
+app.use(cookieParser());
 app.use("/api/items", plantRoutes);
+app.use("/api/auth", authRouter);
 app.use("/api", orderRoutes);
 
 app.use((err, req, res, next) => {

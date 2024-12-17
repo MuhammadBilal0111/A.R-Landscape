@@ -88,7 +88,7 @@ function SignIn() {
           </div>
 
           <button
-            type="button"
+            type="submit"
             className="text-center flex items-center justify-center w-full py-2 px-1 text-md text-white font-md bg-green-900 rounded-md hover:bg-green-950 duration-105 transition-all hover:text-yellow-400"
             disabled={loading}
           >

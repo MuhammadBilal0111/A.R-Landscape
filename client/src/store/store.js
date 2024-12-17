@@ -4,6 +4,7 @@ import storage from "redux-persist/lib/storage";
 import cartSlice from "./cartSlice";
 import persistStore from "redux-persist/es/persistStore";
 import userSlice from "./userSlice";
+
 const rootReducer = combineReducers({
   cart: cartSlice.reducer,
   user: userSlice.reducer,
