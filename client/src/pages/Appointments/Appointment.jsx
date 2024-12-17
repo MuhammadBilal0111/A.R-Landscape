@@ -4,9 +4,11 @@ import { InlineWidget } from "react-calendly";
 const Appointment = () => {
   return (
     <div className="min-h-screen">
-      <h2 className="font-bold text-6xl text-center text-gray-500  py-6">Book Your Appointment</h2>
+      <h2 className="font-bold text-6xl text-center text-gray-500  mt-3">
+        Book Your Appointments
+      </h2>
       <InlineWidget
-        url="https://calendly.com/m-bilal0111/project" // Replace with your Calendly link
+        url="https://calendly.com/m-bilal0111/a-r-landscape" // Replace with your Calendly link
         rootElement={document.getElementById("root")}
         text="Schedule Appointment"
         textColor="#ffffff"

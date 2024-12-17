@@ -64,7 +64,7 @@ function SignIn() {
               variant="standard"
               label="Your Password"
               id="password"
-              ref={showPasswordElement}
+              inputRef={showPasswordElement}
               onChange={handleChange}
               className="w-full text-white"
             />

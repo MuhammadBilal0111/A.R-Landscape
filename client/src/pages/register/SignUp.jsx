@@ -71,7 +71,7 @@ function SignUp() {
               variant="standard"
               label="Your Password"
               id="password"
-              ref={showPasswordElement}
+              inputRef={showPasswordElement}
               onChange={handleChange}
               className="w-full text-white"
             />
@@ -99,7 +99,7 @@ function SignUp() {
               variant="standard"
               label="Confirm Password"
               id="confirmPassword"
-              ref={showConfirmPasswordElement}
+              inputRef={showConfirmPasswordElement}
               onChange={handleChange}
               className="w-full text-white"
             />
