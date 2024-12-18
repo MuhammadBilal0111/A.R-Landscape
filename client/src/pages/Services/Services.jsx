@@ -100,7 +100,7 @@ const Services = () => {
       </div>
       <div>
         <a
-          href={`https://wa.me/${import.meta.env.VITE_PHONE_NO}`}
+          href={`https://wa.me/03242443922`}
           target="_blank"
           rel="noreferrer noopener"
           class="fixed bottom-4 right-4 z-50 inline-flex items-center justify-center w-14 h-14 rounded-full bg-[#25d366]"
