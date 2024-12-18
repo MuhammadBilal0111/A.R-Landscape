@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const ProductSchema = new mongoose.Schema(
   {
-    fullName: {
+    username: {
       type: String,
       required: [true, "Full Name is a required field"],
     },

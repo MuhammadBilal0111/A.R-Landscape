@@ -6,19 +6,25 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { ToastSuccess, ToastFailure } from "../../components/Toast";
 import { order } from "../../services/GlobalApi";
+import SignIn from "./../register/SignIn";
 
 function Checkout() {
   const { items, total_item, totalPrice } = useSelector((state) => state.cart);
+  const { userInfo } = useSelector((state) => state.user.currentUser);
   const [errors, setErrors] = useState({}); // error handling
   const [loading, setLoading] = useState(false);
-  const [orderDetails, setOrderDetails] = useState({});
+
+  const [orderDetails, setOrderDetails] = useState({
+    username: userInfo.username,
+    email: userInfo.email,
+  });
 
   const handleContactInfo = (e) => {
     setOrderDetails({ ...orderDetails, [e.target.id]: e.target.value });
   };
   // validate that input fields are present
   const validateInputs = () => {
-    const requiredFields = ["fullName", "email", "phoneNumber", "address"];
+    const requiredFields = ["username", "email", "phoneNumber", "address"];
     const newErrors = {};
 
     requiredFields.forEach((field) => {
@@ -42,6 +48,7 @@ function Checkout() {
           totalPrice,
           total_item,
         };
+        console.log("newObject", newObject);
         const response = await order(newObject);
         setLoading(false);
         ToastSuccess(response?.data?.message);
@@ -58,16 +65,25 @@ function Checkout() {
   };
   return (
     <>
-      <Link to={"/shop"}>
-        <div className="flex items-center gap-2 text-4xl text-gray-700 mt-8 px-5">
-          <FaArrowLeft className="cursor-pointer" />
-          <h1 className="font-semibold ">Place Your Order</h1>
+      {userInfo ? (
+        <div>
+          <Link to={"/shop"}>
+            <div className="flex items-center gap-2 text-4xl text-gray-700 mt-8 px-5">
+              <FaArrowLeft className="cursor-pointer" />
+              <h1 className="font-semibold">Place Your Order</h1>
+            </div>
+          </Link>
+          <div className="flex flex-col lg:flex-row gap-7 px-5 mb-12">
+            <PersonalContactInfo
+              handleContactChange={handleContactInfo}
+              orderDetails={orderDetails}
+            />
+            <PlaceOrder handleSubmit={onSubmitOrder} loading={loading} />
+          </div>
         </div>
-      </Link>
-      <div className="flex flex-col lg:flex-row gap-7 px-5 mb-12">
-        <PersonalContactInfo handleContactChange={handleContactInfo} />
-        <PlaceOrder handleSubmit={onSubmitOrder} loading={loading} />
-      </div>
+      ) : (
+        <SignIn />
+      )}
     </>
   );
 }

@@ -8,14 +8,14 @@ exports.placeOrder = asyncErrorHandler(async (req, res, next) => {
     products,
     email,
     address,
-    fullName,
+    username,
     phoneNumber,
     totalPrice,
     specialInstructions,
   } = req.body;
 
   // Validate required fields
-  if (!products || !email || !fullName || !address || !phoneNumber) {
+  if (!products || !email || !username || !address || !phoneNumber) {
     return next(new customErrorHandler("Missing required fields.", 404));
   }
   // Save the order to the database

@@ -44,19 +44,19 @@ function AddToCart() {
     ToastSuccess("Item added to Cart!");
     dispatch(addItems(itemData));
   };
-  const handleIncrementItemQuantity = () => {
-    if (itemData.quantity >= 1 && itemData.quantity < 50) {
-      //dispatch(incrementQuantity(itemData));
-      setItemsQuantity((prevQuantity) => Math.min(prevQuantity + 1, 100));
-    }
-  };
-  const handleDecrementItemQuantity = () => {
-    if (itemData.quantity > 1) {
-      // dispatch(decrementQuantity(itemData));
+  // const handleIncrementItemQuantity = () => {
+  //   if (itemData.quantity >= 1 && itemData.quantity < 50) {
+  //     //dispatch(incrementQuantity(itemData));
+  //     setItemsQuantity((prevQuantity) => Math.min(prevQuantity + 1, 100));
+  //   }
+  // };
+  // const handleDecrementItemQuantity = () => {
+  //   if (itemData.quantity > 1) {
+  //     // dispatch(decrementQuantity(itemData));
 
-      setItemsQuantity((prevQuantity) => Math.max(prevQuantity - 1, 1));
-    }
-  };
+  //     setItemsQuantity((prevQuantity) => Math.max(prevQuantity - 1, 1));
+  //   }
+  // };
   return (
     <div className="mt-28 min-h-screen h-auto">
       {loading ? (
@@ -142,7 +142,7 @@ function AddToCart() {
                   </div>
                 </label>
               </div>
-              <div className="mb-6">
+              {/* <div className="mb-6">
                 <p className="text-sm mb-3 text-gray-700 font-semibold">
                   Choose quantity:
                 </p>
@@ -161,7 +161,7 @@ function AddToCart() {
                     <FaPlus />
                   </button>
                 </div>
-              </div>
+              </div> */}
               <button
                 type="button"
                 className="w-full focus:outline-none  bg-green-900 hover:bg-green-950  rounded-lg  px-5 py-2.5 me-2 mb-2 text-white text-md hover:text-yellow-400 duration-75"

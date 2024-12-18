@@ -2,15 +2,17 @@ import React from "react";
 import { TextField } from "@mui/material";
 import { Link } from "react-router-dom";
 
-function PersonalContactInfo({ handleContactChange }) {
+function PersonalContactInfo({ handleContactChange, orderDetails }) {
+  console.log(orderDetails);
   return (
     <div className="h-auto w-full ">
       <form className="flex flex-col gap-3 bg-gray-300  my-4 p-5 rounded-md text-gray-700">
         <h1 className="font-semibold text-2xl">Contact Information</h1>
         <TextField
-          id="fullName"
+          id="username"
           label="Full name"
           variant="outlined"
+          value={orderDetails?.username}
           required
           onChange={handleContactChange}
         />
@@ -18,6 +20,7 @@ function PersonalContactInfo({ handleContactChange }) {
           id="email"
           label="Email"
           variant="outlined"
+          value={orderDetails?.email}
           required
           onChange={handleContactChange}
         />

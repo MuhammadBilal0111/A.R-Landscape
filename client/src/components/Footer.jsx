@@ -25,8 +25,8 @@ function Footer() {
               </h2>
               <ul className="text-gray-500 dark:text-gray-300 font-medium">
                 <li className="mb-4">
-                  <a href="https://flowbite.com/" className="hover:underline">
-                    Flowbite
+                  <a href="/" className="hover:underline">
+                    A. R Landscape
                   </a>
                 </li>
                 <li>
