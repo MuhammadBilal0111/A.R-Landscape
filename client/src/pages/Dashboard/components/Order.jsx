@@ -2,10 +2,13 @@ import React, { useEffect, useState } from "react";
 import { getAllOrders } from "../../../services/GlobalApi";
 import { io } from "socket.io-client";
 import { CircularProgress } from "@mui/material";
+import { ToastSuccess } from "../../../components/Toast";
+import { completeOrder } from "../../../services/GlobalApi";
 
 function Order() {
   const [newOrders, setNewOrders] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [orderCompletedLoader, setOrderCompletedLoader] = useState(false);
 
   useEffect(() => {
     // Initialize Socket.IO connection
@@ -36,6 +39,24 @@ function Order() {
     };
   }, []);
 
+  const handleCompleteOrder = async (orderId) => {
+    try {
+      setOrderCompletedLoader(true);
+      const socket = io("http://localhost:3000");
+      socket.on("deleteOrder", (orderInfo) => {
+        setNewOrders(orderInfo);
+      });
+      const response = await completeOrder(orderId);
+      socket.on("deleteOrder", (orderInfo) => {
+        setNewOrders(orderInfo); // updating the orders
+      });
+      setOrderCompletedLoader(false);
+      ToastSuccess(response?.data?.message);
+    } catch (err) {
+      console.log("Error in completing the order", err);
+    }
+  };
+
   return (
     <>
       {loading ? (
@@ -60,7 +81,7 @@ function Order() {
                   <p className="text-lg font-bold text-gray-800">
                     Customer:{" "}
                     <span className="font-normal">
-                      {order.fullName.toUpperCase()}
+                      {order?.fullName?.toUpperCase()}
                     </span>
                   </p>
                   <p className="text-lg font-bold text-gray-800">
@@ -88,8 +109,16 @@ function Order() {
                       </li>
                     ))}
                   </ol>
-                  <button className="text-center flex items-center justify-center w-full py-2 px-1 text-md text-white font-md bg-green-900 rounded-md hover:bg-green-950 duration-105 transition-all mt-4 hover:text-yellow-400">
-                    Order Done
+                  <button
+                    className="text-center flex items-center justify-center w-full py-2 px-1 text-md text-white font-md bg-green-900 rounded-md hover:bg-green-950 duration-105 transition-all mt-4 hover:text-yellow-400"
+                    onClick={() => handleCompleteOrder(order._id)}
+                    disabled={orderCompletedLoader}
+                  >
+                    {orderCompletedLoader ? (
+                      <CircularProgress size={"25px"} />
+                    ) : (
+                      "Order Done"
+                    )}
                   </button>
                 </div>
               ))}

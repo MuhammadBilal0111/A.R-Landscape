@@ -20,3 +20,6 @@ export const order = (data) => {
 export const getAllOrders = () => {
   return api.get("/orders");
 };
+export const completeOrder = (id) => {
+  return api.delete(`/orders/${id}`);
+};

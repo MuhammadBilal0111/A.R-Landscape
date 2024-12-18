@@ -23,7 +23,6 @@ exports.placeOrder = asyncErrorHandler(async (req, res, next) => {
 
   // Emit the orderPlaced event using the io instance
   const io = req.app.get("io");
-  console.log(savedOrder);
 
   io.emit("orderPlaced", savedOrder); // Broadcast to all connected clients
 
@@ -37,5 +36,34 @@ exports.getAllOrders = asyncErrorHandler(async (req, res, next) => {
   res.status(200).json({
     status: "success",
     data: orderDetails,
+  });
+});
+exports.orderCompleted = asyncErrorHandler(async (req, res, next) => {
+  const id = req.params.id; // Extract the ID from request parameters
+
+  if (!id) {
+    return res.status(400).json({
+      status: "failed",
+      message: "Order ID is required",
+    });
+  }
+
+  // Find the order by ID and delete it
+  const deletedOrder = await Order.findByIdAndDelete(id);
+  // If the order is not found
+  if (!deletedOrder) {
+    return res.status(404).json({
+      status: "failed",
+      message: "Order not found",
+    });
+  }
+  const orderDetails = await Order.find().sort({ createdAt: -1 }); // get all orders
+  const io = req.app.get("io");
+  io.emit("deleteOrder", orderDetails);
+
+  // Return success response
+  res.status(200).json({
+    status: "success",
+    message: "Order completed successfully",
   });
 });
