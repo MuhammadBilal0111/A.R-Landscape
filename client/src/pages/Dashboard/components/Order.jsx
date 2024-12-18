@@ -41,7 +41,6 @@ function Order() {
 
   const handleCompleteOrder = async (orderId) => {
     try {
-      setOrderCompletedLoader(true);
       const socket = io("http://localhost:3000");
       socket.on("deleteOrder", (orderInfo) => {
         setNewOrders(orderInfo);
@@ -50,7 +49,6 @@ function Order() {
       socket.on("deleteOrder", (orderInfo) => {
         setNewOrders(orderInfo); // updating the orders
       });
-      setOrderCompletedLoader(false);
       ToastSuccess(response?.data?.message);
     } catch (err) {
       console.log("Error in completing the order", err);
@@ -112,10 +110,9 @@ function Order() {
                   <button
                     className="text-center flex items-center justify-center w-full py-2 px-1 text-md text-white font-md bg-green-900 rounded-md hover:bg-green-950 duration-105 transition-all mt-4 hover:text-yellow-400"
                     onClick={() => handleCompleteOrder(order._id)}
-                    disabled={orderCompletedLoader}
                   >
                     {orderCompletedLoader ? (
-                      <CircularProgress size={"25px"} />
+                      <CircularProgress size={"30px"} />
                     ) : (
                       "Order Done"
                     )}

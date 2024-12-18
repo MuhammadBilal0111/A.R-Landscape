@@ -62,9 +62,9 @@ const Header = () => {
                 <Link to="/shop">Shop</Link>
               </li>
               <li
-                className={`${isActive("/appointments") ? "text-yellow-500" : "text-white"} transition-all duration-200 ease-linear`}
+                className={`${isActive("/services") ? "text-yellow-500" : "text-white"} transition-all duration-200 ease-linear`}
               >
-                <Link to="/appointments">Appointments</Link>
+                <Link to="/services">Services</Link>
               </li>
               {role === "admin" ? (
                 <li

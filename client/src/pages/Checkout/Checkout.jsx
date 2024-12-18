@@ -7,10 +7,13 @@ import { useSelector } from "react-redux";
 import { ToastSuccess, ToastFailure } from "../../components/Toast";
 import { order } from "../../services/GlobalApi";
 import SignIn from "./../register/SignIn";
+import { emptyContainer } from "../../store/cartSlice.js";
+import { useDispatch } from "react-redux";
 
 function Checkout() {
   const { items, total_item, totalPrice } = useSelector((state) => state.cart);
   const { userInfo } = useSelector((state) => state.user.currentUser);
+  const dispatch = useDispatch();
   const [errors, setErrors] = useState({}); // error handling
   const [loading, setLoading] = useState(false);
 
@@ -48,8 +51,8 @@ function Checkout() {
           totalPrice,
           total_item,
         };
-        console.log("newObject", newObject);
         const response = await order(newObject);
+        dispatch(emptyContainer());
         setLoading(false);
         ToastSuccess(response?.data?.message);
       } catch (err) {

@@ -1,12 +1,9 @@
 import React from "react";
 import { InlineWidget } from "react-calendly";
 
-const Appointment = () => {
+function Appointments() {
   return (
-    <div className="min-h-screen">
-      <h2 className="font-bold text-6xl text-center text-gray-500  mt-3">
-        Book Your Appointments
-      </h2>
+    <div className="my-7">
       <InlineWidget
         url="https://calendly.com/m-bilal0111/a-r-landscape" // Replace with your Calendly link
         rootElement={document.getElementById("root")}
@@ -16,6 +13,6 @@ const Appointment = () => {
       />
     </div>
   );
-};
+}
 
-export default Appointment;
+export default Appointments;

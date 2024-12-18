@@ -11,8 +11,11 @@ import ViewCart from "./pages/ViewCart/ViewCart.jsx";
 import Shop from "./pages/shop/Shop";
 import SignUp from "./pages/register/SignUp.jsx";
 import SignIn from "./pages/register/SignIn.jsx";
-import Appointment from "./pages/Appointments/Appointment.jsx";
+import Appointments from "./components/Appointments.jsx";
 import OnlyAdminPrivateRoutes from "./components/OnlyAdminPrivateRoutes.jsx";
+import Button from "./pages/Button.jsx";
+import Services from "./pages/Services/Services.jsx";
+
 function App() {
   return (
     <BrowserRouter>
@@ -26,7 +29,8 @@ function App() {
         <Route path="/shop" element={<Shop />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/sign-in" element={<SignIn />} />
-        <Route path="/appointments" element={<Appointment />} />
+        <Route path="/services" element={<Services />} />
+        <Route path="/appointments" element={<Appointments />} />
         <Route element={<OnlyAdminPrivateRoutes />}>
           <Route path="/dashboard" element={<DashboardLayoutBasic />} />
         </Route>
