@@ -13,7 +13,7 @@ function Dash() {
   };
   return (
     <div className="my-7 mx-5">
-      <form action="" className="mx-auto max-w-4xl flex flex-col gap-4">
+      <form className="mx-auto max-w-4xl flex flex-col gap-4">
         <div className="flex flex-col gap-2 md:flex-row">
           <TextField
             id="filled-basic"
