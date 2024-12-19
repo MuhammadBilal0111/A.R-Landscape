@@ -2,8 +2,19 @@ import React from "react";
 import { Link } from "react-router-dom";
 const Services = () => {
   return (
-    <div className="min-h-screen my-3">
-      <h2 className="font-bold text-6xl text-center text-green-900  my-12">
+    <div className="min-h-screen mb-3">
+      <div className="bg-[url('./public/mainHomeImage.avif')] h-80 text-yellow-500 text-center flex items-center justify-center">
+        <div className="w-auto max-w-7xl px-4">
+          <h1 className="text-5xl">Services</h1>
+          <p className="text-white text-xl py-4">
+            Services available include plant selling, plant renting, pot
+            selling, landscape designing, plants & lawn installation, drip
+            irrigation systems, rental monthly gardener, soil & manure supply,
+            online appointment booking.
+          </p>
+        </div>
+      </div>
+      <h2 className="font-bold text-4xl md:text-6xl text-center text-green-900  my-12 ">
         Book Your Appointments
       </h2>
       <div className="flex flex-col md:flex-row gap-4 my-6">
