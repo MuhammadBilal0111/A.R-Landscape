@@ -22,35 +22,26 @@ export const NAVIGATION = [
   {
     kind: "divider",
   },
-  // {
-  //   kind: "header",
-  //   title: "Analytics",
-  // },
   {
-    segment: "reports",
+    segment: "edit",
     title: "Edit Item",
     icon: <MdModeEditOutline />,
     children: [
       {
-        segment: "Edit Plants",
+        segment: "plants",
         title: "Edit Plants",
         icon: <MdOutlineDescription />,
       },
       {
-        segment: "Edit Pots",
+        segment: "pots",
         title: "Edit Pots",
         icon: <MdOutlineDescription />,
       },
       {
-        segment: "Edit Fertilizers",
+        segment: "fertilizers",
         title: "Edit Fertilizers",
         icon: <MdOutlineDescription />,
       },
     ],
-  },
-  {
-    segment: "integrations",
-    title: "Integrations",
-    icon: <IoLayers />,
   },
 ];

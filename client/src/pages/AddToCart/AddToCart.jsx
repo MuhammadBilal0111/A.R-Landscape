@@ -21,6 +21,7 @@ function AddToCart() {
   const [image, setImage] = useState("");
   const { plantSlug } = useParams();
   console.log(itemData);
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -44,19 +45,7 @@ function AddToCart() {
     ToastSuccess("Item added to Cart!");
     dispatch(addItems(itemData));
   };
-  // const handleIncrementItemQuantity = () => {
-  //   if (itemData.quantity >= 1 && itemData.quantity < 50) {
-  //     //dispatch(incrementQuantity(itemData));
-  //     setItemsQuantity((prevQuantity) => Math.min(prevQuantity + 1, 100));
-  //   }
-  // };
-  // const handleDecrementItemQuantity = () => {
-  //   if (itemData.quantity > 1) {
-  //     // dispatch(decrementQuantity(itemData));
-
-  //     setItemsQuantity((prevQuantity) => Math.max(prevQuantity - 1, 1));
-  //   }
-  // };
+  
   return (
     <div className="mt-28 min-h-screen h-auto">
       {loading ? (
@@ -121,7 +110,7 @@ function AddToCart() {
               </h1>
               <h2 className="font-semibold text-xl md:text-3xl text-gray-700 mb-3">
                 Deal of the day:{" "}
-                <span className="text-yellow-500">{itemData?.price} $</span>
+                <span className="text-yellow-500">Rs. {itemData?.price}</span>
               </h2>
 
               <div className="flex items-center me-4 border-b-2 mb-4 border-green-600">
@@ -142,26 +131,7 @@ function AddToCart() {
                   </div>
                 </label>
               </div>
-              {/* <div className="mb-6">
-                <p className="text-sm mb-3 text-gray-700 font-semibold">
-                  Choose quantity:
-                </p>
-                <div className="flex gap-4 items-center">
-                  <button
-                    className="text-white bg-green-900 p-2 rounded-md focus:ring-[#A1DD70] focus:ring-4 hover:scale-105 duration-75 hover:bg-green-950 transition-all"
-                    onClick={handleDecrementItemQuantity}
-                  >
-                    <FaMinus />
-                  </button>
-                  <span className="text-lg font-semibold">{itemsQuantity}</span>
-                  <button
-                    className="text-white bg-green-900 p-2 rounded-md focus:ring-[#A1DD70] focus:ring-4 hover:scale-105 duration-75 hover:bg-green-950 transition-all"
-                    onClick={handleIncrementItemQuantity}
-                  >
-                    <FaPlus />
-                  </button>
-                </div>
-              </div> */}
+              
               <button
                 type="button"
                 className="w-full focus:outline-none  bg-green-900 hover:bg-green-950  rounded-lg  px-5 py-2.5 me-2 mb-2 text-white text-md hover:text-yellow-400 duration-75"

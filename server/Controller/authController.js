@@ -44,3 +44,12 @@ exports.signIn = asyncErrorHandler(async (req, res, next) => {
   }
   createSendendResponse(user, 201, res);
 });
+exports.signOut = asyncErrorHandler(async (req, res, next) => {
+  if (req.params.userId !== String(req.user._id)) {
+    return next(new CustomError("You are not allowed to sign out the account"));
+  }
+  res.clearCookie("jwt");
+  res.status(201).json({
+    status: "success",
+  });
+});

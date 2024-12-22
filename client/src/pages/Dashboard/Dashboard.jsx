@@ -7,6 +7,8 @@ import { Box } from "@mui/material";
 import Order from "./components/Order";
 import { Link } from "react-router-dom";
 import AddItem from "./components/AddItem/AddItems";
+import EditItems from "./components/EditItems/EditItems";
+
 const demoTheme = createTheme({
   palette: {
     primary: {
@@ -80,6 +82,12 @@ export default function DashboardLayoutBasic() {
           {pathname === "/orders" && <Order />}
           {/* dashboard link for adding the items in database */}
           {pathname === "/dashboard" && <AddItem />}
+
+          {pathname === "/edit/plants" && <EditItems category={"plants"} />}
+          {pathname === "/edit/pots" && <EditItems category={"pots"} />}
+          {pathname === "/edit/fertilizers" && (
+            <EditItems category={"fertilizers"} />
+          )}
         </DashboardLayout>
       </Box>
     </AppProvider>

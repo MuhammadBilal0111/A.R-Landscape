@@ -111,7 +111,7 @@ const Services = () => {
       </div>
       <div>
         <a
-          href={`https://wa.me/03242443922`}
+          href={`https://wa.me/03225532129`}
           target="_blank"
           rel="noreferrer noopener"
           class="fixed bottom-4 right-4 z-50 inline-flex items-center justify-center w-14 h-14 rounded-full bg-[#25d366]"
@@ -124,7 +124,7 @@ const Services = () => {
               width="24px"
               version="1.1"
               xmlns="http://www.w3.org/2000/svg"
-              xmlns:xlink="http://www.w3.org/1999/xlink"
+              xmlnsXlink="http://www.w3.org/1999/xlink"
               viewBox="0 0 308.00 308.00"
               xml:space="preserve"
               stroke="#fff"

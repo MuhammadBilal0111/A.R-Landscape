@@ -8,18 +8,27 @@ export const getPlantsDetails = async (str) => {
 export const addItems = async (data) => {
   return api.post("/items/add-items", data);
 };
-export const signUp = (data) => {
+export const signUp = async (data) => {
   return api.post("/auth/signUp", data);
 };
-export const signIn = (data) => {
+export const signIn = async (data) => {
   return api.post("/auth/signIn", data);
 };
-export const order = (data) => {
+export const fetchDetailsById = async (id) => {
+  return api.get(`/items/${id}`);
+};
+export const order = async (data) => {
   return api.post("/orders", data);
 };
-export const getAllOrders = () => {
+export const getAllOrders = async () => {
   return api.get("/orders");
 };
-export const completeOrder = (id) => {
+export const completeOrder = async (id) => {
   return api.delete(`/orders/${id}`);
+};
+export const updateItems = async (id) => {
+  return api.put(`/items/editItems/${id}`);
+};
+export const deleteItems = async (id) => {
+  return api.delete(`/items/deleteItems/${id}`);
 };

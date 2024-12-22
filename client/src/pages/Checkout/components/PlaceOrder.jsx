@@ -12,8 +12,8 @@ function PlaceOrder({ handleSubmit, loading }) {
         items.map((item) => <OrderItems key={item?._id} item={item} />)}
       <div className="flex flex-col gap-1 rounded-lg  text-gray-700 font-semibold bg-gray-300 mt-3">
         <div className="flex py-3 items-center px-4 justify-between border-b border-b-gray-100">
-          <h1>Shipping Cost:</h1>
-          <h1>Rs. 4350</h1>
+          {/* <h1>Shipping Cost:</h1>
+          <h1>Rs. 4350</h1> */}
         </div>
         <div className="flex py-3 items-center px-4 justify-between">
           <h1>Total:</h1>

@@ -31,7 +31,7 @@ function Card({ item }) {
           <h1 className="text-green-800 font-bold line-clamp-1">
             {item?.title}
           </h1>
-          <p className="text-amber-700 font-semibold">{item?.price}</p>
+          <p className="text-amber-700 font-semibold">Rs. {item?.price}</p>
         </div>
         <Tooltip title="Add to cart" arrow>
           <button className="bg-green-800 p-3 rounded-full text-white">

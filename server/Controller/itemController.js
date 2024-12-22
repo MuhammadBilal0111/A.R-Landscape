@@ -44,3 +44,42 @@ exports.addItem = asyncErrorHandler(async (req, res, next) => {
     data: plantData,
   });
 });
+exports.editItems = asyncErrorHandler(async (req, res, next) => {
+  const id = req.params.id;
+  const updatedItem = await ItemModel.findByIdAndUpdate(
+    id,
+    { name, category, price, imageUrl },
+    { new: true } // Return the updated document
+  );
+  if (!updatedItem) {
+    return next(new CustomError("Item not found", 404));
+  }
+  res.status(200).json({
+    status: "success",
+    data: deletedItem,
+    message: "Item deleted successfully",
+  });
+});
+exports.deleteItems = asyncErrorHandler(async (req, res, next) => {
+  const deletedItem = await ItemModel.findByIdAndDelete(Object(req.params.id));
+
+  if (!deletedItem) {
+    return next(new CustomError("Item not found", 404));
+  }
+  res.status(200).json({
+    status: "success",
+    data: deletedItem,
+    message: "Item deleted successfully",
+  });
+});
+exports.fetchItemsById = asyncErrorHandler(async (req, res, next) => {
+  const id = req.params.id;
+  const item = await ItemModel.findById(id);
+  if (!item) {
+    return next(new CustomError("Item not found", 404));
+  }
+  res.status(200).json({
+    status: "success",
+    data: item,
+  });
+});
