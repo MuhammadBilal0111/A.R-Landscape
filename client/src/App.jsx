@@ -15,6 +15,7 @@ import Appointments from "./components/Appointments.jsx";
 import OnlyAdminPrivateRoutes from "./components/OnlyAdminPrivateRoutes.jsx";
 import Services from "./pages/Services/Services.jsx";
 import UpdateItems from "./pages/Dashboard/components/UpdateItems/UpdateItems.jsx"; // used to update the components
+import PageNotFound from "./pages/PageNotFound.jsx";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
         <Route path="/services" element={<Services />} />
         <Route path="/appointments" element={<Appointments />} />
         <Route path="/edit" element={<UpdateItems />} />
+        <Route path="*" element={<PageNotFound />} />
         <Route element={<OnlyAdminPrivateRoutes />}>
           <Route path="/dashboard" element={<DashboardLayoutBasic />} />
         </Route>

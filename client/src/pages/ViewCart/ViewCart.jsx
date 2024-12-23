@@ -4,7 +4,6 @@ import ItemRender from "./components/ItemRender.jsx";
 import { Link } from "react-router-dom";
 function ViewCart() {
   const { items, totalPrice } = useSelector((state) => state.cart);
-
   return (
     <>
       <div className="h-auto min-h-screen">
