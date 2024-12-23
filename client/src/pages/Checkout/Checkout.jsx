@@ -47,6 +47,7 @@ function Checkout() {
         setLoading(true);
         const newObject = {
           ...orderDetails,
+          status: "pending",
           products: items,
           totalPrice,
           total_item,

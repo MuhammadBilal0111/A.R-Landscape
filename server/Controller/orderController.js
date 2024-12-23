@@ -10,12 +10,13 @@ exports.placeOrder = asyncErrorHandler(async (req, res, next) => {
     address,
     username,
     phoneNumber,
+    status,
     totalPrice,
     specialInstructions,
   } = req.body;
 
   // Validate required fields
-  if (!products || !email || !username || !address || !phoneNumber) {
+  if (!products || !email || !username || !address || !phoneNumber || !status) {
     return next(new customErrorHandler("Missing required fields.", 404));
   }
   // Save the order to the database
@@ -47,19 +48,23 @@ exports.orderCompleted = asyncErrorHandler(async (req, res, next) => {
       message: "Order ID is required",
     });
   }
-
-  // Find the order by ID and delete it
-  const deletedOrder = await Order.findByIdAndDelete(id);
+  const updatedOrder = await Order.findByIdAndUpdate(
+    id,
+    { $set: { status: "completed" } },
+    { new: true }
+  );
   // If the order is not found
-  if (!deletedOrder) {
+  if (!updatedOrder) {
     return res.status(404).json({
       status: "failed",
-      message: "Order not found",
+      message: "Order not updating",
     });
   }
-  const orderDetails = await Order.find().sort({ createdAt: -1 }); // get all orders
+  const orderDetails = await Order.find({ status: "pending" }).sort({
+    createdAt: -1,
+  });
   const io = req.app.get("io");
-  io.emit("deleteOrder", orderDetails);
+  io.emit("updatedOrder", orderDetails);
 
   // Return success response
   res.status(200).json({

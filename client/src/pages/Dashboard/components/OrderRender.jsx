@@ -27,7 +27,7 @@ function OrderRender({ order, handleCompleteOrder, orderCompletedLoader }) {
             <li key={product._id} className="mb-2">
               <div className="flex justify-between">
                 <div className="flex">
-                  {product.title}
+                  <span className="line-clamp-1">{product.title}</span>
                   <span className="ml-2 text-yellow-400 bg-green-800 px-2 py-1 rounded-md text-sm">
                     x{product.quantity}
                   </span>
@@ -44,11 +44,6 @@ function OrderRender({ order, handleCompleteOrder, orderCompletedLoader }) {
           disabled={orderCompletedLoader}
           onClick={() => handleCompleteOrder(order._id)}
         >
-          {/* {orderCompletedLoader ? (
-            <CircularProgress size={"30px"} />
-          ) : (
-            "Order Done"
-          )} */}
           Order Done
         </button>
       </div>

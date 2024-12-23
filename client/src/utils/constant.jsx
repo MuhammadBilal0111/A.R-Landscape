@@ -44,4 +44,9 @@ export const NAVIGATION = [
       },
     ],
   },
+  {
+    segment: "ordersHistory",
+    title: "Orders History",
+    icon: <FaShoppingCart />,
+  },
 ];

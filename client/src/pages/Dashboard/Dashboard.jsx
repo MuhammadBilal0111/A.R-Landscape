@@ -8,6 +8,7 @@ import Order from "./components/Order";
 import { Link } from "react-router-dom";
 import AddItem from "./components/AddItem/AddItems";
 import EditItems from "./components/EditItems/EditItems";
+import OrderHistory from "./components/OrderHistory";
 
 const demoTheme = createTheme({
   palette: {
@@ -88,6 +89,7 @@ export default function DashboardLayoutBasic() {
           {pathname === "/edit/fertilizers" && (
             <EditItems category={"fertilizers"} />
           )}
+          {pathname === "/ordersHistory" && <OrderHistory />}
         </DashboardLayout>
       </Box>
     </AppProvider>

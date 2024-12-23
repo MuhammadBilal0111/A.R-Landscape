@@ -19,6 +19,11 @@ const ProductSchema = new mongoose.Schema(
       type: Object,
       required: [true, "Products is a required field"],
     },
+    status: {
+      type: String,
+      enum: ["pending", "completed"], // Allowed values
+      required: true, // (Optional) Ensure the field is required
+    },
     totalPrice: {
       type: Number,
       required: [true, "Total Price is a required field"],
