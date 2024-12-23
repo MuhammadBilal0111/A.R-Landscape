@@ -32,9 +32,9 @@ function App() {
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/services" element={<Services />} />
         <Route path="/appointments" element={<Appointments />} />
-        <Route path="/edit" element={<UpdateItems />} />
         <Route path="*" element={<PageNotFound />} />
         <Route element={<OnlyAdminPrivateRoutes />}>
+          <Route path="/edit" element={<UpdateItems />} />
           <Route path="/dashboard" element={<DashboardLayoutBasic />} />
         </Route>
       </Routes>

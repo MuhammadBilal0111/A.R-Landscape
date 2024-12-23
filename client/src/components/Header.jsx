@@ -2,19 +2,38 @@ import React, { useRef, useState } from "react";
 import { IoMenu } from "react-icons/io5";
 import { RxCross2 } from "react-icons/rx";
 import { MdOutlineShoppingBag } from "react-icons/md";
-import { Link, useLocation } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+import { signOutSuccess, signOutFailure } from "../store/userSlice";
+import { signOut } from "../services/GlobalApi";
+import { ToastSuccess } from "./Toast";
 
 const Header = () => {
+  const { currentUser } = useSelector((state) => state.user);
+  const cartItems = useSelector((state) => state.cart.items);
+  const role = useSelector((state) => state?.user?.currentUser?.userInfo?.role);
+  console.log(role);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [signout, setSignOut] = useState(null);
   const headerLinksRef = useRef(null);
   const location = useLocation();
 
+  const handleLogout = async () => {
+    try {
+      const res = await signOut(currentUser.userInfo._id);
+      dispatch(signOutSuccess());
+      ToastSuccess("Log out successfully!");
+      navigate("/sign-up");
+    } catch (err) {
+      setSignOut(err.message);
+      dispatch(signOutFailure(err.message));
+    }
+  };
   // Get items from Redux store
-  const cartItems = useSelector((state) => state.cart.items);
-  const { role } = useSelector((state) => state.user.currentUser.userInfo);
 
   // Active link checker
   const isActive = (path) => location.pathname === path;
@@ -77,7 +96,7 @@ const Header = () => {
             >
               <Link to="/services">Services</Link>
             </li>
-            {role === "admin" && (
+            {role && role === "admin" && (
               <li
                 className={
                   isActive("/dashboard")
@@ -88,21 +107,37 @@ const Header = () => {
                 <Link to="/dashboard">Dashboard</Link>
               </li>
             )}
-            <li
-              className={
-                isActive("/logout") ? "text-yellow-500" : "hover:text-gray-400"
-              }
-            >
-              <Link to="/logout">Logout</Link>
-            </li>
-            <li className="relative">
-              <Link to="/cart">
-                <MdOutlineShoppingBag className="text-3xl" />
-                <div className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-                  {cartItems.length}
-                </div>
-              </Link>
-            </li>
+            {currentUser ? (
+              <li
+                className={
+                  isActive("/logout")
+                    ? "text-yellow-500"
+                    : "hover:text-gray-400"
+                }
+              >
+                <button onClick={handleLogout}>Logout</button>
+              </li>
+            ) : (
+              <li
+                className={
+                  isActive("/sign-up")
+                    ? "text-yellow-500"
+                    : "hover:text-gray-400"
+                }
+              >
+                <Link to="/sign-up">Get Started</Link>
+              </li>
+            )}
+            {currentUser && (
+              <li className="relative">
+                <Link to="/cart">
+                  <MdOutlineShoppingBag className="text-3xl" />
+                  <div className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                    {cartItems.length}
+                  </div>
+                </Link>
+              </li>
+            )}
           </ul>
         </nav>
 
@@ -168,7 +203,7 @@ const Header = () => {
                 isActive("/logout") ? "text-yellow-500" : "hover:text-gray-400"
               }
             >
-              <Link to="/logout">Logout</Link>
+              <button onClick={handleLogout}>Logout</button>
             </li>
 
             <li onClick={toggleMenu} className="py-2 hover:text-gray-400">

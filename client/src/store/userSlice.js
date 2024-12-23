@@ -22,7 +22,27 @@ const userSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
+    signOutStart: (state) => {
+      state.loading = true;
+      state.error = null;
+    },
+    signOutFailure: (state, action) => {
+      state.loading = null;
+      state.error = action.payload;
+    },
+    signOutSuccess: (state) => {
+      state.loading = null;
+      state.currentUser = null;
+      state.error = null;
+    },
   },
 });
-export const { signInStart, signInSuccess, signInFailure } = userSlice.actions;
+export const {
+  signInStart,
+  signInSuccess,
+  signInFailure,
+  signOutStart,
+  signOutFailure,
+  signOutSuccess,
+} = userSlice.actions;
 export default userSlice;

@@ -35,3 +35,6 @@ export const updateItems = async (id, data) => {
 export const deleteItems = async (id) => {
   return api.delete(`/items/deleteItems/${id}`);
 };
+export const signOut = async (id) => {
+  return api.post(`/auth/signOut/${id}`);
+};

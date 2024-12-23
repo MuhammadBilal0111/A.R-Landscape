@@ -19,7 +19,7 @@ function Card({ item }) {
       <Link to={`/plant/${item?.slug}`}>
         <div className="w-full h-48 object-cover mb-3">
           <img
-            src={item?.imageUrl}
+            src={item?.imageUrl[0]}
             loading="lazy"
             className="w-full h-full object-cover"
             alt="Image Unavailable"
