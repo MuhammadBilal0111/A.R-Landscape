@@ -21,7 +21,7 @@ function AddToCart() {
   const [image, setImage] = useState("");
   const { plantSlug } = useParams();
   console.log(itemData);
-  
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -45,7 +45,7 @@ function AddToCart() {
     ToastSuccess("Item added to Cart!");
     dispatch(addItems(itemData));
   };
-  
+
   return (
     <div className="mt-28 min-h-screen h-auto">
       {loading ? (
@@ -124,14 +124,18 @@ function AddToCart() {
                 />
                 <label htmlFor="method">
                   <div className="flex items-center ">
-                    <img src="/cod.png" alt="" className="w-32 h-20 " />
+                    <img
+                      src="/cod.png"
+                      alt="COD"
+                      className="w-10 h-10 mx-6 my-2"
+                    />
                     <h1 className="text-red-500 font-medium">
                       Get your greens delivered with ease—order now!!
                     </h1>
                   </div>
                 </label>
               </div>
-              
+
               <button
                 type="button"
                 className="w-full focus:outline-none  bg-green-900 hover:bg-green-950  rounded-lg  px-5 py-2.5 me-2 mb-2 text-white text-md hover:text-yellow-400 duration-75"

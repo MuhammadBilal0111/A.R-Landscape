@@ -17,7 +17,7 @@ function ViewCart() {
             <div className="mt-4 space-y-2">
               <div className="flex justify-between font-bold">
                 <span className="text-gray-800">Original price</span>
-                <span className="text-gray-800">Rs. {totalPrice}$</span>
+                <span className="text-gray-800">Rs. {totalPrice}</span>
               </div>
               <div className="flex justify-between font-bold">
                 <span className="text-gray-800">Shipping Cost:</span>

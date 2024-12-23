@@ -94,7 +94,7 @@ function ItemRender({ item }) {
         </button>
       </div>
       <h2 className="text-xl flex justify-center font-semibold w-40">
-        {(item.price * item.quantity).toFixed(2)} $
+        Rs. {(item.price * item.quantity).toFixed(2)}
       </h2>
       <MdDelete
         className="text-red-800 cursor-pointer hover:text-red-900 hover:shadow-xl text-2xl"
