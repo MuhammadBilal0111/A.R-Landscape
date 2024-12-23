@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getAllOrders } from "../../../services/GlobalApi";
+import { getpendingOrders } from "../../../services/GlobalApi";
 import { io } from "socket.io-client";
 import { CircularProgress } from "@mui/material";
 import { ToastSuccess } from "../../../components/Toast";
@@ -18,7 +18,7 @@ function Order() {
     const fetchOrder = async () => {
       try {
         setLoading(true);
-        const orders = await getAllOrders();
+        const orders = await getpendingOrders();
         setNewOrders(orders.data.data);
         setLoading(false);
       } catch (err) {
@@ -44,11 +44,12 @@ function Order() {
     try {
       setOrderCompletedLoader(true);
       const socket = io("http://localhost:3000");
-      socket.on("updateOrder", (orderInfo) => {
+      socket.on("updatedOrder", (orderInfo) => {
         setNewOrders(orderInfo);
       });
       const response = await completeOrder(orderId);
-      socket.on("updateOrder", (orderInfo) => {
+      socket.on("updatedOrder", (orderInfo) => {
+        // console.log(orderInfo);
         setNewOrders(orderInfo); // updating the orders
       });
       setOrderCompletedLoader(false);
@@ -59,7 +60,7 @@ function Order() {
   };
 
   return (
-    <>
+    <div>
       {loading ? (
         <div className="flex justify-center w-full h-60 my-4">
           <CircularProgress size={"70px"} />
@@ -84,7 +85,7 @@ function Order() {
           )}
         </div>
       )}
-    </>
+    </div>
   );
 }
 

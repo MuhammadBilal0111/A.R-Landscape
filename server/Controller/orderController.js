@@ -33,12 +33,18 @@ exports.placeOrder = asyncErrorHandler(async (req, res, next) => {
 });
 
 exports.getAllOrders = asyncErrorHandler(async (req, res, next) => {
-  const orderDetails = await Order.find().sort({ createdAt: -1 });
+  const status = req.query.status; // Get status from query parameters
+
+  console.log(status);
+  // If a status is provided, filter orders by status
+  const filter = status ? { status: status } : {};
+  const orderDetails = await Order.find(filter).sort({ createdAt: -1 });
   res.status(200).json({
     status: "success",
     data: orderDetails,
   });
 });
+
 exports.orderCompleted = asyncErrorHandler(async (req, res, next) => {
   const id = req.params.id; // Extract the ID from request parameters
 
@@ -63,6 +69,7 @@ exports.orderCompleted = asyncErrorHandler(async (req, res, next) => {
   const orderDetails = await Order.find({ status: "pending" }).sort({
     createdAt: -1,
   });
+  console.log(orderDetails);
   const io = req.app.get("io");
   io.emit("updatedOrder", orderDetails);
 

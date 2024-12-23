@@ -23,6 +23,9 @@ export const order = async (data) => {
 export const getAllOrders = async () => {
   return api.get("/orders");
 };
+export const getpendingOrders = async () => {
+  return api.get("/orders?status=pending");
+};
 export const completeOrder = async (id) => {
   return api.put(`/orders/${id}`);
 };
