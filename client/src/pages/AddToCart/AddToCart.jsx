@@ -14,6 +14,7 @@ import { ToastSuccess } from "../../components/Toast";
 function AddToCart() {
   const dispatch = useDispatch();
   const { items } = useSelector((state) => state.cart);
+  const { currentUser } = useSelector((state) => state.user); // check that the user is logged in
   const navigate = useNavigate();
   const [itemData, setItemData] = useState({});
   const [itemsQuantity, setItemsQuantity] = useState(itemData?.quantity || 1);
@@ -42,8 +43,13 @@ function AddToCart() {
   }, [plantSlug]);
 
   const handleAddToCart = (e) => {
-    ToastSuccess("Item added to Cart!");
-    dispatch(addItems(itemData));
+    if (currentUser) {
+      ToastSuccess("Item added to Cart!");
+      dispatch(addItems(itemData));
+    } else {
+      navigate("/sign-up");
+    }
+    
   };
 
   return (

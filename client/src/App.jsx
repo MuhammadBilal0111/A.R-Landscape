@@ -16,7 +16,7 @@ import OnlyAdminPrivateRoutes from "./components/OnlyAdminPrivateRoutes.jsx";
 import Services from "./pages/Services/Services.jsx";
 import UpdateItems from "./pages/Dashboard/components/UpdateItems/UpdateItems.jsx"; // used to update the components
 import PageNotFound from "./pages/PageNotFound.jsx";
-
+import OnlySignUpPrivateRoutes from "./components/OnlySignUpPrivateRoutes.jsx";
 function App() {
   return (
     <BrowserRouter>
@@ -31,7 +31,9 @@ function App() {
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/services" element={<Services />} />
-        <Route path="/appointments" element={<Appointments />} />
+        <Route element={<OnlySignUpPrivateRoutes />}>
+          <Route path="/appointments" element={<Appointments />} />
+        </Route>
         <Route path="*" element={<PageNotFound />} />
         <Route element={<OnlyAdminPrivateRoutes />}>
           <Route path="/edit" element={<UpdateItems />} />

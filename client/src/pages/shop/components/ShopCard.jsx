@@ -3,14 +3,21 @@ import { Link, useNavigate } from "react-router-dom";
 import { addItems } from "../../../store/cartSlice";
 import { useDispatch } from "react-redux";
 import { ToastSuccess } from "../../../components/Toast";
+import { useSelector } from "react-redux";
 
 function ShopCard({ item }) {
+  const { currentUser } = useSelector((state) => state.user); // check that the user is logged in
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const handleCart = (e) => {
-    ToastSuccess("Item added to cart Successfully!");
-    dispatch(addItems(item));
+    if (currentUser) {
+      ToastSuccess("Item added to cart Successfully!");
+      dispatch(addItems(item));
+    } else {
+      navigate("/sign-up");
+    }
   };
+
   return (
     <div className="ecommerce-card bg-white outline-2 shadow-xl  rounded-lg flex flex-col items-center w-full md:w-[45%] lg:w-[27%] h-auto overflow-hidden">
       <div className="w-full">

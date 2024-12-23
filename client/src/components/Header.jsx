@@ -8,6 +8,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { signOutSuccess, signOutFailure } from "../store/userSlice";
 import { signOut } from "../services/GlobalApi";
+import { emptyContainer } from "../store/cartSlice";
 import { ToastSuccess } from "./Toast";
 
 const Header = () => {
@@ -24,8 +25,9 @@ const Header = () => {
 
   const handleLogout = async () => {
     try {
-      const res = await signOut(currentUser.userInfo._id);
+      const res = await signOut(currentUser.userInfo._id); // function for sign out
       dispatch(signOutSuccess());
+      dispatch(emptyContainer());
       ToastSuccess("Log out successfully!");
       navigate("/sign-up");
     } catch (err) {
@@ -87,6 +89,7 @@ const Header = () => {
             >
               <Link to="/shop">Shop</Link>
             </li>
+
             <li
               className={
                 isActive("/services")

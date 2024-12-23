@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import PersonalContactInfo from "./components/PersonalContactInfo";
 import PlaceOrder from "./components/PlaceOrder";
 import { FaArrowLeft } from "react-icons/fa6";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { ToastSuccess, ToastFailure } from "../../components/Toast";
 import { order } from "../../services/GlobalApi";
@@ -13,6 +13,7 @@ import { useDispatch } from "react-redux";
 function Checkout() {
   const { items, total_item, totalPrice } = useSelector((state) => state.cart);
   const { userInfo } = useSelector((state) => state.user.currentUser);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [errors, setErrors] = useState({}); // error handling
   const [loading, setLoading] = useState(false);
@@ -56,12 +57,12 @@ function Checkout() {
         dispatch(emptyContainer());
         setLoading(false);
         ToastSuccess(response?.data?.message);
+        navigate("/shop");
       } catch (err) {
         setLoading(false);
         console.log(err);
         ToastFailure("Order in not sent");
       }
-
       // Proceed to API call or further logic
     } else {
       ToastFailure("Fill all the fields!");
@@ -70,7 +71,7 @@ function Checkout() {
   return (
     <>
       {userInfo ? (
-        <div>
+        <div className="min-h-screen h-auto">
           <Link to={"/shop"}>
             <div className="flex items-center gap-2 text-4xl text-gray-700 mt-8 px-5">
               <FaArrowLeft className="cursor-pointer" />
