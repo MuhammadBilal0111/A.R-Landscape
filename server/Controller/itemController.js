@@ -48,16 +48,24 @@ exports.editItems = asyncErrorHandler(async (req, res, next) => {
   const id = req.params.id;
   const updatedItem = await ItemModel.findByIdAndUpdate(
     id,
-    { name, category, price, imageUrl },
+    {
+      $set: {
+        title: req.body.title,
+        category: req.body.category,
+        price: req.body.price,
+        description: req.body.description,
+        imageUrl: req.body.imageUrl,
+      },
+    },
     { new: true } // Return the updated document
   );
   if (!updatedItem) {
     return next(new CustomError("Item not found", 404));
   }
-  res.status(200).json({
+  res.status(201).json({
     status: "success",
-    data: deletedItem,
-    message: "Item deleted successfully",
+    data: updatedItem,
+    message: "Item updated successfully",
   });
 });
 exports.deleteItems = asyncErrorHandler(async (req, res, next) => {
@@ -66,7 +74,7 @@ exports.deleteItems = asyncErrorHandler(async (req, res, next) => {
   if (!deletedItem) {
     return next(new CustomError("Item not found", 404));
   }
-  res.status(200).json({
+  res.status(201).json({
     status: "success",
     data: deletedItem,
     message: "Item deleted successfully",

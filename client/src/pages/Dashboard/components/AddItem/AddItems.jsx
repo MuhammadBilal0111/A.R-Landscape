@@ -117,7 +117,6 @@ function AddItem() {
   const handleItemDataChange = (e) => {
     setForm({ ...formData, category: item, [e.target.id]: e.target.value });
   };
-  console.log(item);
   return (
     <div className="px-4">
       <form

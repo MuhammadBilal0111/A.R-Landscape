@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-const EditCard = ({ category, title, image, onEdit, onDelete }) => {
+const EditCard = ({ category, title, image, slug, onEdit, onDelete }) => {
   return (
     <div className="max-w-3xl mx-auto p-4 bg-white shadow-md rounded-lg border border-gray-200 flex flex-col md:flex-row items-center gap-4 my-6 px-4">
       {/* Image Section */}
@@ -14,7 +14,10 @@ const EditCard = ({ category, title, image, onEdit, onDelete }) => {
 
       {/* Content Section */}
       <div className="flex-grow">
-        <h3 className="text-xl font-bold text-gray-900 mt-2">{title}</h3>
+        <Link to={`/plant/${slug}`} className="hover:underline">
+          <h3 className="text-xl font-bold text-gray-900 mt-2">{title}</h3>
+        </Link>
+
         <p className="text-sm font-semibold text-gray-500">{category}</p>
       </div>
 

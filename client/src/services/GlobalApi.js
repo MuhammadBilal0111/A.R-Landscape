@@ -26,8 +26,8 @@ export const getAllOrders = async () => {
 export const completeOrder = async (id) => {
   return api.delete(`/orders/${id}`);
 };
-export const updateItems = async (id) => {
-  return api.put(`/items/editItems/${id}`);
+export const updateItems = async (id, data) => {
+  return api.put(`/items/editItems/${id}`, data);
 };
 export const deleteItems = async (id) => {
   return api.delete(`/items/deleteItems/${id}`);
