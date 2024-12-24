@@ -18,10 +18,7 @@ function ViewCart() {
                 <span className="text-gray-800">Original price</span>
                 <span className="text-gray-800">Rs. {totalPrice}</span>
               </div>
-              <div className="flex justify-between font-bold">
-                <span className="text-gray-800">Shipping Cost:</span>
-                <span className="text-gray-800">$799</span>
-              </div>
+
               <div className="mt-4 border-t border-t-green-800 "></div>
               <div className="flex justify-between mt-2">
                 <span className="text-lg font-bold text-gray-800">Total</span>

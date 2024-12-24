@@ -190,28 +190,47 @@ const Header = () => {
             >
               <Link to="/services">Services</Link>
             </li>
-            <li
-              onClick={toggleMenu}
-              className={
-                isActive("/dashboard")
-                  ? "text-yellow-500"
-                  : "hover:text-gray-400"
-              }
-            >
-              <Link to="/dashboard">Dashboard</Link>
-            </li>
-            <li
-              onClick={toggleMenu}
-              className={
-                isActive("/logout") ? "text-yellow-500" : "hover:text-gray-400"
-              }
-            >
-              <button onClick={handleLogout}>Logout</button>
-            </li>
+            {role && role === "admin" && (
+              <li
+                onClick={toggleMenu}
+                className={
+                  isActive("/dashboard")
+                    ? "text-yellow-500"
+                    : "hover:text-gray-400"
+                }
+              >
+                <Link to="/dashboard">Dashboard</Link>
+              </li>
+            )}
+            {currentUser ? (
+              <li
+                onClick={toggleMenu}
+                className={
+                  isActive("/logout")
+                    ? "text-yellow-500"
+                    : "hover:text-gray-400"
+                }
+              >
+                <button onClick={handleLogout}>Logout</button>
+              </li>
+            ) : (
+              <li
+                onClick={toggleMenu}
+                className={
+                  isActive("/sign-up")
+                    ? "text-yellow-500"
+                    : "hover:text-gray-400"
+                }
+              >
+                <Link to="/sign-up">Get Started</Link>
+              </li>
+            )}
 
-            <li onClick={toggleMenu} className="py-2 hover:text-gray-400">
-              <Link to="/cart">Cart</Link>
-            </li>
+            {currentUser && (
+              <li onClick={toggleMenu} className="py-2 hover:text-gray-400">
+                <Link to="/cart">Cart</Link>
+              </li>
+            )}
           </ul>
         </nav>
       )}
