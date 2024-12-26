@@ -13,7 +13,7 @@ function OrderRender({ order, handleCompleteOrder, orderCompletedLoader }) {
         </h1>
         <p className="text-lg font-bold text-gray-800">
           Customer:{" "}
-          <span className="font-normal">{order?.fullName?.toUpperCase()}</span>
+          <span className="font-normal">{order?.username?.toUpperCase()}</span>
         </p>
         <p className="text-lg font-bold text-gray-800">
           Total Price:{" "}

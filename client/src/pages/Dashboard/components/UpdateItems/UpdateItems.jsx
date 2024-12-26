@@ -54,8 +54,9 @@ function AddItem() {
     title: existingItem?.title,
     price: existingItem?.price,
     description: existingItem?.description,
-    category: item,
+    category: existingItem?.category,
   });
+
   const [dataLoading, setDataLoading] = useState(false);
 
   useEffect(() => {
@@ -65,6 +66,7 @@ function AddItem() {
         title: existingItem.title,
         price: existingItem.price,
         description: existingItem.description,
+        category: existingItem?.category,
       });
     }
   }, [existingItem]);
