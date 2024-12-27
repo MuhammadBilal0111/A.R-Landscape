@@ -15,7 +15,7 @@ const Header = () => {
   const { currentUser } = useSelector((state) => state.user);
   const cartItems = useSelector((state) => state.cart.items);
   const role = useSelector((state) => state?.user?.currentUser?.userInfo?.role);
-  console.log(role);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [isMenuOpen, setIsMenuOpen] = useState(false);

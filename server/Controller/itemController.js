@@ -6,7 +6,7 @@ exports.getItems = asyncErrorHandler(async (req, res, next) => {
   const startIndex = req.query.startIndex * 1 || 0;
   const limit = req.query.limit * 1 || 9;
   const sortDirection = req.query.order === "asc" ? 1 : -1;
-  console.log(req.query.slug);
+ 
   const toFind = {
     ...(req.query.slug && { slug: req.query.slug }),
     ...(req.query.category && { category: req.query.category }),

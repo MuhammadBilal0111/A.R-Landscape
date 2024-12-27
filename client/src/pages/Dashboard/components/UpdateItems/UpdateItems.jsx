@@ -73,10 +73,7 @@ function AddItem() {
 
   const handleSubmitForm = async (e) => {
     e.preventDefault();
-    console.log(formData.title);
-    console.log(formData.category);
-    console.log(formData.description);
-    console.log(imageFiles);
+    
     if (
       !formData.title ||
       !formData.category ||
@@ -153,7 +150,7 @@ function AddItem() {
 
   const handleItemDataChange = (e) => {
     setForm({ ...formData, [e.target.id]: e.target.value });
-    console.log(formData);
+    
   };
 
   return (

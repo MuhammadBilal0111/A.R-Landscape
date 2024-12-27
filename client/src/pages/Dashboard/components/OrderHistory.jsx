@@ -12,7 +12,7 @@ function OrderHistory() {
         setLoading(true);
         const response = await getAllOrders();
         setOrders(response?.data?.data);
-        console.log(response?.data?.data);
+       
         setLoading(false);
       } catch (err) {
         setLoading(false);

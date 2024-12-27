@@ -26,7 +26,7 @@ function SignIn() {
     try {
       dispatch(signInStart());
       const user = await signIn(inputData);
-      console.log(user.data);
+      
       dispatch(signInSuccess(user.data));
       navigate("/");
       ToastSuccess("Sign in successful!"); // use to generate a successful toast when sign in

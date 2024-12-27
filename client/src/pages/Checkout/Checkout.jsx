@@ -60,7 +60,7 @@ function Checkout() {
         setLoading(false);
         ToastSuccess(response?.data?.message);
         navigate("/shop");
-        console.log(newObject);
+        
       } catch (err) {
         setLoading(false);
         console.log(err);

@@ -15,7 +15,7 @@ exports.placeOrder = asyncErrorHandler(async (req, res, next) => {
     shippingCost,
     specialInstructions,
   } = req.body;
-  console.log(req.body);
+  
   // Validate required fields
   if (
     !products ||
@@ -63,7 +63,7 @@ exports.placeOrder = asyncErrorHandler(async (req, res, next) => {
 exports.getAllOrders = asyncErrorHandler(async (req, res, next) => {
   const status = req.query.status; // Get status from query parameters
 
-  console.log(status);
+  
   // If a status is provided, filter orders by status
   const filter = status ? { status: status } : {};
   const orderDetails = await Order.find(filter).sort({ createdAt: -1 });
@@ -97,7 +97,7 @@ exports.orderCompleted = asyncErrorHandler(async (req, res, next) => {
   const orderDetails = await Order.find({ status: "pending" }).sort({
     createdAt: -1,
   });
-  console.log(orderDetails);
+  
   const io = req.app.get("io");
   io.emit("updatedOrder", orderDetails);
 

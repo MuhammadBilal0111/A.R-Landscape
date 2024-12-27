@@ -49,7 +49,7 @@ function Order() {
       });
       const response = await completeOrder(orderId);
       socket.on("updatedOrder", (orderInfo) => {
-        // console.log(orderInfo);
+     
         setNewOrders(orderInfo); // updating the orders
       });
       setOrderCompletedLoader(false);

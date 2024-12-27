@@ -21,7 +21,7 @@ function AddToCart() {
   const [loading, setLoading] = useState(false);
   const [image, setImage] = useState("");
   const { plantSlug } = useParams();
-  console.log(itemData);
+  
 
   useEffect(() => {
     const fetchData = async () => {

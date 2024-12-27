@@ -18,7 +18,7 @@ function SignUp() {
   const showConfirmPasswordElement = useRef();
 
   const handleSubmit = async (e) => {
-    console.log("cjala");
+    
     e.preventDefault();
     try {
       setLoading(true);

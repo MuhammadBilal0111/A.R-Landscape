@@ -33,7 +33,7 @@ function EditItems({ category }) {
       const response = await fetchDetailsById(id);
       navigate("/edit", { state: response?.data?.data });
     } catch (err) {
-      console.log("errp", err);
+      console.log("error", err);
     }
   };
 
