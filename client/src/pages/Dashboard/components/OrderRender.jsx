@@ -22,6 +22,9 @@ function OrderRender({ order, handleCompleteOrder, orderCompletedLoader }) {
         <p className="text-gray-600 mt-2">
           <strong>Address:</strong> {order.address}
         </p>
+        <p className="text-gray-600 mt-2">
+          <strong>Shipping Cost:</strong> {order.shippingCost}
+        </p>
         <ol className="list-decimal text-md font-semibold text-green-900 mt-3 ml-4 min-h-20">
           {order.products.map((product) => (
             <li key={product._id} className="mb-2">
