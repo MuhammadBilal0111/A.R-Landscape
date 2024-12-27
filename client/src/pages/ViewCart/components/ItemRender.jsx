@@ -32,7 +32,7 @@ function ItemRender({ item }) {
   };
   return (
     <div className="flex justify-between items-center py-1 border-b border-b-green-800">
-      <div className="h-16 w-18">
+      <div className="h-16 w-20">
         <img
           src={item?.imageUrl?.[0]}
           className="w-full h-full object-cover object-center"

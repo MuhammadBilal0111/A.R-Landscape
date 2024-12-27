@@ -126,7 +126,7 @@ const Services = () => {
               xmlns="http://www.w3.org/2000/svg"
               xmlnsXlink="http://www.w3.org/1999/xlink"
               viewBox="0 0 308.00 308.00"
-              xml:space="preserve"
+              xmlSpace="preserve"
               stroke="#fff"
               transform="matrix(1, 0, 0, 1, 0, 0)"
             >

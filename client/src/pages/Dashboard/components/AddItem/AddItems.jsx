@@ -24,23 +24,13 @@ function AddItem() {
 
   const handleSubmitForm = async (e) => {
     e.preventDefault();
-    console.log(formData);
-
     // Validation: Check if all required fields are filled and if any image URL is null
     if (
       !formData.title ||
-      !formData.category ||
+      !formData.price ||
       !formData.description ||
       imageFiles.some((imageFile) => imageFile.url === null)
     ) {
-      console.log(
-        formData.title,
-        formData.category,
-        formData.description,
-        imageFiles[0].url,
-        imageFiles[1].url,
-        imageFiles[2].url
-      );
       return ToastFailure("Fill all the fields");
     }
 
@@ -51,6 +41,7 @@ function AddItem() {
       // Construct the new object after validation
       const newObject = {
         ...formData,
+        category: item,
         imageUrl: imageFiles.map((imageFile) => imageFile.url),
       };
 
@@ -115,7 +106,7 @@ function AddItem() {
   };
 
   const handleItemDataChange = (e) => {
-    setForm({ ...formData, category: item, [e.target.id]: e.target.value });
+    setForm({ ...formData, [e.target.id]: e.target.value });
   };
   return (
     <div className="px-4">
@@ -139,6 +130,7 @@ function AddItem() {
             className="flex flex-1"
             onChange={handleItemDataChange}
           />
+          {/* As we cannot access the id of select therefore we have used the state for storing the category value */}
           <FormControl className="w-full md:w-64">
             <Select value={item} onChange={(e) => setItem(e.target.value)}>
               <MenuItem value="plants">Plants</MenuItem>
