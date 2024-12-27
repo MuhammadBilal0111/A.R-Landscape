@@ -28,6 +28,10 @@ const ProductSchema = new mongoose.Schema(
       type: Number,
       required: [true, "Total Price is a required field"],
     },
+    shippingCost: {
+      type: Number,
+      required: [true, "Shipping Cost is a required field"],
+    },
   },
   { timestamps: true } // Adds createdAt and updatedAt timestamps
 );

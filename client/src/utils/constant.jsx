@@ -50,3 +50,31 @@ export const NAVIGATION = [
     icon: <FaShoppingCart />,
   },
 ];
+
+export const provincePrices = [
+  {
+    id: 1,
+    name: "Sindh",
+    price: 1000,
+  },
+  {
+    id: 2,
+    name: "Punjab",
+    price: 2000,
+  },
+  {
+    id: 3,
+    name: "Balochistan",
+    price: 3000,
+  },
+  {
+    id: 4,
+    name: "KPK",
+    price: 4000,
+  },
+  {
+    id: 5,
+    name: "Gilgit Baltistan",
+    price: 7000,
+  },
+];

@@ -3,7 +3,9 @@ import OrderItems from "./OrderItems";
 import { useSelector } from "react-redux";
 import { CircularProgress } from "@mui/material";
 function PlaceOrder({ handleSubmit, loading }) {
-  const { items, totalPrice } = useSelector((state) => state.cart);
+  const { items, totalPrice, shippingCost } = useSelector(
+    (state) => state.cart
+  );
 
   return (
     <div className="mb-4 lg:max-w-96 w-full mt-2">
@@ -12,12 +14,12 @@ function PlaceOrder({ handleSubmit, loading }) {
         items.map((item) => <OrderItems key={item?._id} item={item} />)}
       <div className="flex flex-col gap-1 rounded-lg  text-gray-700 font-semibold bg-gray-300 mt-3">
         <div className="flex py-3 items-center px-4 justify-between border-b border-b-gray-100">
-          {/* <h1>Shipping Cost:</h1>
-          <h1>Rs. 4350</h1> */}
+          <h1>Shipping Cost:</h1>
+          <h1>Rs. {shippingCost}</h1>
         </div>
         <div className="flex py-3 items-center px-4 justify-between">
           <h1>Total:</h1>
-          <h1>Rs. {totalPrice}</h1>
+          <h1>Rs. {(Number(totalPrice) + Number(shippingCost)).toFixed(2)}</h1>
         </div>
       </div>
       <button

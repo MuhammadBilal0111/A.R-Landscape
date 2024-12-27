@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   items: [],
   total_item: 0,
+  shippingCost: 1000,
   totalPrice: 0,
 };
 const cartSlice = createSlice({
@@ -59,6 +60,9 @@ const cartSlice = createSlice({
       state.items = [];
       state.totalPrice = 0;
     },
+    setShippingCost: (state, action) => {
+      state.shippingCost = action.payload;
+    },
   },
 });
 export const {
@@ -67,5 +71,6 @@ export const {
   incrementQuantity,
   decrementQuantity,
   emptyContainer,
+  setShippingCost,
 } = cartSlice.actions;
 export default cartSlice;

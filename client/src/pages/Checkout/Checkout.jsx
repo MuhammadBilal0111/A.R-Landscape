@@ -11,7 +11,9 @@ import { emptyContainer } from "../../store/cartSlice.js";
 import { useDispatch } from "react-redux";
 
 function Checkout() {
-  const { items, total_item, totalPrice } = useSelector((state) => state.cart);
+  const { items, total_item, totalPrice, shippingCost } = useSelector(
+    (state) => state.cart
+  );
   const { userInfo } = useSelector((state) => state.user.currentUser);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -51,13 +53,14 @@ function Checkout() {
           status: "pending",
           products: items,
           totalPrice,
-          total_item,
+          shippingCost,
         };
         const response = await order(newObject);
         dispatch(emptyContainer());
         setLoading(false);
         ToastSuccess(response?.data?.message);
         navigate("/shop");
+        console.log(newObject);
       } catch (err) {
         setLoading(false);
         console.log(err);

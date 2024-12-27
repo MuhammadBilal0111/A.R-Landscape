@@ -9,7 +9,7 @@ function OrderItems({ item }) {
       </h1>
       <div className="flex justify-between">
         <h3>Price:</h3>
-        <h3>Rs. {item?.price}</h3>
+        <h3>Rs. {(item?.price * item?.quantity).toFixed(2)}</h3>
       </div>
     </div>
   );

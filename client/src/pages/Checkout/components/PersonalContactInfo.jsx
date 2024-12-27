@@ -1,11 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import { TextField } from "@mui/material";
 import { Link } from "react-router-dom";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
+import { provincePrices } from "../../../utils/constant";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { setShippingCost } from "../../../store/cartSlice";
 
 function PersonalContactInfo({ handleContactChange, orderDetails }) {
-  console.log(orderDetails);
+  const dispatch = useDispatch();
+  const { shippingCost } = useSelector((state) => state.cart);
+
+  const [item, setItem] = useState(shippingCost); // by default sidh will be selected
+
+  const handleShippingCost = (e) => {
+    setItem(e.target.value);
+    dispatch(setShippingCost(e.target.value));
+  };
   return (
-    <div className="h-auto w-full ">
+    <div className="flex flex-col h-auto w-full">
       <form className="flex flex-col gap-3 bg-gray-300  my-4 p-5 rounded-md text-gray-700">
         <h1 className="font-semibold text-2xl">Contact Information</h1>
         <TextField
@@ -44,6 +59,20 @@ function PersonalContactInfo({ handleContactChange, orderDetails }) {
           variant="outlined"
           onChange={handleContactChange}
         />
+        <div className="">
+          <h1 className="text-xl md:text-2xl font-bold my-2">
+            Choose Province for Shipment
+          </h1>
+          <FormControl className="w-full">
+            <Select value={item} onChange={handleShippingCost}>
+              {provincePrices.map((province) => (
+                <MenuItem key={province.id} value={province.price}>
+                  {province.name}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </div>
       </form>
       <Link to="/shop">
         <button
