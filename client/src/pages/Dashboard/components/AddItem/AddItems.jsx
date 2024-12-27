@@ -77,7 +77,7 @@ function AddItem() {
 
     try {
       const response = await axios.post(
-        "https://api.cloudinary.com/v1_1/djhxl6tac/image/upload",
+        `https://api.cloudinary.com/v1_1/${import.meta.env.VITE_CLOUDINARY_API_KEY}/image/upload`,
         uploadData
       );
 
