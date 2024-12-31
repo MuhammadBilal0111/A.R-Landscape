@@ -1,9 +1,12 @@
 import { MdDashboard } from "react-icons/md";
 import { FaShoppingCart } from "react-icons/fa";
-import { IoLayers } from "react-icons/io5";
-import { IoMdAddCircleOutline } from "react-icons/io";
+import { IoLogOut } from "react-icons/io5";
 import { MdOutlineDescription } from "react-icons/md";
 import { MdModeEditOutline } from "react-icons/md";
+import { GiPlantSeed } from "react-icons/gi";
+import { PiPottedPlantBold } from "react-icons/pi";
+import { GiFertilizerBag } from "react-icons/gi";
+
 export const NAVIGATION = [
   {
     kind: "header",
@@ -24,26 +27,32 @@ export const NAVIGATION = [
   },
   {
     segment: "edit",
-    title: "Edit Item",
+    title: "Edit",
     icon: <MdModeEditOutline />,
     children: [
       {
         segment: "plants",
         title: "Edit Plants",
-        icon: <MdOutlineDescription />,
+        icon: <GiPlantSeed />,
       },
       {
         segment: "pots",
         title: "Edit Pots",
-        icon: <MdOutlineDescription />,
+        icon: <PiPottedPlantBold />,
       },
       {
         segment: "fertilizers",
         title: "Edit Fertilizers",
+        icon: <GiFertilizerBag />,
+      },
+      {
+        segment: "province",
+        title: "Edit Province Price",
         icon: <MdOutlineDescription />,
       },
     ],
   },
+
   {
     segment: "ordersHistory",
     title: "Orders History",

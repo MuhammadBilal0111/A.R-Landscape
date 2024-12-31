@@ -38,3 +38,9 @@ export const deleteItems = async (id) => {
 export const signOut = async (id) => {
   return api.post(`/auth/signOut/${id}`);
 };
+export const provincePrices = async () => {
+  return api.get("/province");
+};
+export const updateProvincePrices = async (data) => {
+  return api.put("/province", data);
+};

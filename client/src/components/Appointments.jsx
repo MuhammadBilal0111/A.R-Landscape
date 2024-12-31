@@ -3,7 +3,7 @@ import { InlineWidget } from "react-calendly";
 
 function Appointments() {
   return (
-    <div className="my-7">
+    <div className="h-auto min-h-screen my-auto py-12">
       <InlineWidget
         url="https://calendly.com/m-bilal0111/a-r-landscape" // Replace with your Calendly link
         rootElement={document.getElementById("root")}

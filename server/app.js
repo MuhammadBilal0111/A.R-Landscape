@@ -2,6 +2,7 @@ const express = require("express");
 const plantRoutes = require("./Router/itemRoutes");
 const orderRoutes = require("./Router/orderRoutes");
 const authRouter = require("./Router/authRoutes");
+const provinceRoutes = require("./Router/provinceRoutes");
 const morgan = require("morgan");
 const app = express();
 const cookieParser = require("cookie-parser");
@@ -12,6 +13,7 @@ app.use(cookieParser());
 app.use("/api/items", plantRoutes);
 app.use("/api/auth", authRouter);
 app.use("/api", orderRoutes);
+app.use("/api/province", provinceRoutes);
 
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
