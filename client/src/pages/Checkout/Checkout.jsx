@@ -74,7 +74,7 @@ function Checkout() {
   return (
     <>
       {userInfo ? (
-        <div className="min-h-screen h-auto">
+        <div className="min-h-screen h-auto my-5">
           <Link to={"/shop"}>
             <div className="flex items-center gap-2 text-4xl text-gray-700 mt-8 px-5">
               <FaArrowLeft className="cursor-pointer" />

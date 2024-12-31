@@ -47,13 +47,15 @@ function Footer() {
         </div>
         <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-300 lg:my-8" />
         <div className="sm:flex sm:items-center sm:justify-between">
-          <span className="text-sm text-gray-500 sm:text-center dark:text-gray-300">
-            © {new Date().getFullYear()}{" "}
-            <a href="/" className="hover:underline">
-              A. R Landscape
-            </a>
-            . All Rights Reserved.
-          </span>
+          <div className="sm:flex sm:items-center sm:justify-between">
+            <span className="text-sm text-gray-500 sm:text-center dark:text-gray-300 block">
+              © {new Date().getFullYear()}{" "}
+              <a href="/" className="hover:underline">
+                A. R Landscape
+              </a>
+              . All Rights Reserved.
+            </span>
+          </div>
           <span className="text-gray-300">
             Developed by:{" "}
             <a
