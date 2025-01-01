@@ -3,7 +3,7 @@ const app = express();
 const cors = require("cors");
 app.use(
   cors({
-    origin: ["https://ordering-website-frontend.vercel.app/"],
+    origin: ["https://ordering-website-frontend.vercel.app"],
     methods: ["POST", "GET", "DELETE", "PUT"],
     credentials: true,
   })
