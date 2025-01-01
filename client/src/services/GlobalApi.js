@@ -1,6 +1,6 @@
 import axios from "axios";
 const api = axios.create({
-  baseURL: "https://ordering-website-api.vercel.app/api",
+  baseURL: "/api",
 });
 export const getPlantsDetails = async (str) => {
   return api.get(`/items/getItems${str}`);

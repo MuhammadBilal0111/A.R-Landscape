@@ -25,7 +25,6 @@ const Header = () => {
 
   const handleLogout = async () => {
     try {
-      console.log(currentUser.userInfo._id);
       const res = await signOut(currentUser.userInfo._id); // function for sign out
       dispatch(signOutSuccess());
       dispatch(emptyContainer());

@@ -1,10 +1,11 @@
 const express = require("express");
+const app = express();
+const cors = require("cors");
 const plantRoutes = require("./Router/itemRoutes");
 const orderRoutes = require("./Router/orderRoutes");
 const authRouter = require("./Router/authRoutes");
 const provinceRoutes = require("./Router/provinceRoutes");
 const morgan = require("morgan");
-const app = express();
 const cookieParser = require("cookie-parser");
 
 app.use(express.json());
