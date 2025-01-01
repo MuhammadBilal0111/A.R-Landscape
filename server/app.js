@@ -1,6 +1,13 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
+app.use(
+  cors({
+    origin: ["https://ordering-website-frontend.vercel.app/"],
+    methods: ["POST", "GET", "DELETE", "PUT"],
+    credentials: true,
+  })
+);
 const plantRoutes = require("./Router/itemRoutes");
 const orderRoutes = require("./Router/orderRoutes");
 const authRouter = require("./Router/authRoutes");
