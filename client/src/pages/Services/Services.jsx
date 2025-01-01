@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const Services = () => {
   return (
     <div className="min-h-screen mb-3">
-      <div className="bg-[url('./mainHomeImage.avif')] h-90 text-yellow-500 text-center flex items-center justify-center">
+      <div className="bg-[url('./mainHomeImage.avif')] h-80 text-yellow-500 text-center flex items-center justify-center object-cover">
         <div className="w-auto max-w-7xl px-4">
           <h1 className="text-5xl">Services</h1>
           <p className="text-white text-xl py-4">
