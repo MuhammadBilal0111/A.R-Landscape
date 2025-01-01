@@ -43,13 +43,12 @@ function Order() {
   const handleCompleteOrder = async (orderId) => {
     try {
       setOrderCompletedLoader(true);
-      const socket = io("http://localhost:3000");
+      const socket = io("https://ordering-website-api.vercel.app/");
       socket.on("updatedOrder", (orderInfo) => {
         setNewOrders(orderInfo);
       });
       const response = await completeOrder(orderId);
       socket.on("updatedOrder", (orderInfo) => {
-     
         setNewOrders(orderInfo); // updating the orders
       });
       setOrderCompletedLoader(false);
