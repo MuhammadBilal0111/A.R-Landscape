@@ -11,6 +11,7 @@ A. R Landscape is a professional landscaping services website designed to help c
 - **Booking System**: Customers can book landscaping services online.
 - **Reviews & Ratings**: Customers can leave reviews and ratings for completed services.
 - **Responsive Design**: Fully mobile-friendly and optimized UI using TailwindCSS.
+- **Real-Time Order Placement**: Uses Socket.io to update orders on the dashboard in real-time.
 
 ## Tech Stack
 - **Frontend**: React.js, TailwindCSS, Redux Toolkit
