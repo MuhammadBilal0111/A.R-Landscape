@@ -2,39 +2,20 @@ import React, { useRef, useState } from "react";
 import { IoMenu } from "react-icons/io5";
 import { RxCross2 } from "react-icons/rx";
 import { MdOutlineShoppingBag } from "react-icons/md";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { Link, useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { signOutSuccess, signOutFailure } from "../store/userSlice";
-import { signOut } from "../services/GlobalApi";
-import { emptyContainer } from "../store/cartSlice";
-import { ToastSuccess } from "./Toast";
 
 const Header = () => {
-  const { currentUser } = useSelector((state) => state.user);
   const cartItems = useSelector((state) => state.cart.items);
   const role = useSelector((state) => state?.user?.currentUser?.userInfo?.role);
 
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [signout, setSignOut] = useState(null);
+
   const headerLinksRef = useRef(null);
   const location = useLocation();
 
-  const handleLogout = async () => {
-    try {
-      const res = await signOut(currentUser.userInfo._id); // function for sign out
-      dispatch(signOutSuccess());
-      dispatch(emptyContainer());
-      ToastSuccess("Log out successfully!");
-      navigate("/sign-up");
-    } catch (err) {
-      setSignOut(err.message);
-      dispatch(signOutFailure(err.message));
-    }
-  };
   // Get items from Redux store
 
   // Active link checker
@@ -61,14 +42,22 @@ const Header = () => {
         {/* Logo */}
         <div className="flex items-center gap-x-3">
           <Link to="/">
-            <h1 className="text-2xl font-bold text-yellow-300 flex items-center gap-2">
-              <img
-                src="./plant_logo.png"
-                alt="A. R Landscape Logo"
-                className="h-14 w-14"
-              />
-              <span>A. R Landscape</span>
-            </h1>
+            <div className="flex items-center gap-2">
+              <div className="h-14 w-14 rounded-full overflow-hidden">
+                <img
+                  src="./plant_logo.png"
+                  alt="A.R Landscape Logo"
+                  className="w-full h-full object-cover"
+                  onError={(e) => {
+                    e.target.onerror = null; // Prevent infinite loop
+                    e.target.src = "/fallbacklogo.jpg"; // Fallback image URL
+                  }}
+                />
+              </div>
+              <span className="text-2xl font-bold text-yellow-300">
+                A.R Landscape
+              </span>
+            </div>
           </Link>
         </div>
 
@@ -89,7 +78,6 @@ const Header = () => {
             >
               <Link to="/shop">Shop</Link>
             </li>
-
             <li
               className={
                 isActive("/services")
@@ -99,48 +87,14 @@ const Header = () => {
             >
               <Link to="/services">Services</Link>
             </li>
-            {role && role === "admin" && (
-              <li
-                className={
-                  isActive("/dashboard")
-                    ? "text-yellow-500"
-                    : "hover:text-gray-400"
-                }
-              >
-                <Link to="/dashboard">Dashboard</Link>
-              </li>
-            )}
-            {currentUser ? (
-              <li
-                className={
-                  isActive("/logout")
-                    ? "text-yellow-500"
-                    : "hover:text-gray-400"
-                }
-              >
-                <button onClick={handleLogout}>Logout</button>
-              </li>
-            ) : (
-              <li
-                className={
-                  isActive("/sign-up")
-                    ? "text-yellow-500"
-                    : "hover:text-gray-400"
-                }
-              >
-                <Link to="/sign-up">Get Started</Link>
-              </li>
-            )}
-            {currentUser && (
-              <li className="relative">
-                <Link to="/cart">
-                  <MdOutlineShoppingBag className="text-3xl" />
-                  <div className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-                    {cartItems.length}
-                  </div>
-                </Link>
-              </li>
-            )}
+            <li className="relative">
+              <Link to="/cart">
+                <MdOutlineShoppingBag className="text-3xl" />
+                <div className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                  {cartItems.length}
+                </div>
+              </Link>
+            </li>
           </ul>
         </nav>
 
@@ -202,35 +156,9 @@ const Header = () => {
                 <Link to="/dashboard">Dashboard</Link>
               </li>
             )}
-            {currentUser ? (
-              <li
-                onClick={toggleMenu}
-                className={
-                  isActive("/logout")
-                    ? "text-yellow-500"
-                    : "hover:text-gray-400"
-                }
-              >
-                <button onClick={handleLogout}>Logout</button>
-              </li>
-            ) : (
-              <li
-                onClick={toggleMenu}
-                className={
-                  isActive("/sign-up")
-                    ? "text-yellow-500"
-                    : "hover:text-gray-400"
-                }
-              >
-                <Link to="/sign-up">Get Started</Link>
-              </li>
-            )}
-
-            {currentUser && (
-              <li onClick={toggleMenu} className="py-2 hover:text-gray-400">
-                <Link to="/cart">Cart</Link>
-              </li>
-            )}
+            <li onClick={toggleMenu} className="py-2 hover:text-gray-400">
+              <Link to="/cart">Cart</Link>
+            </li>
           </ul>
         </nav>
       )}

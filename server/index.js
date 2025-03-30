@@ -11,13 +11,15 @@ const port = process.env.PORT || 3000;
 const httpServer = createServer(app);
 
 // Initialize Socket.IO and attach to the HTTP server
+console.log(process.env.CLIENT_URL);
 const io = new Server(httpServer, {
   cors: {
-    origin: "*", // Accept all origins for simplicity; adjust for production
+    origin: process.env.CLIENT_URL,
     methods: ["GET", "POST"],
+    secure: true,
+    transports: ["websocket", "polling"],
   },
 });
-
 // Store the io instance globally for real-time communication
 app.set("io", io);
 

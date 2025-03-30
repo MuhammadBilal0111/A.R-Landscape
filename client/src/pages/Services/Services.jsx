@@ -1,10 +1,24 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import SEO from "../../components/SEO";
+
 const Services = () => {
   return (
     <div className="min-h-screen mb-3">
-      <div className="bg-[url('./mainHomeImage.avif')] h-80 text-yellow-500 text-center flex items-center justify-center object-cover">
-        <div className="w-auto max-w-7xl px-4">
+      <SEO
+        title="A.R. Landscape Services - Transform Your Outdoors"
+        description="Explore A.R. Landscape's range of services, including plant selling, landscape design, drip irrigation systems, and expert gardening solutions. Transform your outdoor spaces with our professional services."
+      />
+      <div className="relative text-yellow-500 text-center flex items-center justify-center w-full">
+        <div className="w-full h-80">
+          <img
+            src="./mainHomeImage.avif"
+            className="w-full h-full object-center"
+            alt="./mainHomeImage.avif"
+            loading="lazy"
+          />
+        </div>
+        <div className="w-auto max-w-7xl px-4 absolute">
           <h1 className="text-5xl">Services</h1>
           <p className="text-white text-xl py-4">
             Services available include plant selling, plant renting, pot
@@ -20,13 +34,14 @@ const Services = () => {
       <div className="flex flex-col md:flex-row gap-4 my-6">
         <div className="w-full md:w-[50%] h-96">
           <img
-            src="/plantrental.jpg"
-            alt=""
+            src="/plantrental.avif"
+            alt="Plant rental Image not avaliable"
             className="w-full h-full object-cover"
+            loading="lazy"
           />
         </div>
         <div className="w-full md:w-[50%] mt-7 px-6">
-          <h1 className="text-5xl font-bold text-green-900 md:text-5xl">
+          <h1 className="text-3xl font-bold text-green-900 md:text-5xl">
             Plant Rental
           </h1>
           <p className="mt-8 text-lg text-gray-600">
@@ -57,18 +72,20 @@ const Services = () => {
         </div>
         <div className="w-full md:w-[50%] h-96">
           <img
-            src="/landscape.jpg"
-            alt=""
+            src="/landscape.avif"
+            alt="Landscape Image Not available"
             className="w-full h-full object-cover"
+            loading="lazy"
           />
         </div>
       </div>
       <div className="flex flex-col md:flex-row gap-4 my-6">
         <div className="w-full md:w-[50%] h-96">
           <img
-            src="/plantinstallation.jpg"
-            alt=""
+            src="/plantinstallation.avif"
+            alt="Plant installation Image not available"
             className="w-full h-full object-cover"
+            loading="lazy"
           />
         </div>
         <div className="w-full md:w-[50%] mt-7 px-6">
@@ -103,21 +120,22 @@ const Services = () => {
         </div>
         <div className="w-full md:w-[50%] h-96">
           <img
-            src="/dripirrigation.jpg"
-            alt=""
+            src="/dripirrigation.avif"
+            alt="Drip installationImage not available"
             className="w-full h-full object-cover"
+            loading="lazy"
           />
         </div>
       </div>
       <div>
-        <a
-          href={`https://wa.me/03242443922`}
+        <Link
+          to={`https://wa.me/+923225532129`}
           target="_blank"
           rel="noreferrer noopener"
-          class="fixed bottom-4 right-4 z-50 inline-flex items-center justify-center w-14 h-14 rounded-full bg-[#25d366]"
+          className="fixed bottom-4 right-4 z-50 inline-flex items-center justify-center w-14 h-14 rounded-full bg-[#25d366]"
         >
-          <div class="absolute z-10 top-0 left-0 w-full h-full rounded-full bg-[#25d366] animate-ping"></div>
-          <div class="relative z-20">
+          <div className="absolute z-10 top-0 left-0 w-full h-full rounded-full bg-[#25d366] animate-ping"></div>
+          <div className="relative z-20">
             <svg
               fill="#fff"
               height="24px"
@@ -134,7 +152,7 @@ const Services = () => {
               <path d="M156.734,0C73.318,0,5.454,67.354,5.454,150.143c0,26.777,7.166,52.988,20.741,75.928L0.212,302.716 c-0.484,1.429-0.124,3.009,0.933,4.085C1.908,307.58,2.943,308,4,308c0.405,0,0.813-0.061,1.211-0.188l79.92-25.396 c21.87,11.685,46.588,17.853,71.604,17.853C240.143,300.27,308,232.923,308,150.143C308,67.354,240.143,0,156.734,0z M156.734,268.994c-23.539,0-46.338-6.797-65.936-19.657c-0.659-0.433-1.424-0.655-2.194-0.655c-0.407,0-0.815,0.062-1.212,0.188 l-40.035,12.726l12.924-38.129c0.418-1.234,0.209-2.595-0.561-3.647c-14.924-20.392-22.813-44.485-22.813-69.677 c0-65.543,53.754-118.867,119.826-118.867c66.064,0,119.812,53.324,119.812,118.867 C276.546,215.678,222.799,268.994,156.734,268.994z" />
             </svg>
           </div>
-        </a>
+        </Link>
       </div>
     </div>
   );

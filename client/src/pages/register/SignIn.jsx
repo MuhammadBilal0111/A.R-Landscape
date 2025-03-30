@@ -12,6 +12,7 @@ import {
 } from "../../store/userSlice";
 import { useNavigate } from "react-router-dom";
 import { ToastSuccess } from "../../components/Toast";
+import { Helmet } from "react-helmet-async";
 
 function SignIn() {
   const { loading, error } = useSelector((state) => state.user);
@@ -26,10 +27,10 @@ function SignIn() {
     try {
       dispatch(signInStart());
       const user = await signIn(inputData);
-      
+
       dispatch(signInSuccess(user.data));
-      navigate("/");
-      ToastSuccess("Sign in successful!"); // use to generate a successful toast when sign in
+      navigate("/dashboard");
+      ToastSuccess("Sign in successfuly as an admin!"); // use to generate a successful toast when sign in
     } catch (err) {
       const errorMessage =
         err.response?.data?.message || "An unexpected error occurred.";
@@ -41,6 +42,10 @@ function SignIn() {
   };
   return (
     <div className="flex items-center justify-center min-h-screen max-w-lg mx-auto p-7">
+      <Helmet>
+        {/* tell the search engine not to index the page and not to follow any links on the page. This helps prevent crawling of any links that might exist  */}
+        <meta name="robots" content="noindex, nofollow" />
+      </Helmet>
       <div className="flex flex-col gap-3 border border-1 rounded-2xl w-full py-7 px-7 shadow-xl border-gray-400">
         <h1 className="text-center text-3xl font-bold">Login</h1>
         <p className="text-md text-gray-600">
@@ -96,12 +101,6 @@ function SignIn() {
           </button>
           {error && <Alert severity="error">{error}</Alert>}
         </form>
-        <span className="text-gray-600">Don't have an account?</span>
-        <Link to={"/sign-up"}>
-          <span className="text-green-800 hover:underline font-semibold">
-            Create new Account
-          </span>
-        </Link>
       </div>
     </div>
   );

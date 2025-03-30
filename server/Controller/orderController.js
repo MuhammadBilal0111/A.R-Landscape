@@ -1,7 +1,7 @@
 const Order = require("../Model/orderModel");
 const asyncErrorHandler = require("../utils/asyncErrorHandler");
 const customErrorHandler = require("../utils/customError");
-const sendEmail = require("./../utils/email");
+const sendEmail = require("../utils/email");
 // Place a new order
 exports.placeOrder = asyncErrorHandler(async (req, res, next) => {
   const {
@@ -15,7 +15,7 @@ exports.placeOrder = asyncErrorHandler(async (req, res, next) => {
     shippingCost,
     specialInstructions,
   } = req.body;
-  
+
   // Validate required fields
   if (
     !products ||
@@ -63,7 +63,6 @@ exports.placeOrder = asyncErrorHandler(async (req, res, next) => {
 exports.getAllOrders = asyncErrorHandler(async (req, res, next) => {
   const status = req.query.status; // Get status from query parameters
 
-  
   // If a status is provided, filter orders by status
   const filter = status ? { status: status } : {};
   const orderDetails = await Order.find(filter).sort({ createdAt: -1 });
@@ -82,28 +81,55 @@ exports.orderCompleted = asyncErrorHandler(async (req, res, next) => {
       message: "Order ID is required",
     });
   }
+
+  // Update the order status
   const updatedOrder = await Order.findByIdAndUpdate(
     id,
     { $set: { status: "completed" } },
     { new: true }
   );
+
   // If the order is not found
   if (!updatedOrder) {
     return res.status(404).json({
       status: "failed",
-      message: "Order not updating",
+      message: "Order not found or not updated",
     });
   }
+
+  try {
+    // Send email only if order is updated
+    await sendEmail({
+      emailType: "orderComplete",
+      _id: updatedOrder._id,
+      username: updatedOrder.username,
+      shippingCost: updatedOrder.shippingCost,
+      totalPrice: updatedOrder.totalPrice,
+      orderItems: updatedOrder.products,
+      email: updatedOrder.email,
+    });
+  } catch (err) {
+    console.error("Email sending error:", err);
+    return next(
+      new customErrorHandler(
+        "There was an error in sending confirmation email! Please try again later",
+        500
+      )
+    );
+  }
+
+  // Fetch and emit updated order list
   const orderDetails = await Order.find({ status: "pending" }).sort({
     createdAt: -1,
   });
-  
+
   const io = req.app.get("io");
   io.emit("updatedOrder", orderDetails);
 
   // Return success response
   res.status(200).json({
     status: "success",
-    message: "Order completed successfully",
+    message:
+      "Order completed successfully, Confirmation Email has been send successfully!",
   });
 });

@@ -13,7 +13,7 @@ export const NAVIGATION = [
     title: "Main items",
   },
   {
-    segment: "dashboard",
+    segment: "add-item",
     title: "Add Items",
     icon: <MdDashboard />,
   },
@@ -58,32 +58,9 @@ export const NAVIGATION = [
     title: "Orders History",
     icon: <FaShoppingCart />,
   },
-];
-
-export const provincePrices = [
   {
-    id: 1,
-    name: "Sindh",
-    price: 1000,
-  },
-  {
-    id: 2,
-    name: "Punjab",
-    price: 2000,
-  },
-  {
-    id: 3,
-    name: "Balochistan",
-    price: 3000,
-  },
-  {
-    id: 4,
-    name: "KPK",
-    price: 4000,
-  },
-  {
-    id: 5,
-    name: "Gilgit Baltistan",
-    price: 7000,
+    segment: "logout",
+    title: "Log out",
+    icon: <IoLogOut />,
   },
 ];

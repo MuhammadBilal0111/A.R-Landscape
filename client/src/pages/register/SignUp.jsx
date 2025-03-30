@@ -6,6 +6,7 @@ import { FaUser } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { signUp } from "../../services/GlobalApi";
 import { ToastSuccess } from "../../components/Toast";
+import { Helmet } from "react-helmet-async";
 
 function SignUp() {
   const [showPassword, setShowPassword] = useState(false);
@@ -18,7 +19,6 @@ function SignUp() {
   const showConfirmPasswordElement = useRef();
 
   const handleSubmit = async (e) => {
-    
     e.preventDefault();
     try {
       setLoading(true);
@@ -37,6 +37,9 @@ function SignUp() {
   };
   return (
     <div className="flex items-center justify-center min-h-screen max-w-lg mx-auto p-7">
+      <Helmet>
+        <meta name="robots" content="noindex, nofollow" />
+      </Helmet>
       <div className="flex flex-col gap-3 border border-1 rounded-2xl w-full py-7 px-7 shadow-xl border-gray-400">
         <h1 className="text-center text-3xl font-bold">Sign Up</h1>
         <p className="text-md text-gray-600">

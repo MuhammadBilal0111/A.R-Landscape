@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from "react";
-import Card from "../../../components/Card";
+import Card from "./Card";
 import { getPlantsDetails } from "../../../services/GlobalApi";
 
 function PlantRecommendationSection() {

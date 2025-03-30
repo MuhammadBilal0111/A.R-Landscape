@@ -8,6 +8,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { getPlantsDetails } from "../../services/GlobalApi";
 import ShopCard from "./components/ShopCard";
 import { CircularProgress } from "@mui/material";
+import SEO from "../../components/SEO";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -122,6 +123,10 @@ export default function BasicTabs() {
         padding: "0 0",
       }}
     >
+      <SEO
+        title="A.R. Landscape - Shop Landscaping Essentials"
+        description="Shop a wide range of plants, pots, gardening tools, soil, manure, and more at A.R. Landscape. Everything you need to create and maintain a beautiful outdoor space."
+      />
       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
         <Tabs
           value={value}
@@ -130,6 +135,7 @@ export default function BasicTabs() {
         >
           {categories.map((category, index) => (
             <Tab
+              key={index}
               label={category.charAt(0).toUpperCase() + category.slice(1)}
               {...a11yProps(index)}
             />

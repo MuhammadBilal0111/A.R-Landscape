@@ -73,7 +73,7 @@ function AddItem() {
 
   const handleSubmitForm = async (e) => {
     e.preventDefault();
-    
+
     if (
       !formData.title ||
       !formData.category ||
@@ -92,7 +92,7 @@ function AddItem() {
       };
       const response = await updateItems(existingItem._id, newObject);
       setDataLoading(false);
-      navigate(`/plant/${response?.data?.data?.slug}`);
+      navigate(`/product/${response?.data?.data?.slug}`);
       ToastSuccess(response?.data?.message);
     } catch (err) {
       setDataLoading(false);
@@ -117,7 +117,7 @@ function AddItem() {
 
     const uploadData = new FormData();
     uploadData.append("file", file);
-    uploadData.append("upload_preset", "plant_ordering_website");
+    uploadData.append("upload_preset", "A.R Landscape");
 
     try {
       const response = await axios.post(
@@ -150,7 +150,6 @@ function AddItem() {
 
   const handleItemDataChange = (e) => {
     setForm({ ...formData, [e.target.id]: e.target.value });
-    
   };
 
   return (

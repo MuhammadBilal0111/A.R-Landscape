@@ -4,12 +4,14 @@ import { AppProvider } from "@toolpad/core/AppProvider";
 import { DashboardLayout } from "@toolpad/core/DashboardLayout";
 import { createTheme } from "@mui/material/styles";
 import { Box } from "@mui/material";
-import Order from "./components/Order";
+import Order from "./components/Order/Order";
 import { Link } from "react-router-dom";
 import AddItem from "./components/AddItem/AddItems";
 import EditItems from "./components/EditItems/EditItems";
 import OrderHistory from "./components/OrderHistory";
-import Province from "./components/Province";
+import Logout from "./components/Logout";
+import EditProvince from "./components/EditItems/EditProvince";
+import { Helmet } from "react-helmet-async";
 
 const demoTheme = createTheme({
   palette: {
@@ -54,46 +56,53 @@ export default function DashboardLayoutBasic() {
   }, [pathname]);
 
   return (
-    <AppProvider
-      router={router}
-      navigation={NAVIGATION}
-      branding={{
-        logo: (
-          <Link to={"/"}>
-            <img src="/plant_logo.png" />
-          </Link>
-        ),
-        title: (
-          <Link to={"/"}>
-            <span className="text-[rgb(45,136,48)] truncate">
-              A. R Landscape
-            </span>
-          </Link>
-        ),
-      }}
-      theme={demoTheme}
-    >
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          height: "100vh", // Full viewport height
+    <>
+      <Helmet>
+        <meta name="robots" content="noindex, nofollow" />
+      </Helmet>
+      <AppProvider
+        router={router}
+        navigation={NAVIGATION}
+        branding={{
+          logo: (
+            <Link to={"/"}>
+              <img
+                src="/plant_logo.png"
+                alt="Image Not Found"
+                loading="lazy"
+                className="w-12 h-16"
+              />
+            </Link>
+          ),
+          title: (
+            <span className="text-[rgb(45,136,48)] truncate">Admin Panel</span>
+          ),
         }}
+        theme={demoTheme}
       >
-        <DashboardLayout slots={{ toolbarActions: CustomThemeSwitcher }}>
-          {pathname === "/orders" && <Order />}
-          {/* dashboard link for adding the items in database */}
-          {pathname === "/dashboard" && <AddItem />}
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            height: "100vh", // Full viewport height
+            weight: "100%",
+          }}
+        >
+          <DashboardLayout slots={{ toolbarActions: CustomThemeSwitcher }}>
+            {pathname === "/add-item" && <AddItem />}
+            {pathname === "/orders" && <Order />}
 
-          {pathname === "/edit/plants" && <EditItems category={"plants"} />}
-          {pathname === "/edit/pots" && <EditItems category={"pots"} />}
-          {pathname === "/edit/fertilizers" && (
-            <EditItems category={"fertilizers"} />
-          )}
-          {pathname === "/ordersHistory" && <OrderHistory />}
-          {pathname === "/edit/province" && <Province />}
-        </DashboardLayout>
-      </Box>
-    </AppProvider>
+            {pathname === "/edit/plants" && <EditItems category={"plants"} />}
+            {pathname === "/edit/pots" && <EditItems category={"pots"} />}
+            {pathname === "/edit/fertilizers" && (
+              <EditItems category={"fertilizers"} />
+            )}
+            {pathname === "/edit/province" && <EditProvince />}
+            {pathname === "/ordersHistory" && <OrderHistory />}
+            {pathname === "/logout" && <Logout />}
+          </DashboardLayout>
+        </Box>
+      </AppProvider>
+    </>
   );
 }

@@ -20,7 +20,7 @@ const EditCard = ({ category, title, image, slug, onEdit, onDelete }) => {
 
       {/* Content Section */}
       <div className="flex-grow">
-        <Link to={`/plant/${slug}`} className="hover:underline">
+        <Link to={`/product/${slug}`} className="hover:underline">
           <h3 className="text-xl font-bold text-gray-900 mt-2">{title}</h3>
         </Link>
 

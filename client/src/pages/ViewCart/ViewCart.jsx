@@ -2,27 +2,31 @@ import React from "react";
 import { useSelector } from "react-redux";
 import ItemRender from "./components/ItemRender.jsx";
 import { Link } from "react-router-dom";
+import SEO from "../../components/SEO.jsx";
+
 function ViewCart() {
   const { items, totalPrice } = useSelector((state) => state.cart);
   return (
     <>
+      <SEO
+        title="A.R. Landscape - Shopping Cart"
+        description="Review the items in your cart and proceed to checkout. A.R. Landscape offers a variety of plants, pots, and landscaping tools to enhance your outdoor spaces.."
+      />
       <div className="h-auto min-h-screen">
         {items && items.length > 0 ? (
           <div className="px-5 w-full max-w-3xl mx-auto my-8 shadow-2xl py-8 rounded-lg">
             <h1 className="font-bold text-3xl mb-4">Shopping Cart</h1>
-            {items &&
-              items.length > 0 &&
-              items.map((item) => <ItemRender key={item._id} item={item} />)}
+            <div className="table-auto overflow-x-scroll custom-scrollbar">
+              {items &&
+                items.length > 0 &&
+                items.map((item) => <ItemRender key={item._id} item={item} />)}
+            </div>
             <div className="mt-4 space-y-2">
-              <div className="flex justify-between font-bold">
-                <span className="text-gray-800">Original price</span>
-                <span className="text-gray-800">Rs. {totalPrice}</span>
-              </div>
-
-              <div className="mt-4 border-t border-t-green-800 "></div>
               <div className="flex justify-between mt-2">
-                <span className="text-lg font-bold text-gray-800">Total</span>
-                <span className="text-lg  text-yellow-500 font-bold">
+                <span className="text-sm md:text-lg font-bold text-gray-800">
+                  Total Price
+                </span>
+                <span className="text-sm md:text-lg  text-yellow-500 font-bold">
                   Rs. {totalPrice}
                 </span>
               </div>

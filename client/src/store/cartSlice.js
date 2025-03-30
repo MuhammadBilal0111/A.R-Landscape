@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   items: [],
   total_item: 0,
-  shippingCost: 1000,
+  shippingCost: null,
   totalPrice: 0,
 };
 const cartSlice = createSlice({
@@ -56,9 +56,11 @@ const cartSlice = createSlice({
         .reduce((total, item) => total + item.quantity * item.price, 0)
         .toFixed(2);
     },
+    
     emptyContainer: (state) => {
       state.items = [];
       state.totalPrice = 0;
+      state.shippingCost = null;
     },
     setShippingCost: (state, action) => {
       state.shippingCost = action.payload;

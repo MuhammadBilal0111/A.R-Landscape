@@ -44,3 +44,9 @@ export const provincePrices = async () => {
 export const updateProvincePrices = async (data) => {
   return api.put("/province", data);
 };
+export const createComment = async (data) => {
+  return api.post("/comments/create", data);
+};
+export const getComments = async (postId) => {
+  return api.get(`/comments/get-comments/${postId}`);
+};

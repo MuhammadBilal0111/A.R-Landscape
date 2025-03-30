@@ -6,8 +6,12 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "https://ordering-website-api.vercel.app",
-        secure: false,
+        target: "http://localhost:3000",
+        secure: true,
+      },
+      "/socket.io": {
+        target: "http://localhost:3000",
+        ws: true,
       },
     },
   },

@@ -9,37 +9,41 @@ import ScrollToTop from "./components/ScrollToTop";
 import Checkout from "./pages/Checkout/Checkout";
 import ViewCart from "./pages/ViewCart/ViewCart.jsx";
 import Shop from "./pages/shop/Shop";
-import SignUp from "./pages/register/SignUp.jsx";
 import SignIn from "./pages/register/SignIn.jsx";
 import Appointments from "./components/Appointments.jsx";
 import OnlyAdminPrivateRoutes from "./components/OnlyAdminPrivateRoutes.jsx";
 import Services from "./pages/Services/Services.jsx";
 import UpdateItems from "./pages/Dashboard/components/UpdateItems/UpdateItems.jsx"; // used to update the components
 import PageNotFound from "./pages/PageNotFound.jsx";
+import { HelmetProvider } from "react-helmet-async";
+import CheckoutRedirect from "./components/CheckoutRedirect.jsx";
 
 function App() {
   return (
-    <BrowserRouter>
-      <ScrollToTop />
-      <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/plant/:plantSlug" element={<AddToCart />} />
-        <Route path="/checkout" element={<Checkout />} />
-        <Route path="/cart" element={<ViewCart />} />
-        <Route path="/shop" element={<Shop />} />
-        <Route path="/sign-up" element={<SignUp />} />
-        <Route path="/sign-in" element={<SignIn />} />
-        <Route path="/services" element={<Services />} />
-        <Route path="/appointments" element={<Appointments />} />
-        <Route path="*" element={<PageNotFound />} />
-        <Route element={<OnlyAdminPrivateRoutes />}>
-          <Route path="/edit" element={<UpdateItems />} />
-          <Route path="/dashboard" element={<DashboardLayoutBasic />} />
-        </Route>
-      </Routes>
-      <Footer />
-    </BrowserRouter>
+    <HelmetProvider>
+      <BrowserRouter>
+        <ScrollToTop />
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/product/:productSlug" element={<AddToCart />} />
+          <Route element={<CheckoutRedirect />}>
+            <Route path="/checkout" element={<Checkout />} />
+          </Route>
+          <Route path="/cart" element={<ViewCart />} />
+          <Route path="/shop" element={<Shop />} />
+          <Route path="/sign-in" element={<SignIn />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/appointments" element={<Appointments />} />
+          <Route element={<OnlyAdminPrivateRoutes />}>
+            <Route path="/edit" element={<UpdateItems />} />
+            <Route path="/dashboard" element={<DashboardLayoutBasic />} />
+          </Route>
+          <Route path="*" element={<PageNotFound />} />
+        </Routes>
+        <Footer />
+      </BrowserRouter>
+    </HelmetProvider>
   );
 }
 

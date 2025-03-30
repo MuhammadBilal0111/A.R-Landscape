@@ -1,10 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Button from "@mui/material/Button";
+import SEO from "../components/SEO";
 
 function PageNotFound() {
   return (
     <div className="min-h-screen w-full max-w-8xl mx-auto flex flex-col justify-center items-center p-5 gap-5">
+      <SEO
+        title="Page Not Found | A.R. Landscape"
+        description="Oops! The page you're looking for doesn't exist. Explore A.R. Landscape for expert landscaping services."
+      />
       <div className="w-80">
         <img
           className="RV8RoaI_SlEMC5CEQ3ms _9OKVeTXzfSwD_NYO6_G w-full"

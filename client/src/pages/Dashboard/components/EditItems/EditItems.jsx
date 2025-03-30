@@ -39,11 +39,6 @@ function EditItems({ category }) {
 
   // Handle Delete functionality
   const handleDelete = async (id) => {
-    const confirmDelete = window.confirm(
-      "Are you sure you want to delete this item?"
-    );
-    if (!confirmDelete) return;
-
     try {
       const response = await deleteItems(id);
       if (response?.data?.status === "success") {

@@ -1,0 +1,13 @@
+User-agent: *
+
+Disallow: /checkout/
+Disallow: /dashboard/
+Disallow: /sign-in/
+Disallow: /edit/
+
+Allow: /services/
+Allow: /shop/
+Allow: /appointments/
+
+
+Sitemap: https://arlandscapers.net/sitemap.xml

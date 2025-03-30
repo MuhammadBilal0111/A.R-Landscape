@@ -6,7 +6,6 @@ function PlaceOrder({ handleSubmit, loading }) {
   const { items, totalPrice, shippingCost } = useSelector(
     (state) => state.cart
   );
-
   return (
     <div className="mb-4 lg:max-w-96 w-full mt-2">
       {items &&

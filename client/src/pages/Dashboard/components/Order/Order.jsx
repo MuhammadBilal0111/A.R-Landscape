@@ -1,19 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { getpendingOrders } from "../../../services/GlobalApi";
+import { getpendingOrders } from "../../../../services/GlobalApi";
 import { io } from "socket.io-client";
 import { CircularProgress } from "@mui/material";
-import { ToastSuccess } from "../../../components/Toast";
-import { completeOrder } from "../../../services/GlobalApi";
-import OrderRender from "./OrderRender";
+import { ToastSuccess } from "../../../../components/Toast";
+import { completeOrder } from "../../../../services/GlobalApi";
+import OrderRender from "./components/OrderRender";
 
 function Order() {
   const [newOrders, setNewOrders] = useState([]);
+  const [loadingIndex, setLoadingIndex] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [orderCompletedLoader, setOrderCompletedLoader] = useState(false);
 
   useEffect(() => {
     // Initialize Socket.IO connection
-    const socket = io("http://localhost:3000");
+    const socket = io(import.meta.env.VITE_BACKEND_URL, {
+      secure: true, // Use secure WebSocket
+      transports: ["websocket", "polling"], // Ensure stable connection);
+    });
 
     const fetchOrder = async () => {
       try {
@@ -26,7 +29,6 @@ function Order() {
         console.error(err);
       }
     };
-
     fetchOrder();
 
     // Listen for new orders via Socket.IO
@@ -42,8 +44,8 @@ function Order() {
 
   const handleCompleteOrder = async (orderId) => {
     try {
-      setOrderCompletedLoader(true);
-      const socket = io("http://localhost:3000");
+      setLoadingIndex(orderId);
+      const socket = io(import.meta.env.VITE_BACKEND_URL);
       socket.on("updatedOrder", (orderInfo) => {
         setNewOrders(orderInfo);
       });
@@ -51,10 +53,11 @@ function Order() {
       socket.on("updatedOrder", (orderInfo) => {
         setNewOrders(orderInfo); // updating the orders
       });
-      setOrderCompletedLoader(false);
       ToastSuccess(response?.data?.message);
     } catch (err) {
       console.log("Error in completing the order", err);
+    } finally {
+      setLoadingIndex(null);
     }
   };
 
@@ -70,12 +73,13 @@ function Order() {
             New Orders
           </h1>
           {newOrders.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full lg:w-7xl">
+            <div className="flex flex-wrap gap-6 items-center justify-center max-w-6xl mx-auto">
               {newOrders.map((order) => (
                 <OrderRender
+                  key={order._id}
                   order={order}
                   handleCompleteOrder={handleCompleteOrder}
-                  orderCompletedLoader={orderCompletedLoader}
+                  loadingIndex={loadingIndex}
                 />
               ))}
             </div>

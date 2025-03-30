@@ -3,19 +3,13 @@ import { Link, useNavigate } from "react-router-dom";
 import { addItems } from "../../../store/cartSlice";
 import { useDispatch } from "react-redux";
 import { ToastSuccess } from "../../../components/Toast";
-import { useSelector } from "react-redux";
 
 function ShopCard({ item }) {
-  const { currentUser } = useSelector((state) => state.user); // check that the user is logged in
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const handleCart = (e) => {
-    if (currentUser) {
-      ToastSuccess("Item added to cart Successfully!");
-      dispatch(addItems(item));
-    } else {
-      navigate("/sign-up");
-    }
+    ToastSuccess("Item added to cart Successfully!");
+    dispatch(addItems(item));
   };
 
   return (
@@ -28,20 +22,20 @@ function ShopCard({ item }) {
         />
       </div>
       <div className="p-3 flex flex-col items-center justify-center w-full">
-        <h2 className="text-2xl font-semibold mb-2 hover:underline">
-          <Link to={`/plant/${item?.slug}`}>{item?.title}</Link>
+        <h2 className="text-2xl font-semibold mb-2 hover:underline line-clamp-1">
+          <Link to={`/product/${item?.slug}`}>{item?.title}</Link>
         </h2>
-        <div
-          className="text-gray-600 text-center h-14"
-          dangerouslySetInnerHTML={{
-            __html: item?.description || "No description available.",
-          }}
-        ></div>
+        <div className="text-gray-600 text-center text-sm font-light line-clamp-3 mb-2">
+          {(item?.description || "No description available.")
+            .replace(/<\/?[^>]+(>|$)/g, "")
+            .replace(/\s+/g, " ")}{" "}
+        </div>
+
         <div className="flex w-full items-center justify-center gap-3 mt-2 flex-col md:flex-row">
           <button
             type="button"
             className="text-black hover:text-green-900 text-md py-2 px-1 rounded-md transition-all duration-150 w-full border hover:bg-gray-100 shadow-md"
-            onClick={() => navigate(`/plant/${item?.slug}`)}
+            onClick={() => navigate(`/product/${item?.slug}`)}
           >
             View
           </button>

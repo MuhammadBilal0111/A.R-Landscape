@@ -1,28 +1,21 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { IoCartOutline } from "react-icons/io5";
 import Tooltip from "@mui/material/Tooltip";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import { ToastSuccess } from "./Toast";
-import { useSelector, useDispatch } from "react-redux";
-import { addItems } from "../store/cartSlice";
+import { Link } from "react-router-dom";
+import { ToastSuccess } from "../../../components/Toast";
+import { useDispatch } from "react-redux";
+import { addItems } from "../../../store/cartSlice";
 
 function Card({ item }) {
   const dispatch = useDispatch();
-  const { items } = useSelector((state) => state.cart);
-  const navigate = useNavigate();
-  const { currentUser } = useSelector((state) => state.user); // check that the user is logged in
 
   const handleAddToCart = () => {
-    if (currentUser) {
-      ToastSuccess("Item added to cart successfully!");
-      dispatch(addItems(item));
-    } else {
-      navigate("/sign-up");
-    }
+    ToastSuccess("Item added to cart successfully!");
+    dispatch(addItems(item));
   };
   return (
     <div className="w-56 h-72 rounded-3xl shadow-2xl p-6 ">
-      <Link to={`/plant/${item?.slug}`}>
+      <Link to={`/product/${item?.slug}`}>
         <div className="w-full h-48 object-cover mb-3">
           <img
             src={item?.imageUrl[0]}

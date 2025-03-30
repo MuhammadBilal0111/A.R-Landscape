@@ -6,16 +6,18 @@ import {
   deleteItem,
   incrementQuantity,
   decrementQuantity,
+  setShippingCost,
 } from "../../../store/cartSlice";
-import { ToastFailure } from "../../../components/Toast";
+import { ToastSuccess } from "../../../components/Toast";
 
 function ItemRender({ item }) {
   const dispatch = useDispatch();
   const [itemsQuantity, setItemsQuantity] = useState(item.quantity || 1);
 
   const handleDeleteItem = () => {
-    ToastFailure("Item Successfully deleted!");
+    ToastSuccess("Item Successfully deleted!");
     dispatch(deleteItem(item));
+    dispatch(setShippingCost(null));
   };
 
   const handleIncrementItemQuantity = (item) => {
@@ -31,7 +33,7 @@ function ItemRender({ item }) {
     }
   };
   return (
-    <div className="flex justify-between items-center py-1 border-b border-b-green-800">
+    <div className="flex min-w-fit justify-between items-center py-1 border-b border-b-green-800">
       <div className="h-16 w-20">
         <img
           src={item?.imageUrl?.[0]}
@@ -40,9 +42,9 @@ function ItemRender({ item }) {
           loading="lazy"
         />
       </div>
-      <div className="hover:underline text-xl font-semibold w-80 max-w-4xl">
-        <Link to={`/plant/${item?.slug}`}>
-          <h1>{item.title}</h1>
+      <div className="text-sm md:text-xl font-semibold w-52 mx-3  flex-1">
+        <Link to={`/product/${item?.slug}`}>
+          <h1 className="hover:underline truncate w-full">{item.title}</h1>
         </Link>
       </div>
       <div className="flex items-center ">
@@ -93,7 +95,7 @@ function ItemRender({ item }) {
           </svg>
         </button>
       </div>
-      <h2 className="text-xl flex justify-center font-semibold w-40">
+      <h2 className="text-sm md:text-xl flex justify-center font-semibold w-40">
         Rs. {(item.price * item.quantity).toFixed(2)}
       </h2>
       <MdDelete

@@ -73,7 +73,7 @@ function AddItem() {
 
     const uploadData = new FormData();
     uploadData.append("file", file);
-    uploadData.append("upload_preset", "plant_ordering_website");
+    uploadData.append("upload_preset", "A.R Landscape");
 
     try {
       const response = await axios.post(

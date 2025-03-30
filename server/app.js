@@ -1,18 +1,11 @@
 const express = require("express");
-const app = express();
-const cors = require("cors");
-app.use(
-  cors({
-    origin: ["https://ordering-website-frontend.vercel.app"],
-    methods: ["POST", "GET", "DELETE", "PUT"],
-    credentials: true,
-  })
-);
 const plantRoutes = require("./Router/itemRoutes");
 const orderRoutes = require("./Router/orderRoutes");
 const authRouter = require("./Router/authRoutes");
+const commentRouter = require("./Router/commentRouter");
 const provinceRoutes = require("./Router/provinceRoutes");
 const morgan = require("morgan");
+const app = express();
 const cookieParser = require("cookie-parser");
 
 app.use(express.json());
@@ -20,6 +13,7 @@ app.use(morgan("dev"));
 app.use(cookieParser());
 app.use("/api/items", plantRoutes);
 app.use("/api/auth", authRouter);
+app.use("/api/comments", commentRouter);
 app.use("/api", orderRoutes);
 app.use("/api/province", provinceRoutes);
 

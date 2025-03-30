@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { TextField, Button, CircularProgress } from "@mui/material";
-import { ToastSuccess, ToastFailure } from "../../../components/Toast";
+import { ToastSuccess, ToastFailure } from "../../../../components/Toast";
 import {
   provincePrices,
   updateProvincePrices,
-} from "../../../services/GlobalApi";
+} from "../../../../services/GlobalApi";
 
 const Province = () => {
   const [loadContent, setLoadContent] = useState(false);

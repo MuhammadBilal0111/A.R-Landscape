@@ -6,7 +6,7 @@ exports.getAllProvince = asyncErrorHandler(async (req, res, next) => {
   const provinces = await Province.find();
   res.status(200).json(provinces);
 });
-// update the price of province
+// update the price of
 exports.updatePrice = asyncErrorHandler(async (req, res, next) => {
   const { name, price } = req.body;
   if (!name || price === undefined || price === null || price < 0) {

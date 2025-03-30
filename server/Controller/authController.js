@@ -37,7 +37,7 @@ exports.signIn = asyncErrorHandler(async (req, res, next) => {
   }
   const user = await User.findOne({ email });
   if (!user) {
-    return next(new CustomError("No User found! Please Sign Up", 404));
+    return next(new CustomError("No User found!", 404));
   }
   if (!(await user.comparePasswordInDB(password, user.password))) {
     return next(new CustomError("Incorrect Password!", 403));
@@ -45,7 +45,6 @@ exports.signIn = asyncErrorHandler(async (req, res, next) => {
   createSendendResponse(user, 201, res);
 });
 exports.signOut = asyncErrorHandler(async (req, res, next) => {
-  console.log("hello");
   if (req.params.userId !== String(req.user._id)) {
     return next(
       new CustomError("You are not allowed to sign out the account", 403)

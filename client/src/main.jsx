@@ -10,16 +10,14 @@ import { HelmetProvider } from "react-helmet-async";
 import toast, { Toaster } from "react-hot-toast";
 
 createRoot(document.getElementById("root")).render(
-  <StrictMode>
-    <PersistGate persistor={persistor}>
-      <Provider store={store}>
-        <ProvideTheme>
-          <HelmetProvider>
-            <App />
-          </HelmetProvider>
-          <Toaster position="bottom-left" />
-        </ProvideTheme>
-      </Provider>
-    </PersistGate>
-  </StrictMode>
+  <PersistGate persistor={persistor}>
+    <Provider store={store}>
+      <ProvideTheme>
+        <HelmetProvider>
+          <App />
+        </HelmetProvider>
+        <Toaster position="bottom-left" />
+      </ProvideTheme>
+    </Provider>
+  </PersistGate>
 );
