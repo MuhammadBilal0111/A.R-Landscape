@@ -32,8 +32,8 @@ To improve search engine visibility, A. R Landscape includes the following SEO s
 ### Setup
 1. Clone the repository:
    ```sh
-   git clone https://github.com/MuhammadBilal0111/arlandscape.git
-   cd arlandscape
+   git clone https://github.com/MuhammadBilal0111/A.R-Landscape.git
+   cd A.R-Landscape
    ```
 
 2. Install dependencies:
@@ -48,15 +48,9 @@ To improve search engine visibility, A. R Landscape includes the following SEO s
    npm start # Start backend
    ```
 
-## Contributing
-If you'd like to contribute, feel free to fork the repository and submit a pull request!
-
 ### Demo
 ---
 [![Watch the video](https://via.placeholder.com/600x340.png?text=Click+to+Play)](https://github.com/user-attachments/assets/e054b8b9-79f3-425d-9c48-98cada6c31a4)
 
-## License
-MIT License
-
 ## Contact
-For inquiries, reach out at **[your email]** or visit **[your website]**.
+For inquiries, reach out at m.bilal0111@gmail.com.
