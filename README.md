@@ -1,4 +1,4 @@
-# Freelance websirte for client
+# Freelance website for client
 
 # A. R Landscape - Landscaping Services Website
 
