@@ -32,24 +32,6 @@ To improve search engine visibility, A. R Landscape includes the following SEO s
 - Node.js & npm installed
 - MongoDB (local or Atlas)
 
-### Setup
-1. Clone the repository:
-   ```sh
-   git clone https://github.com/MuhammadBilal0111/A.R-Landscape.git
-   cd A.R-Landscape
-   ```
-
-2. Install dependencies:
-   ```sh
-   npm install
-   cd client && npm install
-   ```
-
-3. Run the development servers:
-   ```sh
-   npm run dev   # Starts frontend concurrently
-   npm start # Start backend
-   ```
 
 ### Demo
 ---
